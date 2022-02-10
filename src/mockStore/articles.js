@@ -193,5 +193,94 @@ export const articles = [
         day: 13,
         readed: 5,
         hashtags: ['#Typography', '#DigitalAge', '#Blog']
+    },{
+        key: 13,
+        img: SecondArticle,
+        author: 'Janay Wright',
+        avatar: Janay,
+        views: 1694,
+        header: 'Humane Typography in the Digital Age',
+        paragraph: 'An Essay on Typography by Eric Gill takes the reader back to the year 1930. ' +
+            'The year when a conflict between two worlds came to its term. ' +
+            'The machines of the industrial world finally took over the handicrafts.',
+        month: 'Jun',
+        day: 13,
+        readed: 5,
+        hashtags: ['#Typography', '#DigitalAge', '#Blog']
+    },
+    {
+        key: 14,
+        img: SecondArticle,
+        author: 'Janay Wright',
+        avatar: Janay,
+        views: 1694,
+        header: 'Humane Typography in the Digital Age',
+        paragraph: 'An Essay on Typography by Eric Gill takes the reader back to the year 1930. ' +
+            'The year when a conflict between two worlds came to its term. ' +
+            'The machines of the industrial world finally took over the handicrafts.',
+        month: 'Jun',
+        day: 13,
+        readed: 5,
+        hashtags: ['#Typography', '#DigitalAge', '#Blog']
+    },
+    {
+        key: 15,
+        img: SecondArticle,
+        author: 'Janay Wright',
+        avatar: Janay,
+        views: 1694,
+        header: 'Humane Typography in the Digital Age',
+        paragraph: 'An Essay on Typography by Eric Gill takes the reader back to the year 1930. ' +
+            'The year when a conflict between two worlds came to its term. ' +
+            'The machines of the industrial world finally took over the handicrafts.',
+        month: 'Jun',
+        day: 13,
+        readed: 5,
+        hashtags: ['#Typography', '#DigitalAge', '#Blog']
+    },
+    {
+        key: 16,
+        img: SecondArticle,
+        author: 'Janay Wright',
+        avatar: Janay,
+        views: 1694,
+        header: 'Humane Typography in the Digital Age',
+        paragraph: 'An Essay on Typography by Eric Gill takes the reader back to the year 1930. ' +
+            'The year when a conflict between two worlds came to its term. ' +
+            'The machines of the industrial world finally took over the handicrafts.',
+        month: 'Jun',
+        day: 13,
+        readed: 5,
+        hashtags: ['#Typography', '#DigitalAge', '#Blog']
+    },
+    {
+        key: 17,
+        img: SecondArticle,
+        author: 'Janay Wright',
+        avatar: Janay,
+        views: 1694,
+        header: 'Humane Typography in the Digital Age',
+        paragraph: 'An Essay on Typography by Eric Gill takes the reader back to the year 1930. ' +
+            'The year when a conflict between two worlds came to its term. ' +
+            'The machines of the industrial world finally took over the handicrafts.',
+        month: 'Jun',
+        day: 13,
+        readed: 5,
+        hashtags: ['#Typography', '#DigitalAge', '#Blog']
+    },
+    {
+        key: 18,
+        img: SecondArticle,
+        author: 'Janay Wright',
+        avatar: Janay,
+        views: 1694,
+        header: 'Humane Typography in the Digital Age',
+        paragraph: 'An Essay on Typography by Eric Gill takes the reader back to the year 1930. ' +
+            'The year when a conflict between two worlds came to its term. ' +
+            'The machines of the industrial world finally took over the handicrafts.',
+        month: 'Jun',
+        day: 13,
+        readed: 5,
+        hashtags: ['#Typography', '#DigitalAge', '#Blog']
     },
 ]
