@@ -1,13 +1,18 @@
 import {articles} from "../../mockStore/articles";
 import Article from "./Articles/Article";
+import {Paggination} from "./Paggination/Paggination";
+import {useContext} from 'react';
+import {AppContext} from "../AppContext/AppContext";
 
 export const Main = () =>{
+    const{currentPage, setCurrentPage} = useContext(AppContext);
+    console.log(currentPage, currentPage + 5);
     return(
         <>
             <div className='main-container'>
                 <div className='main-content'>
                     <h1>Popular articles</h1>
-                    {articles.map((article=>
+                    {articles.slice(currentPage, currentPage + 6).map((article=>
                         <Article
                             key={article.key}
                             img={article.img}
@@ -21,10 +26,10 @@ export const Main = () =>{
                             readed={article.day}
                             tags={article.hashtags}
                         />))}
-                    <div className='paggination'>
-                        <button className='paggination-button' disabled={true}>Prev</button>
-                        <button className='paggination-button'>Next</button>
-                    </div>
+                    <Paggination
+                        setPage={setCurrentPage}
+                        page={currentPage}
+                    />
                 </div>
             </div>
         </>
