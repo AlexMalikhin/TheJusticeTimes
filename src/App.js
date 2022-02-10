@@ -1,13 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import {Footer} from "./components/Footer/Footer";
+import {Main} from "./components/Main/Main";
+import {TopArticle} from "./components/TopArticle/TopArticle";
+import {Header} from "./components/Header/Header";
+import {articles} from "./mockStore/articles";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-
-      </header>
+        <Header/>
+        <TopArticle/>
+        <Main/>
+        <Footer/>
     </div>
   );
 }
