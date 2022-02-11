@@ -5,7 +5,7 @@ import {useContext, useMemo} from 'react';
 import {AppContext} from "../AppContext/AppContext";
 
 export const Main = () =>{
-    const{currentPage, setCurrentPage} = useContext(AppContext);
+    const{currentPage, setCurrentPage } = useContext(AppContext);
     const slicedArticles = useMemo(() => articles.slice(currentPage * 6, currentPage * 6 + 6),[currentPage])
     console.log(slicedArticles)
     return(
@@ -15,6 +15,7 @@ export const Main = () =>{
                     <h1>Popular articles</h1>
                     {slicedArticles.map((article=>
                         <Article
+                            id={article.key}
                             key={article.key}
                             img={article.img}
                             author={article.author}

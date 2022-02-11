@@ -21,7 +21,7 @@ export const Paggination = ({setPage, page}) =>{
                 <button
                     onClick={nextPage}
                     className='paggination-button'
-                    disabled={page * 13 > articles.length}
+                    disabled={page * 11 > articles.length}
                 >Next
                 </button>
             </div>

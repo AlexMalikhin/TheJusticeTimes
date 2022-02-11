@@ -16,6 +16,7 @@ import SixArticle from '../img/article_images/7.png';
 export const articles = [
     {
         key: 1,
+        id: 1,
         img: FirstArticle,
         author: 'Janay Wright',
         avatar: Janay,
@@ -31,6 +32,7 @@ export const articles = [
     },
     {
         key: 2,
+        id: 2,
         img: SecondArticle,
         author: 'Anthony J.Yeung',
         avatar: Antony,
@@ -46,6 +48,7 @@ export const articles = [
     },
     {
         key: 3,
+        id: 3,
         img: ThirdArticle,
         author: 'Ella Alderson',
         avatar: Ella,
@@ -61,6 +64,7 @@ export const articles = [
     },
     {
         key: 4,
+        id: 4,
         img: FourArticle,
         author: 'Soner Yıldırım',
         avatar: Soner,
@@ -76,6 +80,7 @@ export const articles = [
     },
     {
         key: 5,
+        id: 5,
         img: FiveArticle,
         author: 'Ellane W',
         avatar: Ellane,
@@ -91,6 +96,7 @@ export const articles = [
     },
     {
         key: 6,
+        id: 6,
         img: SixArticle,
         author: 'Winston Marshall',
         avatar:  Winston,
