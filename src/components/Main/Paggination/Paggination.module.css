@@ -1,0 +1,17 @@
+.paggination{
+    display: flex;
+    justify-content: space-between;
+    margin: 36px 0px;
+}
+.paggination_button{
+    padding: 14px 35px;
+    border: 1px solid #242424;
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: white;
+    cursor: pointer;
+    font-size: 1rem;
+}
+.paggination_button:disabled{
+    border-color: rgba(36, 36, 36, 0.3);
+    color: rgba(36, 36, 36, 0.3);
+}

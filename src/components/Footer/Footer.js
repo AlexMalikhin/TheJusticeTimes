@@ -1,34 +1,30 @@
-import logoWhite from "../../img/logo_white.png";
+import {useContext, useCallback} from "react";
 import {LogIn} from "../Header/LogIn/LogIn";
 import {LogOut} from "../Header/LogOut/LogOut";
 import {AppContext} from "../AppContext/AppContext";
-import {useContext, useCallback} from "react";
+import logoWhite from "../../img/logo_white.png";
+import styles from "./Footer.module.css";
 
-export const Footer = () =>{
+export const Footer = () => {
     const {logIn, setLogIn} = useContext(AppContext);
-    const toggleLogIn = useCallback(()=>{
-        setLogIn((logIn)=>!logIn);
-    },[]);
-    return(
-        <>
-            <footer>
-                <div className="footer-container">
-                    <div className="footer-nav">
-                        <img src={logoWhite} width={268} height={32}/>
-                        {logIn
-                            ? <LogIn toggle={toggleLogIn} styles={'logInFooter'}/>
-                            : <LogOut toggle={toggleLogIn} styles={'logInFooter'}/>}
-                        {/*<nav>*/}
-                        {/*    <button className="buttonLogIn">Log in</button>*/}
-                        {/*    <button className="buttonSignIn">Sign in</button>*/}
-                        {/*</nav>*/}
-                    </div>
-                    <div className='rights'>
-                        <span className='right'>© 2021 Justice-it. All rights reserved.</span>
-                        <span className='right'>© 2021 Justice-team. All rights reserved.</span>
-                    </div>
+    const toggleLogIn = useCallback(() => {
+        setLogIn((logIn) => !logIn);
+    }, []);
+    return (
+        <footer>
+            <div className={styles.footer_container}>
+                <div className={styles.footer_nav}>
+                    <img className={styles.logo} src={logoWhite}/>
+                    {logIn
+                        ? <LogIn toggle={toggleLogIn} styles={styles.logIn_footer}/>
+                        : <LogOut toggle={toggleLogIn} styles={styles.logIn_footer}/>
+                    }
                 </div>
-            </footer>
-        </>
+                <div className={styles.rights}>
+                    <span>© 2021 Justice-it. All rights reserved.</span>
+                    <span>© 2021 Justice-team. All rights reserved.</span>
+                </div>
+            </div>
+        </footer>
     );
 }
