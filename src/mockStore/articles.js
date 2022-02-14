@@ -12,19 +12,31 @@ import FourArticle from '../img/article_images/5.png';
 import FiveArticle from '../img/article_images/6.png';
 import SixArticle from '../img/article_images/7.png';
 
+import FullPageSecondArticle from '../img/article_images/second_article.png';
 
 export const articles = [
     {
         key: 1,
         id: 1,
         img: FirstArticle,
+        secondImg: FullPageSecondArticle,
+        descriptionImg: 'The 42–Line Bible, printed by Gutenberg.',
         author: 'Janay Wright',
         avatar: Janay,
         views: 1694,
         header: 'Humane Typography in the Digital Age',
-        paragraph: 'An Essay on Typography by Eric Gill takes the reader back to the year 1930. ' +
-            'The year when a conflict between two worlds came to its term. ' +
-            'The machines of the industrial world finally took over the handicrafts.',
+        paragraph: 'An Essay on Typography by Eric Gill takes the reader back to the year 1930.' +
+            'The year when a conflict between two worlds came to its term. The machines of ' +
+            'the industrial world finally took over the handicrafts.' +
+            'The typography of this industrial age was no longer handc rafted. ' +
+            'Mass production and profit became more important. Quantity mattered more than the quality. ' +
+            'The books and printed works in general lost a part of its humanity. The typefaces were not' +
+            'produced by craftsmen anymore. It was the machines printing and tying the books together now. ' +
+            'The craftsmen had to let go of their craft and became a cog in the process. An extension of the industrial machine.' +
+            'But the victory of the industrialism didn’t mean that the craftsmen were completely extinct. The two worlds continued to ' +
+            'coexist independently. Each recognising the good in the other — the power of industrialism and the humanity of craftsmanship. ' +
+            'This was the second transition that would strip typography of a part of its humanity. ' +
+            'We have to go 500 years back in time to meet the first one.',
         month: 'Jun',
         day: 13,
         readed: 5,
@@ -34,6 +46,8 @@ export const articles = [
         key: 2,
         id: 2,
         img: SecondArticle,
+        secondImg: FullPageSecondArticle,
+        descriptionImg: 'The 42–Line Bible, printed by Gutenberg.',
         author: 'Anthony J.Yeung',
         avatar: Antony,
         views: 182,
@@ -50,6 +64,8 @@ export const articles = [
         key: 3,
         id: 3,
         img: ThirdArticle,
+        secondImg: FullPageSecondArticle,
+        descriptionImg: 'The 42–Line Bible, printed by Gutenberg.',
         author: 'Ella Alderson',
         avatar: Ella,
         views: 633,
@@ -66,6 +82,8 @@ export const articles = [
         key: 4,
         id: 4,
         img: FourArticle,
+        secondImg: FullPageSecondArticle,
+        descriptionImg: 'The 42–Line Bible, printed by Gutenberg.',
         author: 'Soner Yıldırım',
         avatar: Soner,
         views: 1272,
@@ -82,6 +100,8 @@ export const articles = [
         key: 5,
         id: 5,
         img: FiveArticle,
+        secondImg: FullPageSecondArticle,
+        descriptionImg: 'The 42–Line Bible, printed by Gutenberg.',
         author: 'Ellane W',
         avatar: Ellane,
         views: 59,
@@ -98,6 +118,8 @@ export const articles = [
         key: 6,
         id: 6,
         img: SixArticle,
+        secondImg: FullPageSecondArticle,
+        descriptionImg: 'The 42–Line Bible, printed by Gutenberg.',
         author: 'Winston Marshall',
         avatar:  Winston,
         views: 228,
@@ -113,6 +135,8 @@ export const articles = [
     {
         key: 7,
         img: FirstArticle,
+        secondImg: FullPageSecondArticle,
+        descriptionImg: 'The 42–Line Bible, printed by Gutenberg.',
         author: 'Janay Wright',
         avatar: Janay,
         views: 1694,
@@ -128,6 +152,8 @@ export const articles = [
     {
         key: 8,
         img: FirstArticle,
+        secondImg: FullPageSecondArticle,
+        descriptionImg: 'The 42–Line Bible, printed by Gutenberg.',
         author: 'Janay Wright',
         avatar: Janay,
         views: 1694,
@@ -143,6 +169,8 @@ export const articles = [
     {
         key: 9,
         img: FirstArticle,
+        secondImg: FullPageSecondArticle,
+        descriptionImg: 'The 42–Line Bible, printed by Gutenberg.',
         author: 'Janay Wright',
         avatar: Janay,
         views: 1694,
@@ -158,6 +186,8 @@ export const articles = [
     {
         key: 10,
         img: FourArticle,
+        secondImg: FullPageSecondArticle,
+        descriptionImg: 'The 42–Line Bible, printed by Gutenberg.',
         author: 'Janay Wright',
         avatar: Janay,
         views: 1694,
@@ -173,6 +203,8 @@ export const articles = [
     {
         key: 11,
         img: FirstArticle,
+        secondImg: FullPageSecondArticle,
+        descriptionImg: 'The 42–Line Bible, printed by Gutenberg.',
         author: 'Janay Wright',
         avatar: Janay,
         views: 1694,
@@ -188,6 +220,8 @@ export const articles = [
     {
         key: 12,
         img: SecondArticle,
+        secondImg: FullPageSecondArticle,
+        descriptionImg: 'The 42–Line Bible, printed by Gutenberg.',
         author: 'Janay Wright',
         avatar: Janay,
         views: 1694,
@@ -202,6 +236,8 @@ export const articles = [
     },{
         key: 13,
         img: SecondArticle,
+        secondImg: FullPageSecondArticle,
+        descriptionImg: 'The 42–Line Bible, printed by Gutenberg.',
         author: 'Janay Wright',
         avatar: Janay,
         views: 1694,
@@ -217,6 +253,8 @@ export const articles = [
     {
         key: 14,
         img: SecondArticle,
+        secondImg: FullPageSecondArticle,
+        descriptionImg: 'The 42–Line Bible, printed by Gutenberg.',
         author: 'Janay Wright',
         avatar: Janay,
         views: 1694,
@@ -232,6 +270,8 @@ export const articles = [
     {
         key: 15,
         img: SecondArticle,
+        secondImg: FullPageSecondArticle,
+        descriptionImg: 'The 42–Line Bible, printed by Gutenberg.',
         author: 'Janay Wright',
         avatar: Janay,
         views: 1694,
@@ -247,6 +287,8 @@ export const articles = [
     {
         key: 16,
         img: SecondArticle,
+        secondImg: FullPageSecondArticle,
+        descriptionImg: 'The 42–Line Bible, printed by Gutenberg.',
         author: 'Janay Wright',
         avatar: Janay,
         views: 1694,
@@ -262,6 +304,8 @@ export const articles = [
     {
         key: 17,
         img: SecondArticle,
+        secondImg: FullPageSecondArticle,
+        descriptionImg: 'The 42–Line Bible, printed by Gutenberg.',
         author: 'Janay Wright',
         avatar: Janay,
         views: 1694,
@@ -277,6 +321,8 @@ export const articles = [
     {
         key: 18,
         img: SecondArticle,
+        secondImg: FullPageSecondArticle,
+        descriptionImg: 'The 42–Line Bible, printed by Gutenberg.',
         author: 'Janay Wright',
         avatar: Janay,
         views: 1694,
