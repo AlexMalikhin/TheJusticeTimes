@@ -18,7 +18,7 @@ export const FullArticlePage = ({article}) => {
                         )}
                     </ul>
                     <h1>{article.header}</h1>
-                    <img src={article.img}/>
+                    <img className={fullPageStyles.article_img} src={article.img}/>
                     <p className={fullPageStyles.paragraph_fullpage}>
                         {article.paragraph}
                     </p>
@@ -40,7 +40,7 @@ export const FullArticlePage = ({article}) => {
                         them. They were hungry for knowledge and printed
                         books satisfied this hunger.
                     </p>
-                    <img src={article.secondImg}/>
+                    <img className={fullPageStyles.article_img} src={article.secondImg}/>
                     <p className={fullPageStyles.descriptionImg}>{article.descriptionImg}</p>
                     <p className={fullPageStyles.paragraph_fullpage}>
                         But, through this transition, the book lost a large part of its humanity. The machine took over
