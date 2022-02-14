@@ -9,7 +9,7 @@ export const FullArticlePage = ({article}) =>{
                 <div className='fullPage'>
                      <ul>
                          {article.hashtags.map(hashtag=>(
-                             <li className='hashtags'><a>{hashtag}</a></li>
+                             <li key={hashtag.key} className='hashtags'><a>{hashtag.title}</a></li>
                          ))}
                      </ul>
                      <h1>Humane Typography in the Digital Age</h1>

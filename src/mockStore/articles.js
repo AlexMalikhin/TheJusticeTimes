@@ -28,7 +28,7 @@ export const articles = [
         month: 'Jun',
         day: 13,
         readed: 5,
-        hashtags: ['#Typography', '#DigitalAge', '#Blog']
+        hashtags: [{title: '#Typography', key: 'HG32JU'}, {title: '#DigitalAge', key: 'HDYD7535'}, {title: '#Blog', key: 'HDWOFW534'}]
     },
     {
         key: 2,
@@ -44,7 +44,7 @@ export const articles = [
         month: 'Mar',
         day: 23,
         readed: 15,
-        hashtags: ['#Johannes', '#Gutenberg', '#BirthOfMovable']
+        hashtags: [{title: '#Johannes', key: 'HFEWF59839785'}, {title: '#Gutenberg', key: 'WEIOF267834'}, {title: '#BirthOfMovable', key: 'UWR85395'}]
     },
     {
         key: 3,
@@ -60,7 +60,7 @@ export const articles = [
         month: 'Mar',
         day: 3,
         readed: 10,
-        hashtags: ['#Stationery', '#Lettering']
+        hashtags: [{title: '#Stationery', key: 'OIRWR93478'}, {title: '#Lettering', key: 'PFWIO8476'}]
     },
     {
         key: 4,
@@ -76,7 +76,7 @@ export const articles = [
         month: 'Jul',
         day: 17,
         readed: 35,
-        hashtags: ['#PerfectionArt', '#Art']
+        hashtags: [{title: '#PerfectionArt', key: 'OPWI7464'}, {title: '#Art', key: 'NFU8383'}]
     },
     {
         key: 5,
@@ -92,7 +92,7 @@ export const articles = [
         month: 'Jan',
         day: 26,
         readed: 13,
-        hashtags: ['#HistoryOfTypography', '#Typography']
+        hashtags: [{title: '#HistoryOfTypography', key: 'LGJG84634'}, {title: '#Typography', key: 'MNBFG885389'}]
     },
     {
         key: 6,
@@ -108,7 +108,7 @@ export const articles = [
         month: 'Jul',
         day: 13,
         readed: 15,
-        hashtags: ['#Freedom', '#Habits', '#LifeStyle']
+        hashtags: [{title: '#Freedom', key: 'FHEWF735835'}, {title: '#Habits', key: 'UBTWB64738'}, {title: '#LifeStyle', key: 'ORFKG8746'}]
     },
     {
         key: 7,
@@ -123,7 +123,7 @@ export const articles = [
         month: 'Jun',
         day: 13,
         readed: 5,
-        hashtags: ['#Typography', '#DigitalAge', '#Blog']
+        hashtags: [{title: '#Typography', key: 'UFGJFE7635'}, {title: '#DigitalAge', key: 'UFFNVTE435'}, {title: '#Blog', key: 'YRNRYTE54673'}]
     },
     {
         key: 8,
@@ -138,7 +138,7 @@ export const articles = [
         month: 'Jun',
         day: 13,
         readed: 5,
-        hashtags: ['#Typography', '#DigitalAge', '#Blog']
+        hashtags: [{title: '#Typography', key: 'UFGJ651316635'}, {title: '#DigitalAge', key: 'UFFN1515435'}, {title: '#Blog', key: 'YRNRY6734673'}]
     },
     {
         key: 9,
@@ -153,7 +153,7 @@ export const articles = [
         month: 'Jun',
         day: 13,
         readed: 5,
-        hashtags: ['#Typography', '#DigitalAge', '#Blog']
+        hashtags: [{title: '#Typography', key: 'UF523578FE7635'}, {title: '#DigitalAge', key: 'UF1532987TE435'}, {title: '#Blog', key: 'YRNR3215987673'}]
     },
     {
         key: 10,
@@ -168,7 +168,7 @@ export const articles = [
         month: 'Jun',
         day: 13,
         readed: 5,
-        hashtags: ['#Typography', '#DigitalAge', '#Blog']
+        hashtags: [{title: '#Typography', key: 'UFG51273635'}, {title: '#DigitalAge', key: 'UF26873435'}, {title: '#Blog', key: 'YRN5378673'}]
     },
     {
         key: 11,
@@ -183,7 +183,7 @@ export const articles = [
         month: 'Jun',
         day: 13,
         readed: 5,
-        hashtags: ['#Typography', '#DigitalAge', '#Blog']
+        hashtags: [{title: '#Typography', key: 'U512387635'}, {title: '#DigitalAge', key: 'U32159887435'}, {title: '#Blog', key: 'YRN32887673'}]
     },
     {
         key: 12,
@@ -198,7 +198,7 @@ export const articles = [
         month: 'Jun',
         day: 13,
         readed: 5,
-        hashtags: ['#Typography', '#DigitalAge', '#Blog']
+        hashtags: [{title: '#Typography', key: 'UFFGI34E7635'}, {title: '#DigitalAge', key: 'UFEIJOP3E435'}, {title: '#Blog', key: 'YWEWIUUH87473'}]
     },{
         key: 13,
         img: SecondArticle,
@@ -212,7 +212,7 @@ export const articles = [
         month: 'Jun',
         day: 13,
         readed: 5,
-        hashtags: ['#Typography', '#DigitalAge', '#Blog']
+        hashtags: [{title: '#Typography', key: 'UNBEF3135'}, {title: '#DigitalAge', key: 'UGHJRJ33435'}, {title: '#Blog', key: 'YFGJHE67354673'}]
     },
     {
         key: 14,
@@ -227,7 +227,7 @@ export const articles = [
         month: 'Jun',
         day: 13,
         readed: 5,
-        hashtags: ['#Typography', '#DigitalAge', '#Blog']
+        hashtags: [{title: '#Typography', key: 'FESFHG222435'}, {title: '#DigitalAge', key: 'KJFEWE32435'}, {title: '#Blog', key: 'YFEFUE393'}]
     },
     {
         key: 15,
@@ -242,7 +242,7 @@ export const articles = [
         month: 'Jun',
         day: 13,
         readed: 5,
-        hashtags: ['#Typography', '#DigitalAge', '#Blog']
+        hashtags: [{title: '#Typography', key: 'U278GHEG635'}, {title: '#DigitalAge', key: 'UFEK3352435'}, {title: '#Blog', key: 'YHGF3524673'}]
     },
     {
         key: 16,
@@ -257,7 +257,7 @@ export const articles = [
         month: 'Jun',
         day: 13,
         readed: 5,
-        hashtags: ['#Typography', '#DigitalAge', '#Blog']
+        hashtags: [{title: '#Typography', key: 'U3HR32535'}, {title: '#DigitalAge', key: 'UGEJWJ43435'}, {title: '#Blog', key: 'YR1525HGG4673'}]
     },
     {
         key: 17,
@@ -272,7 +272,7 @@ export const articles = [
         month: 'Jun',
         day: 13,
         readed: 5,
-        hashtags: ['#Typography', '#DigitalAge', '#Blog']
+        hashtags: [{title: '#Typography', key: 'UFFQWEF835'}, {title: '#DigitalAge', key: 'UFDHG874874435'}, {title: '#Blog', key: 'YFH5554673'}]
     },
     {
         key: 18,
@@ -287,6 +287,6 @@ export const articles = [
         month: 'Jun',
         day: 13,
         readed: 5,
-        hashtags: ['#Typography', '#DigitalAge', '#Blog']
+        hashtags: [{title: '#Typography', key: 'UF3425HG635'}, {title: '#DigitalAge', key: 'UF532535'}, {title: '#Blog', key: 'YRN52J35JGH73'}]
     },
 ]

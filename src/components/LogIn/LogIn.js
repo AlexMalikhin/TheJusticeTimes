@@ -11,7 +11,7 @@ export const LogIn = ({active, login, style}) => {
                 <li className={styles.logout_li}><a>Add article</a></li>
                 <li className={styles.logout_li}><a>Profile</a></li>
             </ul>
-            <ButtonLog click={login} style={style} title={'LogOut'} disabled={false}/>
+            <ButtonLog click={login} style={style} title='LogOut' disabled={false}/>
         </nav>
     );
 }

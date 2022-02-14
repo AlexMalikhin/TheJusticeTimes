@@ -4,6 +4,8 @@ export const ButtonLog = ({title, style, click, disable}) =>{
             onClick={click}
             className={style}
             disabled={disable}
-        >{title}</button>
+        >
+            {title}
+        </button>
     );
 }
