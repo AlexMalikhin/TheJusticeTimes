@@ -18,7 +18,7 @@ const Article = ({id, img, author, avatar, views, header, paragraph, month, day,
                     {tags.map(item => <li key={item.key} className={styles.hashtags}><a>{item.title}</a></li>)}
                 </ul>
                 <h2>{header}</h2>
-                <p>{paragraph}</p>
+                <p className={styles.paragraph_short}>{paragraph}</p>
                 <div className={styles.article_info}>
                     <div className={styles.avatar_block}>
                         <img src={avatar} className={styles.avatars}/>

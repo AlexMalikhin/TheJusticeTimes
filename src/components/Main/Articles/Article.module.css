@@ -54,11 +54,16 @@
     max-width: 20px;
 }
 .ml8{
-
     margin-left: 8px;
 }
 .avatars{
     border-radius: 50%;
     max-width: 40px;
     object-fit: cover;
+}
+.paragraph_short{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
 }
