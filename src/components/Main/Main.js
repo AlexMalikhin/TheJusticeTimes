@@ -1,6 +1,6 @@
 import {useContext, useMemo} from 'react';
 import Article from "./Articles/Article";
-import {Paggination} from "./Paggination/Paggination";
+import {Paggination} from '../Paggination/Paggination';
 import {TopArticle} from "../TopArticle/TopArticle";
 import {AppContext} from "../AppContext/AppContext";
 import {articles} from "../../mockStore/articles";
@@ -8,6 +8,7 @@ import styles from './Main.module.css';
 
 export const Main = () => {
     const {currentPage, setCurrentPage} = useContext(AppContext);
+    console.log(currentPage);
     const slicedArticles = useMemo(() => articles.slice(currentPage * 6, currentPage * 6 + 6), [currentPage])
     return (
         <div className={styles.main_container}>

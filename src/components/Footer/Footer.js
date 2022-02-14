@@ -1,9 +1,10 @@
 import {useContext, useCallback} from "react";
-import {LogIn} from "../Header/LogIn/LogIn";
-import {LogOut} from "../Header/LogOut/LogOut";
+import {LogIn} from "../LogIn/LogIn";
+import {LogOut} from "../LogOut/LogOut";
 import {AppContext} from "../AppContext/AppContext";
 import logoWhite from "../../img/logo_white.png";
 import styles from "./Footer.module.css";
+import buttonStyles from '../ButtonLog/ButtonLog.module.css';
 
 export const Footer = () => {
     const {logIn, setLogIn} = useContext(AppContext);
@@ -16,8 +17,12 @@ export const Footer = () => {
                 <div className={styles.footer_nav}>
                     <img className={styles.logo} src={logoWhite}/>
                     {logIn
-                        ? <LogIn toggle={toggleLogIn} styles={styles.logIn_footer}/>
-                        : <LogOut toggle={toggleLogIn} styles={styles.logIn_footer}/>
+                        ? <LogIn login={toggleLogIn} style={buttonStyles.footer_logout}/>
+                        : <LogOut
+                            login={toggleLogIn}
+                            stylesSignIn={buttonStyles.footer_signIn}
+                            stylesLogIn={buttonStyles.footer_logIn}
+                        />
                     }
                 </div>
                 <div className={styles.rights}>
