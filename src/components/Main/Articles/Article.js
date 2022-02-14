@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import viewsImg from "../../../img/viewsImg.png";
 import styles from './Article.module.css';
 
-const Article = ({id, key, img, author, avatar, views, header, paragraph, month, day, readed, tags}) => {
+const Article = ({id, img, author, avatar, views, header, paragraph, month, day, readed, tags}) => {
     const navigate = useNavigate();
     const showFullArticle = useCallback((id) => {
         navigate(`./${id}`, {replace: true})
@@ -15,7 +15,7 @@ const Article = ({id, key, img, author, avatar, views, header, paragraph, month,
             <img src={img} className={styles.img_article}/>
             <div className={styles.article_block}>
                 <ul>
-                    {tags.map(item => <li key={key} className={styles.hashtags}><a>{item}</a></li>)}
+                    {tags.map(item => <li key={item.key} className={styles.hashtags}><a>{item.title}</a></li>)}
                 </ul>
                 <h2>{header}</h2>
                 <p>{paragraph}</p>

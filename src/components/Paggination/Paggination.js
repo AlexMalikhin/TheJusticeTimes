@@ -18,16 +18,18 @@ export const Paggination = ({setPage, page}) => {
             <ButtonLog
                 click={prevPage}
                 style={buttonStyles.header_logIn}
-                title={'Prev'}
+                title='Prev'
                 disable={page === 0}
-            >Prev
+            >
+                Prev
             </ButtonLog>
             <ButtonLog
                 click={nextPage}
                 style={buttonStyles.header_logIn}
-                title={'Next'}
+                title='Next'
                 disable={page * 11 > articles.length}
-            >Next
+            >
+                Next
             </ButtonLog>
         </div>
     );
