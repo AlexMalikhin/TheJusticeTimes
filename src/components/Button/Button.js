@@ -1,4 +1,4 @@
-export const ButtonLog = ({title, style, click, disable}) =>{
+export const Button = ({title, style, click, disable}) =>{
     return(
         <button
             onClick={click}

@@ -8,7 +8,6 @@ import styles from './Main.module.css';
 
 export const Main = () => {
     const {currentPage, setCurrentPage} = useContext(AppContext);
-    console.log(currentPage);
     const slicedArticles = useMemo(() => articles.slice(currentPage * 6, currentPage * 6 + 6), [currentPage])
     return (
         <div className={styles.main_container}>

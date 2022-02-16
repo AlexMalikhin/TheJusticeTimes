@@ -5,6 +5,9 @@
     background: black;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 .footer_nav{
     min-width: 1070px;
