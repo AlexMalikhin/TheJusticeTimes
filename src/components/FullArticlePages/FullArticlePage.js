@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import {ButtonLog} from '../ButtonLog/ButtonLog';
+import {Button} from '../Button/Button';
 import {articles} from "../../mockStore/articles";
 import fullPageStyles from './FullArticlePage.module.css';
 import viewsImg from '../../img/viewsImg.png';
@@ -8,7 +8,7 @@ export const FullArticlePage = ({article}) => {
     return (
         <div className={fullPageStyles.main_container}>
             <Link to={'/AllArticles'}>
-                <ButtonLog title='All articles' style={fullPageStyles.all_articles}/>
+                <Button title='All articles' style={fullPageStyles.all_articles}/>
             </Link>
             <div className={fullPageStyles.fullpage_container}>
                 <div className={fullPageStyles.fullpage}>
@@ -79,7 +79,7 @@ export const FullArticlePage = ({article}) => {
                                 <span className={fullPageStyles.ml8}>{article.views}</span>
                             </div>
                         </div>
-                        <ButtonLog title={article.hashtags[0].title} style={fullPageStyles.first_hashtag}/>
+                        <Button title={article.hashtags[0].title} style={fullPageStyles.first_hashtag}/>
                     </div>
                 </div>
             </div>

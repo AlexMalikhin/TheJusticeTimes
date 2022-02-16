@@ -1,10 +1,10 @@
 import {useContext, useCallback} from "react";
-import {LogIn} from "../LogIn/LogIn";
-import {LogOut} from "../LogOut/LogOut";
+import {LogInMenu} from "../LogInMenu/LogInMenu";
+import {LogOutMenu} from "../LogOutMenu/LogOutMenu";
 import {AppContext} from "../AppContext/AppContext";
 import logoWhite from "../../img/logo_white.png";
 import styles from "./Footer.module.css";
-import buttonStyles from '../ButtonLog/ButtonLog.module.css';
+import buttonStyles from '../Button/Button.module.css';
 
 export const Footer = () => {
     const {logIn, setLogIn} = useContext(AppContext);
@@ -12,13 +12,12 @@ export const Footer = () => {
         setLogIn((logIn) => !logIn);
     }, []);
     return (
-        <footer>
-            <div className={styles.footer_container}>
+        <footer className={styles.footer_container}>
                 <div className={styles.footer_nav}>
                     <img className={styles.logo} src={logoWhite}/>
                     {logIn
-                        ? <LogIn login={toggleLogIn} style={buttonStyles.footer_logout}/>
-                        : <LogOut
+                        ? <LogInMenu login={toggleLogIn} style={buttonStyles.footer_logout}/>
+                        : <LogOutMenu
                             login={toggleLogIn}
                             stylesSignIn={buttonStyles.footer_signIn}
                             stylesLogIn={buttonStyles.footer_logIn}
@@ -29,7 +28,6 @@ export const Footer = () => {
                     <span>© 2021 Justice-it. All rights reserved.</span>
                     <span>© 2021 Justice-team. All rights reserved.</span>
                 </div>
-            </div>
         </footer>
     );
 }

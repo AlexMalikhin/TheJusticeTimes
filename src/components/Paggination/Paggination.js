@@ -1,7 +1,7 @@
 import {useCallback} from "react";
-import {ButtonLog} from '../ButtonLog/ButtonLog';
+import {Button} from '../Button/Button';
 import {articles} from '../../mockStore/articles';
-import buttonStyles from '../ButtonLog/ButtonLog.module.css';
+import buttonStyles from '../Button/Button.module.css';
 import styles from "./Paggination.module.css";
 
 
@@ -15,22 +15,22 @@ export const Paggination = ({setPage, page}) => {
     }, [page]);
     return (
         <div className={styles.paggination}>
-            <ButtonLog
+            <Button
                 click={prevPage}
                 style={buttonStyles.header_logIn}
                 title='Prev'
                 disable={page === 0}
             >
                 Prev
-            </ButtonLog>
-            <ButtonLog
+            </Button>
+            <Button
                 click={nextPage}
                 style={buttonStyles.header_logIn}
                 title='Next'
                 disable={page * 11 > articles.length}
             >
                 Next
-            </ButtonLog>
+            </Button>
         </div>
     );
 }

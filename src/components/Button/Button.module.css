@@ -72,3 +72,12 @@
     margin-left: 24px;
     border: #000000 1px solid;
 }
+.form_button{
+    font-size: 1rem;
+    background: black;
+    color: white;
+    padding: 18px 0px;
+    border: none;
+    font-family: 'IBM Plex Sans', sans-serif;
+    margin: 20px 0px;
+}
