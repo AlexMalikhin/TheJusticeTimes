@@ -14,9 +14,9 @@ export const LogOutMenu = ({stylesLogIn, stylesSignIn, login}) => {
         navigate('/SignIn')
     },[]);
     return (
-        <nav>
+        <div>
             <Button title='Log in' style={stylesLogIn} click={followLogInPage} disabled={false}/>
             <Button title='Sign in' style={stylesSignIn} click={followSignInPage} disabled={false}/>
-        </nav>
+        </div>
     );
 }

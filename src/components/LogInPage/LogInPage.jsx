@@ -5,9 +5,12 @@ import {Button} from '../Button/Button';
 import {AppContext} from '../AppContext/AppContext';
 import logInPageStyles from './LogInPage.module.css';
 import buttonStyles from '../Button/Button.module.css';
+import inputStyles from '../Input/Input.module.css';
 
 export const LogInPage = () => {
     const {
+        authKey,
+        setAuthKey,
         users,
         setLogIn,
         inputValueEmail,
@@ -24,6 +27,9 @@ export const LogInPage = () => {
         setIsRenderPasswordError,
         regExpForEmail,
         regExpForPassword,
+        setCurrentUserFirstName,
+        setCurrentUserLastName,
+        setCurrentUserDescription,
     } = useContext(AppContext);
 
     useEffect(()=>{
@@ -41,6 +47,11 @@ export const LogInPage = () => {
             if (user.email === email && user.password === password) {
                 setLogIn((logIn) => !logIn);
                 navigate('/AllArticles');
+                setAuthKey(user.userId);
+                localStorage.setItem('authKey', JSON.stringify(user.userId));
+                setCurrentUserFirstName(user.firstname);
+                setCurrentUserLastName(user.lastname);
+                setCurrentUserDescription(user.description);
             }
             else{
                 setIsRenderEmailError(true);

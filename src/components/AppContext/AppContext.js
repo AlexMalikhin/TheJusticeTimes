@@ -9,6 +9,7 @@ export const AppContextProvider = ({children}) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [logIn, setLogIn] = useState(false);
     const [users, setUsers] = useState([]);
+    const [authKey, setAuthKey] = useState('');
 
     const [inputValueFirstName, setInputValueFirstName] = useState('');
     const [inputValueLastName, setInputValueLastName] = useState('');
@@ -25,6 +26,12 @@ export const AppContextProvider = ({children}) => {
     const [emailErrorText, setEmailErrorText] = useState('');
     const [passwordErrorText, setPasswordErrorText] = useState('');
 
+    const [currentUserFirstName, setCurrentUserFirstName] = useState('');
+    const [currentUserLastName, setCurrentUserLastName] = useState('');
+    const [currentUserDescription, setCurrentUserDescription] = useState('');
+
+    const [currentUser, setCurrentUser] = useState({});
+
     return (
         <AppContext.Provider value={{
             regExpForEmail,
@@ -36,6 +43,8 @@ export const AppContextProvider = ({children}) => {
             setLogIn,
             users,
             setUsers,
+            authKey,
+            setAuthKey,
 
             inputValueFirstName,
             inputValueLastName,
@@ -63,6 +72,16 @@ export const AppContextProvider = ({children}) => {
             setLastnameErrorText,
             setEmailErrorText,
             setPasswordErrorText,
+
+            currentUserFirstName,
+            currentUserLastName,
+            currentUserDescription,
+            setCurrentUserFirstName,
+            setCurrentUserLastName,
+            setCurrentUserDescription,
+
+            currentUser,
+            setCurrentUser,
         }}>
             {children}
         </AppContext.Provider>);

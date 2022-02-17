@@ -1,11 +1,10 @@
 import {useContext, useCallback, useEffect} from 'react';
-
 import {Input} from '../Input/Input';
 import {Button} from '../Button/Button';
 import {AppContext} from '../AppContext/AppContext';
 import signInPageStyles from './SignInPage.module.css';
 import buttonStyles from '../Button/Button.module.css';
-
+import {defaultAvatar} from '../../img/defaultAvatar.png';
 
 export const SignInPage = () => {
     const {
@@ -59,12 +58,18 @@ export const SignInPage = () => {
         const newUsers = [
             ...users,
             {
+                'userId': Math.random().toString(36).substr(2, 13),
                 'firstname': inputValueFirstName,
                 'lastname': inputValueLastName,
                 'email': inputValueEmail,
                 'password': inputValuePassword,
+                'description': '',
+                'avatar': defaultAvatar,
             }]
         setUsers(newUsers);
+        if(!JSON.parse(localStorage.getItem('authKey'))){
+            localStorage.setItem('authKey', '');
+        }
         localStorage.setItem('users', JSON.stringify(newUsers));
         clearInputs();
         clearErrors();

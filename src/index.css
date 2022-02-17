@@ -12,12 +12,21 @@ html {
   overflow-x: hidden;
   margin-right: calc(-1 * (100vw - 100%));
 }
+textarea{
+  resize: none;
+}
+label{
+  font-size: 0.88rem;
+  font-family: 'IBM Plex Sans', sans-serif;
+  margin-bottom: 12px;
+}
 .App{
   position: relative;
   min-height: 100vh;
   padding-bottom: 230px;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 ul{
   padding: 0;

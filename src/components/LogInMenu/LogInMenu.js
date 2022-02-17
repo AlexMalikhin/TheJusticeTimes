@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import {Button} from '../Button/Button';
 import styles from './LogInMenu.module.css';
 
@@ -9,7 +10,7 @@ export const LogInMenu = ({active, login, style}) => {
                 <li className={styles.logout_li}><a>All articles</a></li>
                 <li className={styles.logout_li}><a>My articles</a></li>
                 <li className={styles.logout_li}><a>Add article</a></li>
-                <li className={styles.logout_li}><a>Profile</a></li>
+                <li className={styles.logout_li}><Link to='./Profile'>Profile</Link></li>
             </ul>
             <Button click={login} style={style} title='LogOut' disabled={false}/>
         </nav>
