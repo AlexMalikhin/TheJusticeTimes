@@ -12,6 +12,7 @@ import inputStyles from '../Input/Input.module.css';
 
 
 export const ProfilePage = () =>{
+    const reader = new FileReader();
     const {
         users,
         setUsers,
@@ -26,6 +27,7 @@ export const ProfilePage = () =>{
         authKey} = useContext(AppContext);
 
     const [othersUsers, setOthersUsers] = useState([]);
+    const [newImage, setNewImage] = useState('');
     const changeUserDescription = (e) =>{
         setCurrentUserDescription((value)=> value = e.target.value);
     }
@@ -38,44 +40,52 @@ export const ProfilePage = () =>{
         })
 
         const otherUsers = (users.filter((user)=> user.userId !== authKey));
-        setUsers([...otherUsers, {
+        const allNewUsers = [...otherUsers, {
             ...currentUser,
+            avatar: newImage,
             firstname: currentUserFirstName,
             lastname: currentUserLastName,
             description: currentUserDescription,
-        }])
-
-        localStorage.setItem('users', JSON.stringify([...otherUsers, {
-            ...currentUser,
-            firstname: currentUserFirstName,
-            lastname: currentUserLastName,
-            description: currentUserDescription,
-        }]))
+        }]
+        setUsers(allNewUsers)
+        localStorage.setItem('users', JSON.stringify(allNewUsers))
     }
 
-    console.log(users)
 
     useEffect(()=>{
         if(!!authKey){
             const currentUser = users.find((user)=> user.userId === authKey);
             setCurrentUser(currentUser);
+            setNewImage(currentUser.avatar);
             setCurrentUserDescription(currentUser.description);
             setCurrentUserLastName(currentUser.lastname);
             setCurrentUserFirstName(currentUser.firstname);
         }
     },[authKey])
 
+    const saveImage = (e) => {
+        const file = e.target.files[0];
+        reader.onloadend = () => {
+            const base64String = reader.result;
+            setNewImage(base64String);
+        };
+        reader.readAsDataURL(file);
+    };
+    const clearImg = () =>{
+        setNewImage('')
+    }
+    console.log(newImage);
     return(
         <div className={profilePageStyles.block}>
             <h1 className={profilePageStyles.header}>Profile</h1>
             <div className={profilePageStyles.content_block}>
                 <div className={profilePageStyles.photo_block}>
-                    <img src={defaultAvatar} className={profilePageStyles.avatar}/>
+                    <img src={newImage || defaultAvatar} className={profilePageStyles.avatar}/>
                     <div className={profilePageStyles.upload_input}>
                         <label htmlFor='upload' className={profilePageStyles.input_label}>Change Photo</label>
-                        <input id='upload' className={profilePageStyles.input_file_hidden} type='file' accept=".png, .jpg, .jpeg"/>
+                        <input id='upload' className={profilePageStyles.input_file_hidden} type='file' accept=".png, .jpg, .jpeg" onChange={saveImage}/>
                     </div>
-                    <Link to='/Profile' className={profilePageStyles.delete_link}>Delete photo</Link>
+                    <button className={profilePageStyles.delete_link} onClick={clearImg}>Delete photo</button>
                 </div>
                 <div className={profilePageStyles.user_info}>
                     <div className={profilePageStyles.user_data_block}>

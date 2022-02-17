@@ -18,13 +18,11 @@ function App() {
         setAuthKey(JSON.parse(localStorage.getItem('authKey')));
     },[])
 
-
-
     return (
         <div className="App">
             <Header/>
             <Routes>
-                <Route path='/MyArticles' element={<MyArticles>}>
+                {/*<Route path='/MyArticles' element={<MyArticles>}>*/}
                 <Route path='/AllArticles' element={<Main/>}/>
                 <Route path='/LogIn' element={<LogInPage/>}/>
                 <Route path='/SignIn' element={<SignInPage/>}/>

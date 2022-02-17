@@ -4,7 +4,7 @@ import {Button} from '../Button/Button';
 import {AppContext} from '../AppContext/AppContext';
 import signInPageStyles from './SignInPage.module.css';
 import buttonStyles from '../Button/Button.module.css';
-import {defaultAvatar} from '../../img/defaultAvatar.png';
+import defaultAvatar from '../../img/defaultAvatar.png';
 
 export const SignInPage = () => {
     const {
@@ -55,6 +55,7 @@ export const SignInPage = () => {
             }
             return
         }
+
         const newUsers = [
             ...users,
             {
@@ -64,7 +65,8 @@ export const SignInPage = () => {
                 'email': inputValueEmail,
                 'password': inputValuePassword,
                 'description': '',
-                'avatar': defaultAvatar,
+                'avatar' : '',
+                // 'avatar': JSON.stringify(defaultAvatar),
             }]
         setUsers(newUsers);
         if(!JSON.parse(localStorage.getItem('authKey'))){
