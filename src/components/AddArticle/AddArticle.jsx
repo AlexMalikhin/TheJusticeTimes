@@ -14,7 +14,15 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 export const AddArticle = () =>{
     const navigate = useNavigate();
     const reader = new FileReader();
-    const {authKey, setAllArticles, allArticles, currentUser} = useContext(AppContext);
+    const {
+        authKey,
+        setAllArticles,
+        allArticles,
+        currentUser,
+        currentUserFirstName,
+        currentUserLastName
+    } = useContext(AppContext);
+
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
     const [imgNewArticle, setImgNewArticle] = useState('');
     const [newArticleTitle, setNewArticleTitle] = useState('');
@@ -51,6 +59,8 @@ export const AddArticle = () =>{
         const myNewArticle = {
             id: Math.random().toString(36).substr(2, 13),
             userId: authKey,
+            firstname: currentUserFirstName,
+            lastname: currentUserLastName,
             title: newArticleTitle,
             category: newArticleCategory,
             headImg: imgNewArticle,

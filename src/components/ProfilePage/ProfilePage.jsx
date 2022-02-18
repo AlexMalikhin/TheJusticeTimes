@@ -24,10 +24,14 @@ export const ProfilePage = () =>{
         setCurrentUserFirstName,
         setCurrentUserLastName,
         setCurrentUserDescription,
+        profileAvatar,
+        setProfileAvatar,
+        allArticles,
+        setAllArticles,
         authKey} = useContext(AppContext);
 
     const [othersUsers, setOthersUsers] = useState([]);
-    const [newImage, setNewImage] = useState('');
+    // const [newImage, setNewImage] = useState('');
     const changeUserDescription = (e) =>{
         setCurrentUserDescription((value)=> value = e.target.value);
     }
@@ -41,20 +45,26 @@ export const ProfilePage = () =>{
         const otherUsers = (users.filter((user)=> user.userId !== authKey));
         const allNewUsers = [...otherUsers, {
             ...currentUser,
-            avatar: newImage,
+            avatar: profileAvatar,
             firstname: currentUserFirstName,
             lastname: currentUserLastName,
             description: currentUserDescription,
         }]
         setUsers(allNewUsers)
         localStorage.setItem('users', JSON.stringify(allNewUsers))
+        const myArticles = (allArticles.filter((article)=> article.userId === authKey))
+        console.log(myArticles);
+        const chagedMyArticles = myArticles.map((article)=> ({...article, avatar: profileAvatar, firstname: currentUserFirstName, lastname: currentUserLastName }) )
+        console.log(chagedMyArticles);
+        // console.log(changedMyArticles);
+        // написать функцию по получению , изменению фамилии ,имени и аватара B массиве articles и отправке на localStorage
     }
 
     useEffect(()=>{
         if(!!authKey){
             const currentUser = users.find((user)=> user.userId === authKey);
             setCurrentUser(currentUser);
-            setNewImage(currentUser.avatar);
+            setProfileAvatar(currentUser.avatar);
             setCurrentUserDescription(currentUser.description);
             setCurrentUserLastName(currentUser.lastname);
             setCurrentUserFirstName(currentUser.firstname);
@@ -65,12 +75,12 @@ export const ProfilePage = () =>{
         const file = e.target.files[0];
         reader.onloadend = () => {
             const base64String = reader.result;
-            setNewImage(base64String);
+            setProfileAvatar(base64String);
         };
         reader.readAsDataURL(file);
     };
     const clearImg = () =>{
-        setNewImage('')
+        setProfileAvatar('')
     }
 
     return(
@@ -78,7 +88,7 @@ export const ProfilePage = () =>{
             <h1 className={profilePageStyles.header}>Profile</h1>
             <div className={profilePageStyles.content_block}>
                 <div className={profilePageStyles.photo_block}>
-                    <img src={newImage || defaultAvatar} className={profilePageStyles.avatar}/>
+                    <img src={profileAvatar || defaultAvatar} className={profilePageStyles.avatar}/>
                     <div className={profilePageStyles.upload_input}>
                         <label htmlFor='upload' className={profilePageStyles.input_label}>Change Photo</label>
                         <input id='upload' className={profilePageStyles.input_file_hidden} type='file' accept=".png, .jpg, .jpeg" onChange={saveImage}/>

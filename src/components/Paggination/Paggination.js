@@ -5,7 +5,7 @@ import buttonStyles from '../Button/Button.module.css';
 import styles from "./Paggination.module.css";
 
 
-export const Paggination = ({setPage, page}) => {
+export const Paggination = ({setPage, page, allArticles}) => {
 
     const prevPage = useCallback(() => {
         setPage((page) => (page === 0) ? 0 : page - 1);
@@ -27,7 +27,7 @@ export const Paggination = ({setPage, page}) => {
                 click={nextPage}
                 style={buttonStyles.header_logIn}
                 title='Next'
-                disable={page * 11 > articles.length}
+                disable={page * 11 > allArticles.length}
             >
                 Next
             </Button>
