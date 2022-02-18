@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import viewsImg from "../../../img/viewsImg.png";
 import styles from './Article.module.css';
 
-const Article = ({id, img, firstname, lastname, avatar, views, header, paragraph, month, day, readed, tags}) => {
+const Article = ({id, img, firstname, lastname, avatar, views, header, paragraph, month, day, minutes, tags}) => {
     const navigate = useNavigate();
     const showFullArticle = useCallback((id) => {
         navigate(`./${id}`, {replace: true})
@@ -25,7 +25,7 @@ const Article = ({id, img, firstname, lastname, avatar, views, header, paragraph
                         <span className={styles.avatar_name}>{firstname} {lastname}</span>
                     </div>
                     <div className={styles.m8}>
-                        <span>{month} {day} · {readed} min read</span>
+                        <span>{month} {day} · {minutes}</span>
                     </div>
                     <div className={styles.ml8}>
                         <img src={viewsImg} className={styles.views}/>

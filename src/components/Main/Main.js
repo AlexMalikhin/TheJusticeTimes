@@ -31,7 +31,7 @@ export const Main = () => {
                         img={article.headImg}
                         firstname={article.firstname}
                         lastname={article.lastname}
-                        avatar={profileAvatar}
+                        avatar={article.avatar}
                         views={article.views}
                         header={article.title}
                         paragraph={article.text}
