@@ -38,7 +38,6 @@ export const ProfilePage = () =>{
             lastname: currentUserLastName,
             description: currentUserDescription,
         })
-
         const otherUsers = (users.filter((user)=> user.userId !== authKey));
         const allNewUsers = [...otherUsers, {
             ...currentUser,
@@ -50,7 +49,6 @@ export const ProfilePage = () =>{
         setUsers(allNewUsers)
         localStorage.setItem('users', JSON.stringify(allNewUsers))
     }
-
 
     useEffect(()=>{
         if(!!authKey){
@@ -74,7 +72,7 @@ export const ProfilePage = () =>{
     const clearImg = () =>{
         setNewImage('')
     }
-    console.log(newImage);
+
     return(
         <div className={profilePageStyles.block}>
             <h1 className={profilePageStyles.header}>Profile</h1>

@@ -11,7 +11,7 @@
 .header_logIn{
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 1rem;
-    padding: 14px 30px;
+    padding: 14px 33px;
     cursor: pointer;
     background: #ffffff;
     color: #000000;
@@ -82,5 +82,7 @@
     background: black;
     color: white;
     border: #000000 1px solid;
-    max-width: 164px;
+    max-width: 186px;
+    margin-top: 24px;
+    margin-bottom: 14px;
 }

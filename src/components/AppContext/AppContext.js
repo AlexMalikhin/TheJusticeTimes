@@ -29,6 +29,7 @@ export const AppContextProvider = ({children}) => {
     const [currentUserFirstName, setCurrentUserFirstName] = useState('');
     const [currentUserLastName, setCurrentUserLastName] = useState('');
     const [currentUserDescription, setCurrentUserDescription] = useState('');
+    const [allArticles, setAllArticles] = useState([]);
 
     const [currentUser, setCurrentUser] = useState({});
 
@@ -82,6 +83,8 @@ export const AppContextProvider = ({children}) => {
 
             currentUser,
             setCurrentUser,
+            allArticles,
+            setAllArticles,
         }}>
             {children}
         </AppContext.Provider>);
