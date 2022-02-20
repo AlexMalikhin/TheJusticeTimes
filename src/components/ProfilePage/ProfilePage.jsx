@@ -53,11 +53,18 @@ export const ProfilePage = () =>{
         setUsers(allNewUsers)
         localStorage.setItem('users', JSON.stringify(allNewUsers))
         const myArticles = (allArticles.filter((article)=> article.userId === authKey))
-        console.log(myArticles);
-        const chagedMyArticles = myArticles.map((article)=> ({...article, avatar: profileAvatar, firstname: currentUserFirstName, lastname: currentUserLastName }))
-        setAllArticles(chagedMyArticles);
-        localStorage.setItem('articles', JSON.stringify(chagedMyArticles));
-        console.log(chagedMyArticles);
+        const otherArticles = (allArticles.filter((article)=> article.userId !== authKey))
+        const changedMyArticles = myArticles.map((article)=> (
+            {
+                ...article,
+                avatar: profileAvatar,
+                firstname: currentUserFirstName,
+                lastname: currentUserLastName
+            }))
+        console.log([...changedMyArticles, ...otherArticles])
+        setAllArticles([...changedMyArticles, ...otherArticles]);
+        localStorage.setItem('articles', JSON.stringify([...changedMyArticles, ...otherArticles]));
+        // console.log(changedMyArticles);
         // console.log(changedMyArticles);
         // написать функцию по получению , изменению фамилии ,имени и аватара B массиве articles и отправке на localStorage
     }

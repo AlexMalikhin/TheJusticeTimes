@@ -26,7 +26,7 @@ export const Main = () => {
                     // timeOfCreated: getTimePublication(),
                     // text: editorState.getCurrentContent().getPlainText(),
                     // views: 0,
-                        id={article.userId}
+                        id={article.id}
                         key={article.id}
                         img={article.headImg}
                         firstname={article.firstname}

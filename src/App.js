@@ -28,9 +28,9 @@ function App() {
                 <Route path='/LogIn' element={<LogInPage/>}/>
                 <Route path='/SignIn' element={<SignInPage/>}/>
                 {authKey && <Route path='/Profile' element={<ProfilePage/>}/>}
-                {articles.map(article => (
+                {allArticles.map(article => (
                     <Route
-                        key={article.key}
+                        key={article.id}
                         path={`/AllArticles/${article.id}`}
                         element={<FullArticlePage article={article}/>}
                     />
