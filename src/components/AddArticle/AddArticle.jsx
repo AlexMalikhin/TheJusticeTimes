@@ -107,7 +107,7 @@ export const AddArticle = () =>{
                             <label htmlFor='upload' className={addArticleStyles.input_label}>{imgNewArticle ? 'Change Photo' : 'Upload Photo'}</label>
                             <input id='upload' className={addArticleStyles.input_file_hidden} type='file' accept=".png, .jpg, .jpeg" onChange={saveImage}/>
                         </div>
-                        <Button title='Delete image' style={buttonStyles.header_logIn} click={clearImg}/>
+                        {imgNewArticle && <Button title='Delete image' style={buttonStyles.header_logIn} click={clearImg}/>}
                     </div>
                 </div>
             <Editor
