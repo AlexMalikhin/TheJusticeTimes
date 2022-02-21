@@ -99,10 +99,10 @@ export const ProfilePage = () =>{
                 <div className={profilePageStyles.photo_block}>
                     <img src={profileAvatar || defaultAvatar} className={profilePageStyles.avatar}/>
                     <div className={profilePageStyles.upload_input}>
-                        <label htmlFor='upload' className={profilePageStyles.input_label}>Change Photo</label>
+                        <label htmlFor='upload' className={profilePageStyles.input_label}>{profileAvatar ? 'Change Photo' : 'Upload photo'}</label>
                         <input id='upload' className={profilePageStyles.input_file_hidden} type='file' accept=".png, .jpg, .jpeg" onChange={saveImage}/>
                     </div>
-                    <button className={profilePageStyles.delete_link} onClick={clearImg}>Delete photo</button>
+                    {profileAvatar && <button className={profilePageStyles.delete_link} onClick={clearImg}>Delete photo</button>}
                 </div>
                 <div className={profilePageStyles.user_info}>
                     <div className={profilePageStyles.user_data_block}>
