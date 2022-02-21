@@ -8,10 +8,10 @@ import defaultAvatar from '../../img/defaultAvatar.png';
 
 export const MyArticles = () => {
     const { userArticlePage, setUserArticlePage, allArticles, authKey, users, setMyArticles} = useContext(AppContext);
-    const [ userData, setUserData ] = useState('');
+    // const [ userData, setUserData ] = useState('');
     const currentUser = users.filter(user=> user.userId === authKey);
-    const myArticles = useMemo(()=>allArticles.filter(article=> article.userId === authKey), [authKey, allArticles])
-    setMyArticles(myArticles);
+    // const myArticles = useMemo(()=>allArticles.filter(article=> article.userId === authKey), [authKey, allArticles])
+    // setMyArticles(myArticles);
 
     return (
         <div className={styles.container}>
@@ -22,10 +22,10 @@ export const MyArticles = () => {
                     <p className={styles.p}>{currentUser[0]?.description}</p>
                 </div>
                 <div className={styles.articles_list}>
-                    {myArticles.map(article=> (
-                            <MyArticle props={article} key={article.id}/>
-                        )
-                    )}
+                    {/*{myArticles.map(article=> (*/}
+                    {/*        <MyArticle props={article} key={article.id}/>*/}
+                    {/*    )*/}
+                    {/*)}*/}
                     {/*<Paggination*/}
                     {/*    page={userArticlePage}*/}
                     {/*    setPage={setUserArticlePage}*/}

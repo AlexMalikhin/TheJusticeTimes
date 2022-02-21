@@ -1,12 +1,11 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Editor } from "react-draft-wysiwyg";
-import { EditorState, convertToRaw } from 'draft-js';
+import { EditorState } from 'draft-js';
 import { AppContext } from '../AppContext/AppContext';
 import { Button } from '../Button/Button';
 import { Input } from "../Input/Input";
 import emptyImg from '../../img/article_images/empty_img.png';
-import artic from '../../img/article_images/7.png';
 import buttonStyles from '../Button/Button.module.css';
 import addArticleStyles from "./AddArticle.module.css";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
@@ -19,9 +18,6 @@ export const AddArticle = () =>{
         users,
         setAllArticles,
         allArticles,
-        currentUser,
-        currentUserFirstName,
-        currentUserLastName
     } = useContext(AppContext);
 
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -54,13 +50,13 @@ export const AddArticle = () =>{
     }
 
     const publishArticle = () =>{
-        const loginedUser = users.filter(user=> user.userId === authKey);
+        const loginedUser = users.find(user=> user.userId === authKey);
         const myNewArticle = {
-            avatar: loginedUser[0].avatar || '',
+            avatar: loginedUser.avatar || '',
             id: Math.random().toString(36).substr(2, 13),
             userId: authKey,
-            firstname: loginedUser[0].firstname,
-            lastname: loginedUser[0].lastname,
+            firstname: loginedUser.firstname,
+            lastname: loginedUser.lastname,
             title: newArticleTitle,
             category: newArticleCategory,
             headImg: imgNewArticle,
@@ -100,11 +96,19 @@ export const AddArticle = () =>{
             />
                 <div className={addArticleStyles.add_image_block}>
                     <div className={addArticleStyles.image_block}>
-                         <img src={imgNewArticle || emptyImg} className={imgNewArticle ? addArticleStyles.img : addArticleStyles.img_filtered}/>
+                         <img
+                             src={imgNewArticle || emptyImg}
+                             className={imgNewArticle ? addArticleStyles.img : addArticleStyles.img_filtered}
+                         />
                     </div>
                     <div className={addArticleStyles.add_img_buttons}>
                         <div className={addArticleStyles.upload_input}>
-                            <label htmlFor='upload' className={addArticleStyles.input_label}>{imgNewArticle ? 'Change Photo' : 'Upload Photo'}</label>
+                            <label
+                                htmlFor='upload'
+                                className={addArticleStyles.input_label}
+                            >
+                                {imgNewArticle ? 'Change Photo' : 'Upload Photo'}
+                            </label>
                             <input id='upload' className={addArticleStyles.input_file_hidden} type='file' accept=".png, .jpg, .jpeg" onChange={saveImage}/>
                         </div>
                         {imgNewArticle && <Button title='Delete image' style={buttonStyles.header_logIn} click={clearImg}/>}
@@ -118,7 +122,6 @@ export const AddArticle = () =>{
                editorClassName="editorClassName"
                onEditorStateChange={setEditorState}
             />
-                <p></p>
                 <Button style={buttonStyles.profile_save_changes} title='Publish an article' click={publishArticle}/>
             </div>
         </div>

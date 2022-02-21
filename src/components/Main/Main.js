@@ -20,13 +20,13 @@ export const Main = () => {
         setAllArticles(newArticles);
         localStorage.setItem('articles', JSON.stringify(newArticles));
     }
-    console.log(allArticles)
+
     const mostPopularArticle = useMemo(() => {
         if (allArticles.length > 0) {
             return allArticles?.reduce((acc, cur) => acc.views > cur.views ? acc : cur)
         }
     }, [allArticles])
-    console.log(mostPopularArticle);
+
 
 
     return (

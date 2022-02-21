@@ -2,7 +2,7 @@ import inputStyles from './Input.module.css';
 
 export const Input = ({name, placeholder, label, type, inputValue, changeValue, isRenderError, blurHandle, errorText, focusEvent}) =>{
     const setValue = (e) =>{
-       changeValue(value=> value = e.target.value)
+       changeValue(e.target.value)
     };
 
     return(

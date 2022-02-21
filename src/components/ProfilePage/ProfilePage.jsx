@@ -1,8 +1,8 @@
-import { useState, useContext, useEffect, useCallback, useMemo } from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from '../Button/Button';
-import { Input } from '../Input/Input';
-import { AppContext } from '../AppContext/AppContext';
+import {useState, useContext, useEffect, useCallback, useMemo} from 'react';
+import {Link} from 'react-router-dom';
+import {Button} from '../Button/Button';
+import {Input} from '../Input/Input';
+import {AppContext} from '../AppContext/AppContext';
 
 import defaultAvatar from '../../img/defaultAvatar.png';
 import profilePageStyles from './ProfilePage.module.css';
@@ -11,7 +11,7 @@ import buttonStyles from '../Button/Button.module.css';
 import inputStyles from '../Input/Input.module.css';
 
 
-export const ProfilePage = () =>{
+export const ProfilePage = () => {
     const reader = new FileReader();
     const {
         users,
@@ -28,21 +28,34 @@ export const ProfilePage = () =>{
         setProfileAvatar,
         allArticles,
         setAllArticles,
-        authKey} = useContext(AppContext);
+        authKey
+    } = useContext(AppContext);
 
     const [othersUsers, setOthersUsers] = useState([]);
     // const [newImage, setNewImage] = useState('');
-    const changeUserDescription = (e) =>{
-        setCurrentUserDescription((value)=> value = e.target.value);
+    const changeUserDescription = (e) => {
+        setCurrentUserDescription(e.target.value);
     }
-    const saveChanges = () =>{
+    const saveChanges = () => {
         setCurrentUser({
             ...currentUser,
             firstname: currentUserFirstName,
             lastname: currentUserLastName,
             description: currentUserDescription,
         })
-        const otherUsers = (users.filter((user)=> user.userId !== authKey));
+        const newUsers = users.map(user => {
+            if (user.userId !== authKey) {
+                return user
+            }
+            return {
+                ...user,
+                avatar: profileAvatar,
+                firstname: currentUserFirstName,
+                lastname: currentUserLastName,
+                description: currentUserDescription,
+            }
+        })
+        const otherUsers = (users.filter((user) => user.userId !== authKey));
         const allNewUsers = [...otherUsers, {
             ...currentUser,
             avatar: profileAvatar,
@@ -52,9 +65,9 @@ export const ProfilePage = () =>{
         }]
         setUsers(allNewUsers)
         localStorage.setItem('users', JSON.stringify(allNewUsers))
-        const myArticles = (allArticles.filter((article)=> article.userId === authKey))
-        const otherArticles = (allArticles.filter((article)=> article.userId !== authKey))
-        const changedMyArticles = myArticles.map((article)=> (
+        const myArticles = (allArticles.filter((article) => article.userId === authKey))
+        const otherArticles = (allArticles.filter((article) => article.userId !== authKey))
+        const changedMyArticles = myArticles.map((article) => (
             {
                 ...article,
                 avatar: profileAvatar,
@@ -64,21 +77,18 @@ export const ProfilePage = () =>{
         console.log([...changedMyArticles, ...otherArticles])
         setAllArticles([...changedMyArticles, ...otherArticles]);
         localStorage.setItem('articles', JSON.stringify([...changedMyArticles, ...otherArticles]));
-        // console.log(changedMyArticles);
-        // console.log(changedMyArticles);
-        // написать функцию по получению , изменению фамилии ,имени и аватара B массиве articles и отправке на localStorage
     }
 
-    useEffect(()=>{
-        if(!!authKey){
-            const currentUser = users.find((user)=> user.userId === authKey);
+    useEffect(() => {
+        if (!!authKey) {
+            const currentUser = users.find((user) => user.userId === authKey);
             setCurrentUser(currentUser);
             setProfileAvatar(currentUser.avatar);
             setCurrentUserDescription(currentUser.description);
             setCurrentUserLastName(currentUser.lastname);
             setCurrentUserFirstName(currentUser.firstname);
         }
-    },[authKey])
+    }, [authKey])
 
     const saveImage = (e) => {
         const file = e.target.files[0];
@@ -88,21 +98,24 @@ export const ProfilePage = () =>{
         };
         reader.readAsDataURL(file);
     };
-    const clearImg = () =>{
+    const clearImg = () => {
         setProfileAvatar('')
     }
 
-    return(
+    return (
         <div className={profilePageStyles.block}>
             <h1 className={profilePageStyles.header}>Profile</h1>
             <div className={profilePageStyles.content_block}>
                 <div className={profilePageStyles.photo_block}>
                     <img src={profileAvatar || defaultAvatar} className={profilePageStyles.avatar}/>
                     <div className={profilePageStyles.upload_input}>
-                        <label htmlFor='upload' className={profilePageStyles.input_label}>{profileAvatar ? 'Change Photo' : 'Upload photo'}</label>
-                        <input id='upload' className={profilePageStyles.input_file_hidden} type='file' accept=".png, .jpg, .jpeg" onChange={saveImage}/>
+                        <label htmlFor='upload'
+                               className={profilePageStyles.input_label}>{profileAvatar ? 'Change Photo' : 'Upload photo'}</label>
+                        <input id='upload' className={profilePageStyles.input_file_hidden} type='file'
+                               accept=".png, .jpg, .jpeg" onChange={saveImage}/>
                     </div>
-                    {profileAvatar && <button className={profilePageStyles.delete_link} onClick={clearImg}>Delete photo</button>}
+                    {profileAvatar &&
+                        <button className={profilePageStyles.delete_link} onClick={clearImg}>Delete photo</button>}
                 </div>
                 <div className={profilePageStyles.user_info}>
                     <div className={profilePageStyles.user_data_block}>
