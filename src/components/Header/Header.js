@@ -30,7 +30,7 @@ export const Header = () => {
                                style={buttonStyles.header_logout}/>
                     : <LogOutMenu  stylesLogIn={buttonStyles.header_logIn}
                                stylesSignIn={buttonStyles.header_signIn}/>
-                               // login={toggleLogIn}/>
+
                 }
             </div>
         </header>

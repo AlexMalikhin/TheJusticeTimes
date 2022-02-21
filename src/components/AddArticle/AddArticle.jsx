@@ -27,9 +27,7 @@ export const AddArticle = () =>{
     const [imgNewArticle, setImgNewArticle] = useState('');
     const [newArticleTitle, setNewArticleTitle] = useState('');
     const [newArticleCategory, setNewArticleCategory] = useState('');
-    const editorStateChange = (e) =>{
-        setEditorState(value=> value = e.target.value);
-    }
+
     const saveImage = (e) => {
         const file = e.target.files[0];
         reader.onloadend = () => {
@@ -41,7 +39,6 @@ export const AddArticle = () =>{
     const clearImg = () =>{
         setImgNewArticle('')
     }
-    console.log(currentUser)
     const getDay = () =>{
         let date = new Date();
         return date.getDate();
@@ -56,7 +53,9 @@ export const AddArticle = () =>{
     }
 
     const publishArticle = () =>{
+
         const myNewArticle = {
+            avatar:
             id: Math.random().toString(36).substr(2, 13),
             userId: authKey,
             firstname: currentUserFirstName,

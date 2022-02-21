@@ -13,9 +13,7 @@ export const FullArticlePage = ({article}) => {
             <div className={fullPageStyles.fullpage_container}>
                 <div className={fullPageStyles.fullpage}>
                     <ul>
-                        {article.hashtags.map(hashtag => (
-                            <li key={hashtag.key} className={fullPageStyles.hashtags}><a>{hashtag.title}</a></li>)
-                        )}
+                        <li className={fullPageStyles.hashtags}><a>{article.category}</a></li>)
                     </ul>
                     <h1>{article.header}</h1>
                     <img className={fullPageStyles.article_img} src={article.img}/>
