@@ -5,10 +5,11 @@ import viewsImg from "../../../img/viewsImg.png";
 import styles from './Article.module.css';
 import defaultAvatar from '../../../img/defaultAvatar.png';
 
-const Article = ({id, img, firstname, lastname, avatar, views, header, paragraph, month, day, minutes, tags}) => {
+const Article = ({id, img, firstname, lastname, avatar, views, header, paragraph, month, day, minutes, tags, viewArticle}) => {
     const navigate = useNavigate();
     const showFullArticle = useCallback((id) => {
-        navigate(`./${id}`, {replace: true})
+        viewArticle(id);
+        navigate(`./${id}`, {replace: true});
     }, []);
 
     return (

@@ -9,21 +9,23 @@ import {AppContext} from './components/AppContext/AppContext';
 import {ProfilePage} from './components/ProfilePage/ProfilePage';
 import {FullArticlePage} from "./components/FullArticlePages/FullArticlePage";
 import {AddArticle} from "./components/AddArticle/AddArticle";
+import {MyArticles} from "./components/MyArticles/MyArticles";
 import {articles} from "./mockStore/articles";
 
 function App() {
-    const {setUsers, users, authKey, setAuthKey, setLogIn, setAllArticles, allArticles} = useContext(AppContext);
+    const {setUsers, users, authKey, setAuthKey, setLogIn, setAllArticles, allArticles, myArticles} = useContext(AppContext);
     useEffect(()=>{
         setUsers(JSON.parse(localStorage.getItem('users')) || []);
-        setAuthKey(JSON.parse(localStorage.getItem('authKey')));
+        setAuthKey(JSON.parse(localStorage.getItem('authKey')) || '');
         setAllArticles(JSON.parse(localStorage.getItem('articles')) || []);
     },[])
-
+    console.log();
     return (
         <div className="App">
             <Header/>
             <Routes>
                 {authKey && <Route path='/AddArticle' element={<AddArticle/>}/>}
+                <Route path='/MyArticles' element={<MyArticles/>}/>
                 <Route path='/AllArticles' element={<Main/>}/>
                 <Route path='/LogIn' element={<LogInPage/>}/>
                 <Route path='/SignIn' element={<SignInPage/>}/>
@@ -32,6 +34,13 @@ function App() {
                     <Route
                         key={article.id}
                         path={`/AllArticles/${article.id}`}
+                        element={<FullArticlePage article={article}/>}
+                    />
+                ))}
+                {myArticles.map(article =>(
+                    <Route
+                        key={article.id}
+                        path={`/MyArticles/${article.id}`}
                         element={<FullArticlePage article={article}/>}
                     />
                 ))}

@@ -7,13 +7,20 @@ import defaultAvatar from '../../img/defaultAvatar.png';
 
 export const FullArticlePage = ({article}) => {
     const navigate = useNavigate();
-    const linkToAllArticles = () =>{
-        return navigate('/AllArticles', {replace: true})
+    const getPath = () => document.location.pathname === `/AllArticles/${article.id}`;
+    const linkToAllArticles = () => {
+        if(!!getPath()){
+            return navigate('/AllArticles', {replace: true})
+        }
+        else {
+            return navigate('/MyArticles', {replace: true})
+        }
     }
+
 
     return (
         <div className={fullPageStyles.main_container}>
-            <Button click={linkToAllArticles} title='All articles' style={fullPageStyles.all_articles}/>
+            <Button click={linkToAllArticles} title={!!getPath() ? 'AllArticles' : 'MyArticles'} style={fullPageStyles.all_articles}/>
             <div className={fullPageStyles.fullpage_container}>
                 <div className={fullPageStyles.fullpage}>
                     <ul>

@@ -7,8 +7,20 @@ import {articles} from "../../mockStore/articles";
 import styles from './Main.module.css';
 
 export const Main = () => {
-    const {currentPage, setCurrentPage, allArticles, profileAvatar} = useContext(AppContext);
+    const {currentPage, setCurrentPage, allArticles, setAllArticles, profileAvatar} = useContext(AppContext);
     const slicedArticles = useMemo(() => allArticles.slice(currentPage * 6, currentPage * 6 + 6), [currentPage, allArticles])
+    const viewArticle = (id) =>{
+        const othersArticles = allArticles.filter(article=> article.id !== id)
+        const myArticle = allArticles.find(article=> article.id === id)
+        const changedMyArticle = {
+            ...myArticle,
+            views: myArticle.views + 1
+        }
+        const newArticles = [...othersArticles, changedMyArticle]
+        setAllArticles(newArticles);
+        localStorage.setItem('articles', JSON.stringify(newArticles));
+    }
+
     return (
         <div className={styles.main_container}>
             <TopArticle/>
@@ -29,6 +41,7 @@ export const Main = () => {
                         day={article.dayOfCreated}
                         minutes={article.timeOfCreated}
                         tags={article.category}
+                        viewArticle={viewArticle}
                     />))}
                 <Paggination
                     setPage={setCurrentPage}

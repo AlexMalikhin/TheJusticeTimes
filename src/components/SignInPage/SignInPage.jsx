@@ -69,9 +69,9 @@ export const SignInPage = () => {
                 // 'avatar': JSON.stringify(defaultAvatar),
             }]
         setUsers(newUsers);
-        if(!JSON.parse(localStorage.getItem('authKey'))){
-            localStorage.setItem('authKey', '');
-        }
+        // if(!JSON.parse(localStorage.getItem('authKey'))){
+        //     localStorage.setItem('authKey', '');
+        // }
         localStorage.setItem('users', JSON.stringify(newUsers));
         clearInputs();
         clearErrors();
