@@ -16,6 +16,7 @@ export const AddArticle = () =>{
     const reader = new FileReader();
     const {
         authKey,
+        users,
         setAllArticles,
         allArticles,
         currentUser,
@@ -53,13 +54,13 @@ export const AddArticle = () =>{
     }
 
     const publishArticle = () =>{
-
+        const loginedUser = users.filter(user=> user.userId === authKey);
         const myNewArticle = {
-            avatar:
+            avatar: loginedUser[0].avatar || '',
             id: Math.random().toString(36).substr(2, 13),
             userId: authKey,
-            firstname: currentUserFirstName,
-            lastname: currentUserLastName,
+            firstname: loginedUser[0].firstname,
+            lastname: loginedUser[0].lastname,
             title: newArticleTitle,
             category: newArticleCategory,
             headImg: imgNewArticle,
@@ -69,6 +70,7 @@ export const AddArticle = () =>{
             text: editorState.getCurrentContent().getPlainText(),
             views: 0,
         }
+
         const newArticles = [...allArticles, myNewArticle]
         setAllArticles(newArticles);
         localStorage.setItem('articles', JSON.stringify(newArticles));

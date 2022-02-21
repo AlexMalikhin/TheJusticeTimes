@@ -16,16 +16,6 @@ export const Main = () => {
                 <h1>Popular articles</h1>
                 {slicedArticles.map((article =>
                     <Article
-                    //     id: Math.random().toString(36).substr(2, 13),
-                    // userId: authKey,
-                    // title: newArticleTitle,
-                    // category: newArticleCategory,
-                    // headImg: imgNewArticle,
-                    // monthOfCreated: getMonth(),
-                    // dayOfCreated: getDay(),
-                    // timeOfCreated: getTimePublication(),
-                    // text: editorState.getCurrentContent().getPlainText(),
-                    // views: 0,
                         id={article.id}
                         key={article.id}
                         img={article.headImg}

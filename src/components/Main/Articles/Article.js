@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import {useNavigate} from 'react-router-dom';
 import viewsImg from "../../../img/viewsImg.png";
 import styles from './Article.module.css';
+import defaultAvatar from '../../../img/defaultAvatar.png';
 
 const Article = ({id, img, firstname, lastname, avatar, views, header, paragraph, month, day, minutes, tags}) => {
     const navigate = useNavigate();
@@ -21,7 +22,7 @@ const Article = ({id, img, firstname, lastname, avatar, views, header, paragraph
                 <p className={styles.paragraph_short}>{paragraph}</p>
                 <div className={styles.article_info}>
                     <div className={styles.avatar_block}>
-                        <img src={avatar} className={styles.avatars}/>
+                        <img src={avatar ? avatar : defaultAvatar} className={styles.avatars}/>
                         <span className={styles.avatar_name}>{firstname} {lastname}</span>
                     </div>
                     <div className={styles.m8}>
