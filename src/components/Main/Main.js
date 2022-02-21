@@ -9,9 +9,9 @@ import styles from './Main.module.css';
 export const Main = () => {
     const {currentPage, setCurrentPage, allArticles, setAllArticles, profileAvatar} = useContext(AppContext);
     const slicedArticles = useMemo(() => allArticles.slice(currentPage * 6, currentPage * 6 + 6), [currentPage, allArticles])
-    const viewArticle = (id) =>{
-        const othersArticles = allArticles.filter(article=> article.id !== id)
-        const myArticle = allArticles.find(article=> article.id === id)
+    const viewArticle = (id) => {
+        const othersArticles = allArticles.filter(article => article.id !== id)
+        const myArticle = allArticles.find(article => article.id === id)
         const changedMyArticle = {
             ...myArticle,
             views: myArticle.views + 1
@@ -20,10 +20,18 @@ export const Main = () => {
         setAllArticles(newArticles);
         localStorage.setItem('articles', JSON.stringify(newArticles));
     }
+    console.log(allArticles)
+    const mostPopularArticle = useMemo(() => {
+        if (allArticles.length > 0) {
+            return allArticles?.reduce((acc, cur) => acc.views > cur.views ? acc : cur)
+        }
+    }, [allArticles])
+    console.log(mostPopularArticle);
+
 
     return (
         <div className={styles.main_container}>
-            <TopArticle/>
+            <TopArticle props={mostPopularArticle}/>
             <div className={styles.main_content}>
                 <h1>Popular articles</h1>
                 {slicedArticles.map((article =>
@@ -51,4 +59,5 @@ export const Main = () => {
             </div>
         </div>
     );
+
 }
