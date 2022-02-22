@@ -1,0 +1,99 @@
+.main_container{
+    margin: 80px 0px 110px 0px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    flex: 1 1 auto;
+}
+.hashtags{
+    padding: 7px 12px;
+    background: #F7F7F7;
+    color: #8C8C8C;
+    border-radius: 45px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    list-style: none;
+    display: inline-block;
+    margin-right: 10px;
+}
+.fullpage{
+    max-width: 676px;
+}
+.article_img{
+    max-width: 676px;
+}
+.fullpage_container{
+    min-width: 865px;
+}
+.all_articles{
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1rem;
+    position: sticky;
+    top: 119px;
+    max-height: 50px;
+    padding: 14px 30px;
+    margin-right: 73px;
+    cursor: pointer;
+    background: #ffffff;
+    color: #000000;
+    border: none;
+    border: #000000 1px solid;
+}
+.paragraph_fullpage{
+    margin: 32px 0px;
+}
+.descriptionImg{
+    font-style: italic;
+    color: #8C8C8C;
+    margin: 24px 0px;
+}
+.article_info{
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    max-width: 500px;
+    color: #8C8C8C;
+    font-family: 'IBM Plex Sans', sans-serif;
+    padding: 20px 0px;
+    margin: 8px 0px;
+    max-width: 676px;
+}
+.avatar_block{
+    display: flex;
+    align-items: center;
+}
+.avatar_name{
+    font-weight: 500;
+    margin: 0px 8px;
+}
+.avatars{
+    border-radius: 50%;
+    max-width: 40px;
+    object-fit: cover;
+}
+.m8{
+    margin: 0px 8px;
+}
+.views{
+    max-width: 20px;
+}
+.ml8{
+    margin-left: 8px;
+}
+.space_between{
+    max-width: 667px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px #d7d2d2 solid;
+}
+.first_hashtag{
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1rem;
+    padding: 14px 30px;
+    cursor: pointer;
+    background: #ffffff;
+    color: #000000;
+    border: none;
+    border: #000000 1px solid;
+}

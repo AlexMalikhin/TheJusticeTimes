@@ -1,0 +1,31 @@
+.input_block{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 32px;
+    width: 100%;
+}
+.input{
+    padding: 11px 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-right: 10px;
+    width: 100%;
+}
+.input::placeholder{
+    color: rgba(0, 0, 0, 0.22);
+}
+.label{
+    font-size: 0.88rem;
+    font-family: 'IBM Plex Sans', sans-serif;
+    margin-bottom: 12px;
+}
+.error{
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.6875rem;
+    position: absolute;
+    font-weight: 400;
+    color: #CF4949;
+    top: 78px;
+    line-height: 18px;
+}

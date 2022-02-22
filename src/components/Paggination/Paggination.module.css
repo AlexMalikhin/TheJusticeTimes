@@ -1,0 +1,12 @@
+.allArticles{
+    display: flex;
+    justify-content: space-between;
+    margin: 36px 0px;
+    min-width: 1070px;
+}
+.myArticles {
+    display: flex;
+    justify-content: space-between;
+    margin: 36px 0px;
+    min-width: 670px;
+}
