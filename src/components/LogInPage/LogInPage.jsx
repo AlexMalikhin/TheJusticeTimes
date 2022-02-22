@@ -8,6 +8,7 @@ import buttonStyles from '../Button/Button.module.css';
 
 export const LogInPage = () => {
     const {
+        setAuthKey,
         users,
         setLogIn,
         inputValueEmail,
@@ -23,7 +24,9 @@ export const LogInPage = () => {
         setIsRenderEmailError,
         setIsRenderPasswordError,
         regExpForEmail,
-        regExpForPassword,
+        setCurrentUserFirstName,
+        setCurrentUserLastName,
+        setCurrentUserDescription,
     } = useContext(AppContext);
 
     useEffect(()=>{
@@ -41,6 +44,11 @@ export const LogInPage = () => {
             if (user.email === email && user.password === password) {
                 setLogIn((logIn) => !logIn);
                 navigate('/AllArticles');
+                setAuthKey(user.userId);
+                localStorage.setItem('authKey', JSON.stringify(user.userId));
+                setCurrentUserFirstName(user.firstname);
+                setCurrentUserLastName(user.lastname);
+                setCurrentUserDescription(user.description);
             }
             else{
                 setIsRenderEmailError(true);

@@ -1,11 +1,10 @@
-import {useContext, useCallback, useEffect} from 'react';
-
+import {useContext, useCallback, useEffect, useMemo} from 'react';
+import {useNavigate} from 'react-router-dom';
 import {Input} from '../Input/Input';
 import {Button} from '../Button/Button';
 import {AppContext} from '../AppContext/AppContext';
 import signInPageStyles from './SignInPage.module.css';
 import buttonStyles from '../Button/Button.module.css';
-
 
 export const SignInPage = () => {
     const {
@@ -38,6 +37,7 @@ export const SignInPage = () => {
         setEmailErrorText,
         setPasswordErrorText,
     } = useContext(AppContext);
+    const navigate = useNavigate();
 
     useEffect(()=>{
        clearErrors();
@@ -50,34 +50,36 @@ export const SignInPage = () => {
             isCorrectLastname();
             isCorrectEmail();
             isCorrectPassword();
-            if(isEmailTaken()){
-                setIsRenderEmailError(true);
-                setEmailErrorText('This Email Already has taken');
-            }
+            setIsRenderEmailError(true);
+            setEmailErrorText('This Email Already has taken');
             return
         }
+
         const newUsers = [
             ...users,
             {
+                'userId': Math.random().toString(36).substr(2, 13),
                 'firstname': inputValueFirstName,
                 'lastname': inputValueLastName,
                 'email': inputValueEmail,
                 'password': inputValuePassword,
+                'description': '',
+                'avatar' : '',
             }]
         setUsers(newUsers);
         localStorage.setItem('users', JSON.stringify(newUsers));
         clearInputs();
         clearErrors();
+        navigate('/LogIn', {replace: true});
     }
 
     const isValidNewUser = () =>{
-        const result = inputValueFirstName.length >=2 && inputValueLastName.length >=2
-            && regExpForEmail.test(inputValueEmail) && !isEmailTaken() && !isEmailEmpty()
+        return inputValueFirstName.length >=2 && inputValueLastName.length >=2
+            && regExpForEmail.test(inputValueEmail) && !isEmailTaken && !isEmailEmpty()
             && regExpForPassword.test(inputValuePassword) && !isPasswordEmpty()
-        return result
     }
 
-    const isEmailTaken = useCallback(()=>{
+    const isEmailTaken = useMemo(()=>{
         return users.some(user => user.email === inputValueEmail)
     },[users, inputValueEmail])
 

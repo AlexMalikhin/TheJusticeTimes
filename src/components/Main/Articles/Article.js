@@ -1,13 +1,14 @@
 import {useCallback} from "react";
-import {Link} from "react-router-dom";
 import {useNavigate} from 'react-router-dom';
 import viewsImg from "../../../img/viewsImg.png";
 import styles from './Article.module.css';
+import defaultAvatar from '../../../img/defaultAvatar.png';
 
-const Article = ({id, img, author, avatar, views, header, paragraph, month, day, readed, tags}) => {
+const Article = ({id, img, firstname, lastname, avatar, views, header, paragraph, month, day, minutes, tags, viewArticle}) => {
     const navigate = useNavigate();
     const showFullArticle = useCallback((id) => {
-        navigate(`./${id}`, {replace: true})
+        viewArticle(id);
+        navigate(`./${id}`, {replace: true});
     }, []);
 
     return (
@@ -15,17 +16,17 @@ const Article = ({id, img, author, avatar, views, header, paragraph, month, day,
             <img src={img} className={styles.img_article}/>
             <div className={styles.article_block}>
                 <ul>
-                    {tags.map(item => <li key={item.key} className={styles.hashtags}><a>{item.title}</a></li>)}
+                    <li className={styles.hashtags}><a>{tags}</a></li>
                 </ul>
                 <h2>{header}</h2>
                 <p className={styles.paragraph_short}>{paragraph}</p>
                 <div className={styles.article_info}>
                     <div className={styles.avatar_block}>
-                        <img src={avatar} className={styles.avatars}/>
-                        <span className={styles.avatar_name}>{author}</span>
+                        <img src={avatar ? avatar : defaultAvatar} className={styles.avatars}/>
+                        <span className={styles.avatar_name}>{firstname} {lastname}</span>
                     </div>
                     <div className={styles.m8}>
-                        <span>{month} {day} · {readed} min read</span>
+                        <span>{month} {day} · {minutes}</span>
                     </div>
                     <div className={styles.ml8}>
                         <img src={viewsImg} className={styles.views}/>
