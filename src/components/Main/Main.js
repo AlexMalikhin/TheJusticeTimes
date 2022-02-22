@@ -3,11 +3,11 @@ import Article from "./Articles/Article";
 import {Paggination} from '../Paggination/Paggination';
 import {TopArticle} from "../TopArticle/TopArticle";
 import {AppContext} from "../AppContext/AppContext";
-import {articles} from "../../mockStore/articles";
+import pagginationStyles from "../Paggination/Paggination.module.css";
 import styles from './Main.module.css';
 
 export const Main = () => {
-    const {currentPage, setCurrentPage, allArticles, setAllArticles, profileAvatar} = useContext(AppContext);
+    const {currentPage, setCurrentPage, allArticles, setAllArticles} = useContext(AppContext);
     const slicedArticles = useMemo(() => allArticles.slice(currentPage * 6, currentPage * 6 + 6), [currentPage, allArticles])
     const viewArticle = (id) => {
         const othersArticles = allArticles.filter(article => article.id !== id)
@@ -20,13 +20,11 @@ export const Main = () => {
         setAllArticles(newArticles);
         localStorage.setItem('articles', JSON.stringify(newArticles));
     }
-
     const mostPopularArticle = useMemo(() => {
         if (allArticles.length > 0) {
             return allArticles?.reduce((acc, cur) => acc.views > cur.views ? acc : cur)
         }
     }, [allArticles])
-
 
 
     return (
@@ -55,6 +53,8 @@ export const Main = () => {
                     setPage={setCurrentPage}
                     page={currentPage}
                     allArticles={allArticles}
+                    style={pagginationStyles.allArticles}
+                    length={6}
                 />
             </div>
         </div>

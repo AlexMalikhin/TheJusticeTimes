@@ -4,6 +4,7 @@
     margin: 40px 0px;
     cursor: pointer;
     filter: invert(4%);
+    word-wrap: break-word;
 }
 .articles:hover{
     filter: invert(0%);
@@ -67,4 +68,5 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     overflow: hidden;
+    max-width: 680px;
 }

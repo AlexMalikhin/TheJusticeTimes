@@ -48,9 +48,13 @@ export const AddArticle = () =>{
         let date = new Date();
         return `${date.getHours()}:${date.getMinutes()}`
     }
+    const checkInputs = () =>{
+            return !newArticleCategory || !newArticleTitle || !imgNewArticle || !(editorState.getCurrentContent().getPlainText())
+    }
 
     const publishArticle = () =>{
         const loginedUser = users.find(user=> user.userId === authKey);
+        checkInputs();
         const myNewArticle = {
             avatar: loginedUser.avatar || '',
             id: Math.random().toString(36).substr(2, 13),
@@ -122,7 +126,12 @@ export const AddArticle = () =>{
                editorClassName="editorClassName"
                onEditorStateChange={setEditorState}
             />
-                <Button style={buttonStyles.profile_save_changes} title='Publish an article' click={publishArticle}/>
+                <Button
+                    style={buttonStyles.profile_save_changes}
+                    title='Publish an article'
+                    click={publishArticle}
+                    disable={checkInputs()}
+                />
             </div>
         </div>
     )

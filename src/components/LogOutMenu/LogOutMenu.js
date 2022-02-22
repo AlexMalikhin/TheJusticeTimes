@@ -2,9 +2,6 @@ import {useCallback} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {Button} from '../Button/Button';
 
-
-
-
 export const LogOutMenu = ({stylesLogIn, stylesSignIn, login}) => {
     const navigate = useNavigate();
     const followLogInPage = useCallback(()=>{

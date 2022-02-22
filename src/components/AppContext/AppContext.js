@@ -7,6 +7,7 @@ export const AppContextProvider = ({children}) => {
     const regExpForPassword = new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$");
 
     const [currentPage, setCurrentPage] = useState(0);
+    const [userArticlePage, setUserArticlePage] = useState(0);
     const [logIn, setLogIn] = useState(false);
     const [users, setUsers] = useState([]);
     const [authKey, setAuthKey] = useState('');
@@ -40,6 +41,8 @@ export const AppContextProvider = ({children}) => {
             regExpForEmail,
             regExpForPassword,
 
+            userArticlePage,
+            setUserArticlePage,
             currentPage,
             setCurrentPage,
             logIn,
@@ -92,6 +95,7 @@ export const AppContextProvider = ({children}) => {
             setProfileAvatar,
             myArticles,
             setMyArticles,
+
         }}>
             {children}
         </AppContext.Provider>);

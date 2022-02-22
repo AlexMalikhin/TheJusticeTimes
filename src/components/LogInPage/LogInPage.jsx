@@ -5,11 +5,9 @@ import {Button} from '../Button/Button';
 import {AppContext} from '../AppContext/AppContext';
 import logInPageStyles from './LogInPage.module.css';
 import buttonStyles from '../Button/Button.module.css';
-import inputStyles from '../Input/Input.module.css';
 
 export const LogInPage = () => {
     const {
-        authKey,
         setAuthKey,
         users,
         setLogIn,
@@ -26,7 +24,6 @@ export const LogInPage = () => {
         setIsRenderEmailError,
         setIsRenderPasswordError,
         regExpForEmail,
-        regExpForPassword,
         setCurrentUserFirstName,
         setCurrentUserLastName,
         setCurrentUserDescription,

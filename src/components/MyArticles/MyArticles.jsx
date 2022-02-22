@@ -1,17 +1,17 @@
-import { useContext, useMemo, useEffect, useState } from 'react';
+import {useContext, useMemo} from 'react';
 import { AppContext } from '../AppContext/AppContext';
 import { Paggination } from '../Paggination/Paggination';
+import pagginationStyles from '../Paggination/Paggination.module.css';
 import { MyArticle } from '../MyArticle/MyArticle';
 import styles from './MyArticles.module.css';
 import defaultAvatar from '../../img/defaultAvatar.png';
 
 
 export const MyArticles = () => {
-    const { userArticlePage, setUserArticlePage, allArticles, authKey, users, setMyArticles} = useContext(AppContext);
-    // const [ userData, setUserData ] = useState('');
+    const { userArticlePage, setUserArticlePage, authKey, users, myArticles} = useContext(AppContext);
+    const slicedMyArticles = useMemo(() => myArticles.slice(userArticlePage * 4, userArticlePage * 4 + 4), [userArticlePage, myArticles])
     const currentUser = users.filter(user=> user.userId === authKey);
-    // const myArticles = useMemo(()=>allArticles.filter(article=> article.userId === authKey), [authKey, allArticles])
-    // setMyArticles(myArticles);
+
 
     return (
         <div className={styles.container}>
@@ -22,15 +22,17 @@ export const MyArticles = () => {
                     <p className={styles.p}>{currentUser[0]?.description}</p>
                 </div>
                 <div className={styles.articles_list}>
-                    {/*{myArticles.map(article=> (*/}
-                    {/*        <MyArticle props={article} key={article.id}/>*/}
-                    {/*    )*/}
-                    {/*)}*/}
-                    {/*<Paggination*/}
-                    {/*    page={userArticlePage}*/}
-                    {/*    setPage={setUserArticlePage}*/}
-                    {/*    allArticle={myArticles || ''}*/}
-                    {/*/>*/}
+                    {slicedMyArticles   .map(article=> (
+                            <MyArticle props={article} key={article.id}/>
+                        )
+                    )}
+                    <Paggination
+                        page={userArticlePage}
+                        setPage={setUserArticlePage}
+                        allArticles={myArticles || ''}
+                        style={pagginationStyles.myArticles}
+                        length={4}
+                    />
                 </div>
             </div>
         </div>

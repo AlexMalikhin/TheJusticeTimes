@@ -1,5 +1,5 @@
 import {Routes, Route} from "react-router-dom";
-import {useContext, useEffect} from 'react';
+import {useContext, useEffect, useMemo} from 'react';
 import {Footer} from "./components/Footer/Footer";
 import {Main} from "./components/Main/Main";
 import {Header} from "./components/Header/Header";
@@ -10,23 +10,26 @@ import {ProfilePage} from './components/ProfilePage/ProfilePage';
 import {FullArticlePage} from "./components/FullArticlePages/FullArticlePage";
 import {AddArticle} from "./components/AddArticle/AddArticle";
 import {MyArticles} from "./components/MyArticles/MyArticles";
-import {articles} from "./mockStore/articles";
 
 function App() {
-    const {setUsers, users, authKey, setAuthKey, setLogIn, setAllArticles, allArticles, myArticles} = useContext(AppContext);
+    const {setUsers, authKey, setAuthKey, setAllArticles, allArticles, setMyArticles} = useContext(AppContext);
+    const myArticles = useMemo(()=>allArticles.filter(article=> article.userId === authKey), [authKey, allArticles])
     useEffect(()=>{
         setUsers(JSON.parse(localStorage.getItem('users')) || []);
         setAuthKey(JSON.parse(localStorage.getItem('authKey')) || '');
         setAllArticles(JSON.parse(localStorage.getItem('articles')) || []);
     },[])
-    console.log();
+    useEffect(()=>{
+        setMyArticles(myArticles);
+    },[myArticles])
+
     return (
         <div className="App">
             <Header/>
             <Routes>
                 {authKey && <Route path='/AddArticle' element={<AddArticle/>}/>}
-                <Route path='/MyArticles' element={<MyArticles/>}/>
-                <Route path='/AllArticles' element={<Main/>}/>
+                {myArticles.length > 0 && <Route path='/MyArticles' element={<MyArticles/>}/>}
+                {allArticles.length > 0 && <Route path='/AllArticles' element={<Main/>}/>}
                 <Route path='/LogIn' element={<LogInPage/>}/>
                 <Route path='/SignIn' element={<SignInPage/>}/>
                 {authKey && <Route path='/Profile' element={<ProfilePage/>}/>}

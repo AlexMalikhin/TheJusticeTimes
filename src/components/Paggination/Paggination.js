@@ -1,20 +1,26 @@
 import {useCallback} from "react";
 import {Button} from '../Button/Button';
-import {articles} from '../../mockStore/articles';
 import buttonStyles from '../Button/Button.module.css';
-import styles from "./Paggination.module.css";
 
 
-export const Paggination = ({setPage, page, allArticles}) => {
-
+export const Paggination = ({setPage, page, allArticles, style, length}) => {
+    console.log(allArticles);
     const prevPage = useCallback(() => {
         setPage((page) => (page === 0) ? 0 : page - 1);
     }, [page]);
     const nextPage = useCallback(() => {
         setPage((page) => page + 1);
     }, [page]);
+    const getResult = () =>{
+        if(page === 0){
+            return page + length >= allArticles.length
+        }
+        return (page + 1) * length - 1 >= allArticles.length
+    }
+    console.log(page * length < allArticles.length);
+
     return (
-        <div className={styles.paggination}>
+        <div className={style}>
             <Button
                 click={prevPage}
                 style={buttonStyles.header_logIn}
@@ -27,7 +33,7 @@ export const Paggination = ({setPage, page, allArticles}) => {
                 click={nextPage}
                 style={buttonStyles.header_logIn}
                 title='Next'
-                disable={page * 11 > allArticles.length}
+                disable={getResult()}
             >
                 Next
             </Button>

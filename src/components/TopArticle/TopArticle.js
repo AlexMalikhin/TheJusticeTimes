@@ -1,11 +1,17 @@
+import {useNavigate} from 'react-router-dom';
 import styles from './TopArticle.module.css';
 import topArticle from "../../img/article_images/1.png";
 import janayWright from "../../img/avatars/JanayWright.png";
 import views from "../../img/viewsImg.png";
+import defaultAvatar from "../../img/defaultAvatar.png";
 
 export const TopArticle = ({props}) => {
+    const navigate = useNavigate();
+    const showFullArticle = () =>{
+        navigate(`/AllArticles/${props.id}`)
+    }
     return (
-        <div className={styles.top_article}>
+        <div onClick={showFullArticle} className={styles.top_article}>
             <img src={props?.headImg} className={styles.img_article}/>
             <div className={styles.top_article_block}>
                 <a className={styles.hashtags}>{props?.category}</a>
@@ -15,7 +21,7 @@ export const TopArticle = ({props}) => {
                 </p>
                 <div className={styles.bottom_block}>
                     <div className={styles.avatar_block}>
-                        <img src={props?.avatar} className={styles.avatars} />
+                        <img src={props?.avatar ? props?.avatar : defaultAvatar} className={styles.avatars} />
                         <span className={styles.avatar_name}>{props?.firstname} {props?.lastname}</span>
                     </div>
                     <div className={styles.m8}>

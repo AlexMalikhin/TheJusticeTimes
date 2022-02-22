@@ -1,8 +1,5 @@
-import {useContext} from 'react';
 import {useNavigate} from 'react-router-dom';
-import {AppContext} from '../AppContext/AppContext';
 import styles from './MyArticle.module.css';
-
 import views from '../../img/viewsImg.png';
 
 

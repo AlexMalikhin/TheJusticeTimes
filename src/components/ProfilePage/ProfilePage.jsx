@@ -1,12 +1,9 @@
-import {useState, useContext, useEffect, useCallback, useMemo} from 'react';
-import {Link} from 'react-router-dom';
+import {useContext, useEffect} from 'react';
 import {Button} from '../Button/Button';
 import {Input} from '../Input/Input';
 import {AppContext} from '../AppContext/AppContext';
-
 import defaultAvatar from '../../img/defaultAvatar.png';
 import profilePageStyles from './ProfilePage.module.css';
-import avatar from '../../img/avatars/JanayWright.png';
 import buttonStyles from '../Button/Button.module.css';
 import inputStyles from '../Input/Input.module.css';
 
@@ -31,8 +28,6 @@ export const ProfilePage = () => {
         authKey
     } = useContext(AppContext);
 
-    const [othersUsers, setOthersUsers] = useState([]);
-    // const [newImage, setNewImage] = useState('');
     const changeUserDescription = (e) => {
         setCurrentUserDescription(e.target.value);
     }
@@ -55,16 +50,9 @@ export const ProfilePage = () => {
                 description: currentUserDescription,
             }
         })
-        const otherUsers = (users.filter((user) => user.userId !== authKey));
-        const allNewUsers = [...otherUsers, {
-            ...currentUser,
-            avatar: profileAvatar,
-            firstname: currentUserFirstName,
-            lastname: currentUserLastName,
-            description: currentUserDescription,
-        }]
-        setUsers(allNewUsers)
-        localStorage.setItem('users', JSON.stringify(allNewUsers))
+
+        setUsers(newUsers)
+        localStorage.setItem('users', JSON.stringify(newUsers))
         const myArticles = (allArticles.filter((article) => article.userId === authKey))
         const otherArticles = (allArticles.filter((article) => article.userId !== authKey))
         const changedMyArticles = myArticles.map((article) => (

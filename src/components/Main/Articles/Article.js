@@ -1,5 +1,4 @@
 import {useCallback} from "react";
-import {Link} from "react-router-dom";
 import {useNavigate} from 'react-router-dom';
 import viewsImg from "../../../img/viewsImg.png";
 import styles from './Article.module.css';

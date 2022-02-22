@@ -1,6 +1,7 @@
 .top_article{
     max-width: 1070px;
     display: flex;
+    cursor: pointer;
 }
 .img_article{
     max-width: 582px;
