@@ -1,5 +1,6 @@
 import {useContext, useCallback, useEffect, useMemo} from 'react';
 import {useNavigate} from 'react-router-dom';
+import {useFetch} from "../../hooks/useFetch";
 import {Input} from '../Input/Input';
 import {Button} from '../Button/Button';
 import {AppContext} from '../AppContext/AppContext';
@@ -7,6 +8,19 @@ import signInPageStyles from './SignInPage.module.css';
 import buttonStyles from '../Button/Button.module.css';
 
 export const SignInPage = () => {
+    const {loading, error, request} = useFetch();
+    const handleSign = async () =>{
+        console.log('hui')
+        try{
+            const data = await request('/api/auth/register', 'POST', {
+
+                'email': inputValueEmail,
+                'password': inputValuePassword,
+            })
+            console.log(data)
+        }catch (e){}
+    }
+
     const {
         users,
         setUsers,
@@ -200,7 +214,7 @@ export const SignInPage = () => {
                     blurHandle={isCorrectPassword}
                     focusEvent={()=> setIsRenderPasswordError(false)}
                 />
-                <Button style={buttonStyles.form_button} title='Create Account' click={createNewUser}/>
+                <Button style={buttonStyles.form_button} title='Create Account' click={handleSign}/>
             </div>
         </div>
     );
