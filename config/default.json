@@ -1,0 +1,5 @@
+{
+  "port": 5000,
+  "mongoUrl": "mongodb+srv://user:user@cluster0.opqqx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  "jwtSecret": "Neque porro quisquam"
+}
