@@ -1,20 +1,23 @@
-const express = require('express');
-const config = require('config');
-const mongoose = require('mongoose');
+const express = require('express')
+const mongoose = require('mongoose')
+const authRouter = require('./routes/authRouter')
+const PORT = process.env.PORT || 5001
+const cors = require('cors')
+
+
 
 const app = express()
 
-app.use('/api/auth', require('./routes/auth.routes'))
-
-const PORT = 5002
-
-async function start() {
+app.use(express.json())
+app.use(cors())
+app.use('/auth', authRouter)
+const start = async () => {
     try{
-        await mongoose.connect(config.get('mongoUrl'))
-        app.listen(5002, ()=> console.log(`App has been started on port ${PORT}...`))
-    }catch (e) {
-        console.log('error', e.message)
-        process.exit(1)
+        await mongoose.connect("mongodb+srv://user:user@cluster0.opqqx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",)
+        app.listen(PORT, ()=> console.log(`flcawlfd ${PORT}`))
+    }catch (e){
+        console.log(e)
     }
 }
+
 start()

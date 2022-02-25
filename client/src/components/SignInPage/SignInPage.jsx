@@ -1,5 +1,6 @@
 import {useContext, useCallback, useEffect, useMemo} from 'react';
 import {useNavigate} from 'react-router-dom';
+import axios from 'axios';
 import {useFetch} from "../../hooks/useFetch";
 import {Input} from '../Input/Input';
 import {Button} from '../Button/Button';
@@ -8,18 +9,7 @@ import signInPageStyles from './SignInPage.module.css';
 import buttonStyles from '../Button/Button.module.css';
 
 export const SignInPage = () => {
-    const {loading, error, request} = useFetch();
-    const handleSign = async () =>{
-        console.log('hui')
-        try{
-            const data = await request('/api/auth/register', 'POST', {
 
-                'email': inputValueEmail,
-                'password': inputValuePassword,
-            })
-            console.log(data)
-        }catch (e){}
-    }
 
     const {
         users,
@@ -52,6 +42,21 @@ export const SignInPage = () => {
         setPasswordErrorText,
     } = useContext(AppContext);
     const navigate = useNavigate();
+
+    const handleSign = async(firstname, lastname, email, password) =>{
+        const user = {
+            firstname: firstname,
+            lastname: lastname,
+            email: email,
+            password: password
+        }
+        try {
+            await axios.post('http://localhost:5001/auth/registration', user)
+        }catch (e) {
+            setEmailErrorText(e.response.data.message);
+            setIsRenderEmailError(true);
+        }
+    }
 
     useEffect(()=>{
        clearErrors();
@@ -214,8 +219,16 @@ export const SignInPage = () => {
                     blurHandle={isCorrectPassword}
                     focusEvent={()=> setIsRenderPasswordError(false)}
                 />
-                <Button style={buttonStyles.form_button} title='Create Account' click={handleSign}/>
+                <Button
+                    style={buttonStyles.form_button}
+                    title='Create Account'
+                    click={()=>handleSign(inputValueFirstName, inputValueLastName, inputValueEmail, inputValuePassword)}
+                />
             </div>
         </div>
     );
+    // 'firstname': inputValueFirstName,
+    //             'lastname': inputValueLastName,
+    //             'email': inputValueEmail,
+    //             'password': inputValuePassword,
 }

@@ -12,11 +12,9 @@ import {AddArticle} from "./components/AddArticle/AddArticle";
 import {MyArticles} from "./components/MyArticles/MyArticles";
 
 function App() {
-    const {setUsers, authKey, setAuthKey, setAllArticles, allArticles, setMyArticles} = useContext(AppContext);
+    const {authKey, setAllArticles, allArticles, setMyArticles} = useContext(AppContext);
     const myArticles = useMemo(()=>allArticles.filter(article=> article.userId === authKey), [authKey, allArticles])
     useEffect(()=>{
-        setUsers(JSON.parse(localStorage.getItem('users')) || []);
-        setAuthKey(JSON.parse(localStorage.getItem('authKey')) || '');
         setAllArticles(JSON.parse(localStorage.getItem('articles')) || []);
     },[])
     useEffect(()=>{

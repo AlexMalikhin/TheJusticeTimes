@@ -9,8 +9,8 @@ export const AppContextProvider = ({children}) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [userArticlePage, setUserArticlePage] = useState(0);
     const [logIn, setLogIn] = useState(false);
-    const [users, setUsers] = useState([]);
-    const [authKey, setAuthKey] = useState('');
+    const [users, setUsers] = useState(() => JSON.parse(localStorage.getItem('users')) || []);
+    const [authKey, setAuthKey] = useState(() => JSON.parse(localStorage.getItem('authKey')) || '');
 
     const [inputValueFirstName, setInputValueFirstName] = useState('');
     const [inputValueLastName, setInputValueLastName] = useState('');
