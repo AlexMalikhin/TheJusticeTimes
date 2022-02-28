@@ -50,8 +50,17 @@ export const SignInPage = () => {
             email: email,
             password: password
         }
+        if(!isValidNewUser()){
+            isCorrectFirstname();
+            isCorrectLastname();
+            isCorrectEmail();
+            isCorrectPassword();
+            return
+        }
         try {
             await axios.post('http://localhost:5001/auth/registration', user)
+
+            navigate('/LogIn', {replace: true});
         }catch (e) {
             setEmailErrorText(e.response.data.message);
             setIsRenderEmailError(true);
@@ -63,50 +72,42 @@ export const SignInPage = () => {
        clearInputs();
     },[])
 
-    const createNewUser = () =>{
-        if(!isValidNewUser()){
-            isCorrectFirstname();
-            isCorrectLastname();
-            isCorrectEmail();
-            isCorrectPassword();
-            setIsRenderEmailError(true);
-            setEmailErrorText('This Email Already has taken');
-            return
-        }
-
-        const newUsers = [
-            ...users,
-            {
-                'userId': Math.random().toString(36).substr(2, 13),
-                'firstname': inputValueFirstName,
-                'lastname': inputValueLastName,
-                'email': inputValueEmail,
-                'password': inputValuePassword,
-                'description': '',
-                'avatar' : '',
-            }]
-        setUsers(newUsers);
-        localStorage.setItem('users', JSON.stringify(newUsers));
-        clearInputs();
-        clearErrors();
-        navigate('/LogIn', {replace: true});
-    }
+    // const createNewUser = () =>{
+    //     if(!isValidNewUser()){
+    //         isCorrectFirstname();
+    //         isCorrectLastname();
+    //         isCorrectEmail();
+    //         isCorrectPassword();
+    //         setIsRenderEmailError(true);
+    //         setEmailErrorText('This Email Already has taken');
+    //         return
+    //     }
+    //
+    //     const newUsers = [
+    //         ...users,
+    //         {
+    //             'userId': Math.random().toString(36).substr(2, 13),
+    //             'firstname': inputValueFirstName,
+    //             'lastname': inputValueLastName,
+    //             'email': inputValueEmail,
+    //             'password': inputValuePassword,
+    //             'description': '',
+    //             'avatar' : '',
+    //         }]
+    //     setUsers(newUsers);
+    //     localStorage.setItem('users', JSON.stringify(newUsers));
+    //
+    // }
 
     const isValidNewUser = () =>{
         return inputValueFirstName.length >=2 && inputValueLastName.length >=2
-            && regExpForEmail.test(inputValueEmail) && !isEmailTaken && !isEmailEmpty()
+            && regExpForEmail.test(inputValueEmail) && !isEmailEmpty()
             && regExpForPassword.test(inputValuePassword) && !isPasswordEmpty()
     }
 
-    const isEmailTaken = useMemo(()=>{
-        return users.some(user => user.email === inputValueEmail)
-    },[users, inputValueEmail])
 
     const isEmailEmpty = () => inputValueEmail === '';
-
-
     const isPasswordEmpty = () => inputValuePassword === '';
-
 
     const clearInputs = useCallback(() => {
         setInputValueFirstName('');

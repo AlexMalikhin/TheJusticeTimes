@@ -5,6 +5,7 @@ import {Button} from '../Button/Button';
 import {AppContext} from '../AppContext/AppContext';
 import logInPageStyles from './LogInPage.module.css';
 import buttonStyles from '../Button/Button.module.css';
+import axios from "axios";
 
 export const LogInPage = () => {
     const {
@@ -39,6 +40,29 @@ export const LogInPage = () => {
     },[])
 
     const navigate = useNavigate();
+    const logIn = useCallback(async(email, password)=>{
+        const user = {
+            email: email,
+            password: password
+        }
+        if(!user.email || !user.password){
+            return
+        }
+        try {
+            const {data} = await axios.post('http://localhost:5001/auth/login', user)
+            navigate('/AllArticles', {replace: true});
+            // setAuthKey(data.token)
+            setLogIn(true);
+        }catch (e) {
+            setEmailErrorText(e.response.data.message);
+            setPasswordErrorText(e.response.data.message);
+            setIsRenderEmailError(true);
+            setIsRenderPasswordError(true);
+        }
+    },[inputValueEmail, inputValuePassword] )
+
+
+
     const userLogIn = useCallback((email, password) => {
         users.forEach(user => {
             if (user.email === email && user.password === password) {
@@ -78,11 +102,11 @@ export const LogInPage = () => {
     }, [inputValueEmail])
 
     const isEnterPassword = useCallback(()=>{
-        setIsRenderPasswordError(true)
-        setPasswordErrorText('Please enter password')
-        if(inputValuePassword){
-            setIsRenderPasswordError(false);
+        if(!inputValuePassword){
+            setIsRenderPasswordError(true)
+            setPasswordErrorText('Please enter password')
         }
+        setIsRenderPasswordError(false);
     }, [inputValuePassword])
 
     return (
@@ -113,7 +137,7 @@ export const LogInPage = () => {
                     blurHandle={isEnterPassword}
                     focusEvent={()=>setIsRenderPasswordError(false)}
                 />
-                <Button style={buttonStyles.form_button} title='Log in' click={()=>userLogIn(inputValueEmail, inputValuePassword)}/>
+                <Button style={buttonStyles.form_button} title='Log in' click={()=>logIn(inputValueEmail, inputValuePassword)}/>
                 <p className={logInPageStyles.create_account_link}>
                     Don’t have a Times account?
                     <Link to='/SignIn' className={logInPageStyles.link}>Create one</Link>

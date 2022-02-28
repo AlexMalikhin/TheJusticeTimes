@@ -10,11 +10,13 @@ import {ProfilePage} from './components/ProfilePage/ProfilePage';
 import {FullArticlePage} from "./components/FullArticlePages/FullArticlePage";
 import {AddArticle} from "./components/AddArticle/AddArticle";
 import {MyArticles} from "./components/MyArticles/MyArticles";
+import Cookies from 'js-cookie';
 
 function App() {
-    const {authKey, setAllArticles, allArticles, setMyArticles} = useContext(AppContext);
+    const {authKey, setAuthKey, setAllArticles, allArticles, setMyArticles} = useContext(AppContext);
     const myArticles = useMemo(()=>allArticles.filter(article=> article.userId === authKey), [authKey, allArticles])
     useEffect(()=>{
+        setAuthKey(Cookies.get('Webstorm-33cf6332'));
         setAllArticles(JSON.parse(localStorage.getItem('articles')) || []);
     },[])
     useEffect(()=>{
