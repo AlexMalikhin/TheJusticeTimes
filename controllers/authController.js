@@ -65,12 +65,6 @@ module.exports.login = async function(req, res){
             return res.status(400).json({message: 'Invalid Email or password'});
         }
         const token = generateAccessToken(user._id, user.firstname, user.lastname);
-        // res.cookie("token", token,{
-        //     httpOnly: true,
-        //     secure: true,
-        //     SameSite: 'Strict'
-        // })
-        // Cookie.set('token', token);
 
         return res.json({token, user})
     }catch (e) {
@@ -97,6 +91,8 @@ module.exports.getUserData = async function(req, res){
             description: currentUser.description || '',
         }
 
+        res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         return res.json(userData)
     }catch (e) {
         console.log(e)
@@ -114,8 +110,8 @@ module.exports.updateUserData = async function(req, res){
         }
         const decodedData = jwt.verify(token, secret);
         await User.findOneAndUpdate({_id: decodedData.id}, user);
-        // const currentUser = await User.findOne(decodedData._id);
-        // await User.updateOne({...filter}, user)
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         return res.json({message: decodedData.id})
     }catch (e) {
         return res.json({message: "User data is didn't update"})
@@ -149,11 +145,11 @@ module.exports.createArticle = async function(req, res){
     }
 }
 
-// module.exports.getAllArticles = async function(req, res){
-//     try{
-//         const all = await Article.find()
-//         return res.json({message: all})
-//     }catch (e){
-//         return res.json({message: 'don t get'})
-//     }
-// }
+module.exports.getAllArticles = async function(req, res){
+    try{
+        const all = await Article.find()
+        return res.json({message: all})
+    }catch (e){
+        return res.json({message: 'don t get'})
+    }
+}
