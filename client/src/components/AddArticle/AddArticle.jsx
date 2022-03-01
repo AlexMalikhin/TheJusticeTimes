@@ -67,7 +67,7 @@ export const AddArticle = () =>{
             text: editorState.getCurrentContent().getPlainText(),
             views: 0,
         }
-        await axios.post('http://localhost:5001/auth/createArticle', newArticle, {withCredentials:true})
+        await axios.post('http://localhost:5001/auth/createArticle', newArticle)
         clearInputs();
         // navigate('/AllArticles');
         // const loginedUser = users.find(user=> user.userId === authKey);

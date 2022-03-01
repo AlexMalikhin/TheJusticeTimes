@@ -36,6 +36,9 @@ export const ProfilePage = () => {
     }
     const saveChanges = async () => {
         try{
+            const headers = {
+                "Access-Control-Allow-Origin": "*"
+            }
             const currentUserData = {
                 firstname: currentUserFirstName,
                 lastname: currentUserLastName,
@@ -43,13 +46,14 @@ export const ProfilePage = () => {
                 description: currentUserDescription,
                 token: Cookies.get('token')
             }
-            await axios.post('http://localhost:5001/auth/updateUser', currentUserData, {withCredentials:true});
+
+            await axios.post('http://localhost:5001/auth/updateUser', currentUserData, {headers: headers});
             // setCurrentUserFirstName(user.data.firstname);
             // setCurrentUserLastName(user.data.lastname);
             // setProfileAvatar(user.data.avatar);
             // setCurrentUserDescription(user.data.description);
         }catch (e) {
-            console.log(e.response.data.message)
+            // console.log(e.response.data.message)
         }
 
 

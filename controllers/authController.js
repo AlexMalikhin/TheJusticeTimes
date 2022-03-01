@@ -149,11 +149,11 @@ module.exports.createArticle = async function(req, res){
     }
 }
 
-module.exports.getAllArticles = async function(req, res){
-    try{
-        const all = await Article.find()
-        return res.json({message: all})
-    }catch (e){
-        return res.json({message: 'don t get'})
-    }
-}
+// module.exports.getAllArticles = async function(req, res){
+//     try{
+//         const all = await Article.find()
+//         return res.json({message: all})
+//     }catch (e){
+//         return res.json({message: 'don t get'})
+//     }
+// }

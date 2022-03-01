@@ -50,7 +50,7 @@ export const LogInPage = () => {
             return
         }
         try {
-            const {data} = await axios.post('http://localhost:5001/auth/login', user, {withCredentials:true})
+            const {data} = await axios.post('http://localhost:5001/auth/login', user)
             navigate('/AllArticles', {replace: true});
             console.log(data);
             Cookies.set('token', data.token);
