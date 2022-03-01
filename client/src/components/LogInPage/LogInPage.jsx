@@ -6,6 +6,7 @@ import {AppContext} from '../AppContext/AppContext';
 import logInPageStyles from './LogInPage.module.css';
 import buttonStyles from '../Button/Button.module.css';
 import axios from "axios";
+import Cookies from "js-cookie";
 
 export const LogInPage = () => {
     const {
@@ -49,10 +50,11 @@ export const LogInPage = () => {
             return
         }
         try {
-            const {data} = await axios.post('http://localhost:5001/auth/login', user)
+            const {data} = await axios.post('http://localhost:5001/auth/login', user, {withCredentials:true})
             navigate('/AllArticles', {replace: true});
-            // setAuthKey(data.token)
-            setLogIn(true);
+            console.log(data);
+            Cookies.set('token', data.token);
+            setAuthKey(Cookies.get('token'));
         }catch (e) {
             setEmailErrorText(e.response.data.message);
             setPasswordErrorText(e.response.data.message);

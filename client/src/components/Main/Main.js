@@ -1,4 +1,5 @@
-import {useContext, useMemo} from 'react';
+import {useContext, useMemo, useEffect} from 'react';
+import axios from 'axios';
 import Article from "./Articles/Article";
 import {Paggination} from '../Paggination/Paggination';
 import {TopArticle} from "../TopArticle/TopArticle";
@@ -7,7 +8,16 @@ import pagginationStyles from "../Paggination/Paggination.module.css";
 import styles from './Main.module.css';
 
 export const Main = () => {
-    const {currentPage, setCurrentPage, allArticles, setAllArticles} = useContext(AppContext);
+
+    const {currentPage, setCurrentPage, allArticles, setAllArticles, authKey} = useContext(AppContext);
+    useEffect(async ()=>{
+        try{
+            const all = await axios.get('http://localhost:5001/auth/getAllArticles')
+            console.log(all);
+        }catch (e) {
+            console.log('dont get')
+        }
+    }, [])
     const slicedArticles = useMemo(() => allArticles.slice(currentPage * 6, currentPage * 6 + 6), [currentPage, allArticles])
     const viewArticle = (id) => {
         const othersArticles = allArticles.filter(article => article.id !== id)
@@ -35,7 +45,7 @@ export const Main = () => {
                 {slicedArticles.map((article =>
                     <Article
                         id={article.id}
-                        key={article.id}
+                        key={article._id}
                         img={article.headImg}
                         firstname={article.firstname}
                         lastname={article.lastname}

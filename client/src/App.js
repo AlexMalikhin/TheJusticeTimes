@@ -11,14 +11,18 @@ import {FullArticlePage} from "./components/FullArticlePages/FullArticlePage";
 import {AddArticle} from "./components/AddArticle/AddArticle";
 import {MyArticles} from "./components/MyArticles/MyArticles";
 import Cookies from 'js-cookie';
+import axios from "axios";
 
 function App() {
     const {authKey, setAuthKey, setAllArticles, allArticles, setMyArticles} = useContext(AppContext);
     const myArticles = useMemo(()=>allArticles.filter(article=> article.userId === authKey), [authKey, allArticles])
-    useEffect(()=>{
-        setAuthKey(Cookies.get('Webstorm-33cf6332'));
-        setAllArticles(JSON.parse(localStorage.getItem('articles')) || []);
+    useEffect(async()=>{
+        setAuthKey(Cookies.get('token'));
+        // const all = await axios.get('http://localhost:5001/auth/getAllArticles')
+        // setAllArticles(all.data.message)
+        // console.log(all.data.message);
     },[])
+
     useEffect(()=>{
         setMyArticles(myArticles);
     },[myArticles])

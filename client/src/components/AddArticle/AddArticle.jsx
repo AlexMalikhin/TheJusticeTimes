@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState } from 'draft-js';
+import axios from 'axios';
 import { AppContext } from '../AppContext/AppContext';
 import { Button } from '../Button/Button';
 import { Input } from "../Input/Input";
@@ -9,6 +10,8 @@ import emptyImg from '../../img/article_images/empty_img.png';
 import buttonStyles from '../Button/Button.module.css';
 import addArticleStyles from "./AddArticle.module.css";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import Cookies from "js-cookie";
+import {header} from "express-validator";
 
 export const AddArticle = () =>{
     const navigate = useNavigate();
@@ -52,15 +55,9 @@ export const AddArticle = () =>{
             return !newArticleCategory || !newArticleTitle || !imgNewArticle || !(editorState.getCurrentContent().getPlainText())
     }
 
-    const publishArticle = () =>{
-        const loginedUser = users.find(user=> user.userId === authKey);
-        checkInputs();
-        const myNewArticle = {
-            avatar: loginedUser.avatar || '',
-            id: Math.random().toString(36).substr(2, 13),
-            userId: authKey,
-            firstname: loginedUser.firstname,
-            lastname: loginedUser.lastname,
+    const publishArticle = async() =>{
+        const newArticle = {
+            token: Cookies.get('token'),
             title: newArticleTitle,
             category: newArticleCategory,
             headImg: imgNewArticle,
@@ -70,13 +67,35 @@ export const AddArticle = () =>{
             text: editorState.getCurrentContent().getPlainText(),
             views: 0,
         }
-
-        const newArticles = [...allArticles, myNewArticle]
-        setAllArticles(newArticles);
-        localStorage.setItem('articles', JSON.stringify(newArticles));
+        await axios.post('http://localhost:5001/auth/createArticle', newArticle, {withCredentials:true})
         clearInputs();
-        navigate('/AllArticles');
+        // navigate('/AllArticles');
+        // const loginedUser = users.find(user=> user.userId === authKey);
+        // checkInputs();
+        // const myNewArticle = {
+        //     avatar: loginedUser.avatar || '',
+        //     id: Math.random().toString(36).substr(2, 13),
+        //     userId: authKey,
+        //     firstname: loginedUser.firstname,
+        //     lastname: loginedUser.lastname,
+        //     title: newArticleTitle,
+        //     category: newArticleCategory,
+        //     headImg: imgNewArticle,
+        //     monthOfCreated: getMonth(),
+        //     dayOfCreated: getDay(),
+        //     timeOfCreated: getTimePublication(),
+        //     text: editorState.getCurrentContent().getPlainText(),
+        //     views: 0,
+        // }
+        //
+        // const newArticles = [...allArticles, myNewArticle]
+        // setAllArticles(newArticles);
+        // localStorage.setItem('articles', JSON.stringify(newArticles));
+
+
     }
+
+
     const clearInputs = () =>{
         setEditorState(EditorState.createEmpty());
         setImgNewArticle('');

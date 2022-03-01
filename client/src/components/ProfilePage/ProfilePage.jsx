@@ -1,4 +1,6 @@
 import {useContext, useEffect} from 'react';
+import axios from "axios";
+import Cookies from "js-cookie";
 import {Button} from '../Button/Button';
 import {Input} from '../Input/Input';
 import {AppContext} from '../AppContext/AppContext';
@@ -6,6 +8,7 @@ import defaultAvatar from '../../img/defaultAvatar.png';
 import profilePageStyles from './ProfilePage.module.css';
 import buttonStyles from '../Button/Button.module.css';
 import inputStyles from '../Input/Input.module.css';
+
 
 
 export const ProfilePage = () => {
@@ -31,50 +34,81 @@ export const ProfilePage = () => {
     const changeUserDescription = (e) => {
         setCurrentUserDescription(e.target.value);
     }
-    const saveChanges = () => {
-        setCurrentUser({
-            ...currentUser,
-            firstname: currentUserFirstName,
-            lastname: currentUserLastName,
-            description: currentUserDescription,
-        })
-        const newUsers = users.map(user => {
-            if (user.userId !== authKey) {
-                return user
-            }
-            return {
-                ...user,
-                avatar: profileAvatar,
+    const saveChanges = async () => {
+        try{
+            const currentUserData = {
                 firstname: currentUserFirstName,
                 lastname: currentUserLastName,
-                description: currentUserDescription,
-            }
-        })
-
-        setUsers(newUsers)
-        localStorage.setItem('users', JSON.stringify(newUsers))
-        const myArticles = (allArticles.filter((article) => article.userId === authKey))
-        const otherArticles = (allArticles.filter((article) => article.userId !== authKey))
-        const changedMyArticles = myArticles.map((article) => (
-            {
-                ...article,
                 avatar: profileAvatar,
-                firstname: currentUserFirstName,
-                lastname: currentUserLastName
-            }))
-        console.log([...changedMyArticles, ...otherArticles])
-        setAllArticles([...changedMyArticles, ...otherArticles]);
-        localStorage.setItem('articles', JSON.stringify([...changedMyArticles, ...otherArticles]));
+                description: currentUserDescription,
+                token: Cookies.get('token')
+            }
+            await axios.post('http://localhost:5001/auth/updateUser', currentUserData, {withCredentials:true});
+            // setCurrentUserFirstName(user.data.firstname);
+            // setCurrentUserLastName(user.data.lastname);
+            // setProfileAvatar(user.data.avatar);
+            // setCurrentUserDescription(user.data.description);
+        }catch (e) {
+            console.log(e.response.data.message)
+        }
+
+
+
+
+
+        // setCurrentUser({
+        //     ...currentUser,
+        //     firstname: currentUserFirstName,
+        //     lastname: currentUserLastName,
+        //     description: currentUserDescription,
+        // })
+        // const newUsers = users.map(user => {
+        //     if (user.userId !== authKey) {
+        //         return user
+        //     }
+        //     return {
+        //         ...user,
+        //         avatar: profileAvatar,
+        //         firstname: currentUserFirstName,
+        //         lastname: currentUserLastName,
+        //         description: currentUserDescription,
+        //     }
+        // })
+        //
+        // setUsers(newUsers)
+        // localStorage.setItem('users', JSON.stringify(newUsers))
+        // const myArticles = (allArticles.filter((article) => article.userId === authKey))
+        // const otherArticles = (allArticles.filter((article) => article.userId !== authKey))
+        // const changedMyArticles = myArticles.map((article) => (
+        //     {
+        //         ...article,
+        //         avatar: profileAvatar,
+        //         firstname: currentUserFirstName,
+        //         lastname: currentUserLastName
+        //     }))
+        // console.log([...changedMyArticles, ...otherArticles])
+        // setAllArticles([...changedMyArticles, ...otherArticles]);
+        // localStorage.setItem('articles', JSON.stringify([...changedMyArticles, ...otherArticles]));
     }
 
-    useEffect(() => {
+    useEffect(async() => {
         if (!!authKey) {
-            const currentUser = users.find((user) => user.userId === authKey);
-            setCurrentUser(currentUser);
-            setProfileAvatar(currentUser.avatar);
-            setCurrentUserDescription(currentUser.description);
-            setCurrentUserLastName(currentUser.lastname);
-            setCurrentUserFirstName(currentUser.firstname);
+            try{
+                const token = {"token": Cookies.get('token')};
+                const user = await axios.post('http://localhost:5001/auth/getData', token);
+                setCurrentUserFirstName(user.data.firstname);
+                setCurrentUserLastName(user.data.lastname);
+                setProfileAvatar(user.data.avatar);
+                setCurrentUserDescription(user.data.description);
+            }catch (e) {
+                console.log(e.response.message)
+            }
+            // const currentUser = users.find((user) => user.userId === authKey);
+            // setCurrentUser(currentUser);
+            // setProfileAvatar(currentUser.avatar);
+            // setCurrentUserDescription(currentUser.description);
+            // setCurrentUserLastName(currentUser.lastname);
+            // setCurrentUserFirstName(currentUser.firstname);
         }
     }, [authKey])
 
@@ -95,7 +129,7 @@ export const ProfilePage = () => {
             <h1 className={profilePageStyles.header}>Profile</h1>
             <div className={profilePageStyles.content_block}>
                 <div className={profilePageStyles.photo_block}>
-                    <img src={profileAvatar || defaultAvatar} className={profilePageStyles.avatar}/>
+                    <img src={profileAvatar || defaultAvatar} className={profilePageStyles.avatar} alt={'user avatar'}/>
                     <div className={profilePageStyles.upload_input}>
                         <label htmlFor='upload'
                                className={profilePageStyles.input_label}>{profileAvatar ? 'Change Photo' : 'Upload photo'}</label>
@@ -135,3 +169,6 @@ export const ProfilePage = () => {
         </div>
     )
 }
+
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyM…TA0fQ.WI7gj1AL0LPvV8KJ61mleFn9iIq1r-bFuo7w4OZHf4o
+// 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyM…U0N30.rK0Ehj9VMjhuEohhacitMAPK87xsKMZMGdiTymzgRwg'

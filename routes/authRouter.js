@@ -4,6 +4,9 @@ const controller = require('../controllers/authController')
 
 router.post('/registration', controller.registration)
 router.post('/login', controller.login)
-router.get('/users', controller.getUsers)
+router.post('/getData', controller.getUserData)
+router.post('/updateUser', controller.updateUserData)
+router.post('/createArticle', controller.createArticle)
+// router.get('/getAllArticles', controller.getAllArticles)
 
 module.exports = router

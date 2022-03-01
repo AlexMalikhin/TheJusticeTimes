@@ -6,13 +6,16 @@ import {Link} from "react-router-dom";
 import logoBlack from "../../img/logo_black.png";
 import styles from "./Header.module.css";
 import buttonStyles from '../Button/Button.module.css';
+import Cookies from "js-cookie";
 
 export const Header = () => {
     const {logIn, setLogIn, authKey, setAuthKey} = useContext(AppContext);
     const toggleLogIn = useCallback(() => {
-        setLogIn((logIn) => !logIn);
-        setAuthKey('');
-        localStorage.setItem('authKey', JSON.stringify(''));
+        setLogIn(false);
+        Cookies.remove('token');
+        console.log(Cookies.get());
+        // setAuthKey('');
+        // localStorage.setItem('authKey', JSON.stringify(''));
     }, [logIn]);
 
     useEffect(() => {
