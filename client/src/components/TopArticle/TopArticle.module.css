@@ -5,7 +5,10 @@
 }
 .img_article{
     max-width: 582px;
+    max-height: 397px;
     object-fit: cover;
+    min-width: 582px;
+    min-height: 397px;
 }
 .top_article_block{
     margin-left: 24px;

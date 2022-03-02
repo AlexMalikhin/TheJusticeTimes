@@ -29,6 +29,7 @@
     max-width: 664px;
 }
 .p{
+    word-wrap: break-word;
     text-align: center;
     font-size: 0.85rem;
     max-width: 259px;

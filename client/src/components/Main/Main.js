@@ -1,4 +1,4 @@
-import {useContext, useMemo, useEffect} from 'react';
+import {useContext, useMemo, useEffect, useState} from 'react';
 import axios from 'axios';
 import Article from "./Articles/Article";
 import {Paggination} from '../Paggination/Paggination';
@@ -9,33 +9,30 @@ import styles from './Main.module.css';
 
 export const Main = () => {
 
-    const {currentPage, setCurrentPage, allArticles, setAllArticles, authKey} = useContext(AppContext);
+    const {currentPage, setCurrentPage, allArticles, setAllArticles} = useContext(AppContext);
+    const [mostPopularArticle, setMostPopularArticle] = useState()
     useEffect(async ()=>{
-        try{
-            const all = await axios.get('http://localhost:5001/auth/getAllArticles')
-            console.log(all);
-        }catch (e) {
-            console.log('dont get')
-        }
+        const getPopularArticle = await axios.get('http://localhost:5001/auth/getPopularArticle')
+        setMostPopularArticle(getPopularArticle.data.message)
+        const all = await axios.get('http://localhost:5001/auth/getAllArticles')
+        setAllArticles(all.data.message)
     }, [])
     const slicedArticles = useMemo(() => allArticles.slice(currentPage * 6, currentPage * 6 + 6), [currentPage, allArticles])
-    const viewArticle = (id) => {
-        const othersArticles = allArticles.filter(article => article.id !== id)
-        const myArticle = allArticles.find(article => article.id === id)
-        const changedMyArticle = {
-            ...myArticle,
-            views: myArticle.views + 1
-        }
-        const newArticles = [...othersArticles, changedMyArticle]
-        setAllArticles(newArticles);
-        localStorage.setItem('articles', JSON.stringify(newArticles));
+    const viewArticle = async(id) => {
+        console.log(id)
+        await axios.post('http://localhost:5001/auth/viewArticle', {id: id})
+        const all = await axios.get('http://localhost:5001/auth/getAllArticles')
+        setAllArticles(all.data.message)
+        // const othersArticles = allArticles.filter(article => article.id !== id)
+        // const myArticle = allArticles.find(article => article.id === id)
+        // const changedMyArticle = {
+        //     ...myArticle,
+        //     views: myArticle.views + 1
+        // }
+        // const newArticles = [...othersArticles, changedMyArticle]
+        // setAllArticles(newArticles);
+        // localStorage.setItem('articles', JSON.stringify(newArticles));
     }
-    const mostPopularArticle = useMemo(() => {
-        if (allArticles.length > 0) {
-            return allArticles?.reduce((acc, cur) => acc.views > cur.views ? acc : cur)
-        }
-    }, [allArticles])
-
 
     return (
         <div className={styles.main_container}>
@@ -44,7 +41,7 @@ export const Main = () => {
                 <h1>Popular articles</h1>
                 {slicedArticles.map((article =>
                     <Article
-                        id={article.id}
+                        id={article._id}
                         key={article._id}
                         img={article.headImg}
                         firstname={article.firstname}

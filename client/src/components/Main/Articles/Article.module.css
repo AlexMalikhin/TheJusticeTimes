@@ -14,7 +14,9 @@
     top: -2px;
 }
 .img_article{
+    min-width: 367px;
     max-width: 367px;
+    max-height: 260px;
     object-fit: cover;
 }
 .article_block{

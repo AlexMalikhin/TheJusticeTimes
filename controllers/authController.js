@@ -108,11 +108,24 @@ module.exports.updateUserData = async function(req, res){
             description: description,
             avatar: avatar
         }
+        const articleModel = {
+            firstname: firstname,
+            lastname: lastname,
+            avatar: avatar
+        }
         const decodedData = jwt.verify(token, secret);
         await User.findOneAndUpdate({_id: decodedData.id}, user);
+        // const allArticles = await Article.find()
+        await Article.updateMany({userId: decodedData.id}, articleModel )
+        // const array = []
+        // allArticles.map((item)=>{
+        //
+        //         array.push({userid: item.userId, idd: decodedData.id})
+        // })
+
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-        return res.json({message: decodedData.id})
+        return res.json({message: 'dwd'})
     }catch (e) {
         return res.json({message: "User data is didn't update"})
     }
@@ -151,5 +164,44 @@ module.exports.getAllArticles = async function(req, res){
         return res.json({message: all})
     }catch (e){
         return res.json({message: 'don t get'})
+    }
+}
+
+module.exports.getMyArticles = async function(req, res){
+    try{
+        const {token} = req.body;
+        const decodedData = jwt.verify(token, secret);
+        const currentUser = await User.findOne({_id: decodedData.id})
+        const allArticles = await Article.find()
+        const myArticles = await allArticles.filter(article => article.userId === currentUser.id)
+        return res.json({message: myArticles})
+    }catch (e) {
+        return res.json({message: 'don t get'})
+    }
+}
+
+module.exports.getPopularArticle = async function(req, res){
+    try{
+        const allArticles = await Article.find()
+        if(!allArticles){
+            return res.status(400).json({message: 'Articles not found in DataBase'})
+        }
+        const popularArticle = allArticles.reduce((acc, cur) => acc.views > cur.views ? acc : cur)
+        return res.json({message: popularArticle})
+    }catch (e) {
+
+    }
+}
+module.exports.viewArticle = async function(req, res) {
+    try {
+        const {id} = req.body;
+        const findArticle = await Article.findOne({_id: id})
+        const newArticle = {
+            views: findArticle.views + 1
+        }
+        await Article.findOneAndUpdate({_id: id}, newArticle)
+        return res.json({message: 'view is increased'})
+    } catch (e) {
+        return res.json({message: 'dwdwd'})
     }
 }

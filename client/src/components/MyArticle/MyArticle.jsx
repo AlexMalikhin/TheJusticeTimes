@@ -6,7 +6,7 @@ import views from '../../img/viewsImg.png';
 export const MyArticle = (props) => {
     const navigate = useNavigate();
     const showFullArticle = () =>{
-        navigate(`./${props.props.id}`, {replace: true})
+        navigate(`./${props.props._id}`, {replace: true})
     }
 
     return (

@@ -7,7 +7,7 @@ import defaultAvatar from '../../img/defaultAvatar.png';
 
 export const FullArticlePage = ({article}) => {
     const navigate = useNavigate();
-    const getPath = () => document.location.pathname === `/AllArticles/${article.id}`;
+    const getPath = () => document.location.pathname === `/AllArticles/${article._id}`;
     const linkToAllArticles = () => {
         if(!!getPath()){
             return navigate('/AllArticles', {replace: true})

@@ -14,18 +14,20 @@ import Cookies from 'js-cookie';
 import axios from "axios";
 
 function App() {
-    const {authKey, setAuthKey, setAllArticles, allArticles, setMyArticles} = useContext(AppContext);
-    const myArticles = useMemo(()=>allArticles.filter(article=> article.userId === authKey), [authKey, allArticles])
+    const {authKey, setAuthKey, setAllArticles, allArticles, setMyArticles, myArticles} = useContext(AppContext);
+    // const myArticles = useMemo(()=>allArticles.filter(article=> article.userId === authKey), [authKey, allArticles])
     useEffect(async()=>{
-        setAuthKey(Cookies.get('token'));
-        // const all = await axios.get('http://localhost:5001/auth/getAllArticles')
-        // setAllArticles(all.data.message)
-        // console.log(all.data.message);
-    },[])
+        const token = Cookies.get('token')
+        if(!token){
+            return
+        }
+        await setAuthKey(token);
+        const getAllArticles = await axios.get('http://localhost:5001/auth/getAllArticles')
+        setAllArticles(getAllArticles.data.message)
+        const getMyArticles = await axios.post('http://localhost:5001/auth/getMyArticles', {token: token})
+        setMyArticles(getMyArticles.data.message)
+    },[authKey])
 
-    useEffect(()=>{
-        setMyArticles(myArticles);
-    },[myArticles])
 
     return (
         <div className="App">
@@ -37,17 +39,17 @@ function App() {
                 <Route path='/LogIn' element={<LogInPage/>}/>
                 <Route path='/SignIn' element={<SignInPage/>}/>
                 {authKey && <Route path='/Profile' element={<ProfilePage/>}/>}
-                {allArticles.map(article => (
+                {allArticles?.map(article => (
                     <Route
-                        key={article.id}
-                        path={`/AllArticles/${article.id}`}
+                        key={article._id}
+                        path={`/AllArticles/${article._id}`}
                         element={<FullArticlePage article={article}/>}
                     />
                 ))}
-                {myArticles.map(article =>(
+                {myArticles?.map(article =>(
                     <Route
-                        key={article.id}
-                        path={`/MyArticles/${article.id}`}
+                        key={article._id}
+                        path={`/MyArticles/${article._id}`}
                         element={<FullArticlePage article={article}/>}
                     />
                 ))}

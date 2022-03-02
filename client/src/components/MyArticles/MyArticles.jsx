@@ -1,29 +1,57 @@
-import {useContext, useMemo} from 'react';
+import {useContext, useMemo, useEffect} from 'react';
 import { AppContext } from '../AppContext/AppContext';
 import { Paggination } from '../Paggination/Paggination';
 import pagginationStyles from '../Paggination/Paggination.module.css';
 import { MyArticle } from '../MyArticle/MyArticle';
 import styles from './MyArticles.module.css';
 import defaultAvatar from '../../img/defaultAvatar.png';
+import axios from "axios";
+import Cookies from "js-cookie";
 
 
 export const MyArticles = () => {
-    const { userArticlePage, setUserArticlePage, authKey, users, myArticles} = useContext(AppContext);
+    const {
+        userArticlePage,
+        setUserArticlePage,
+        authKey,
+        users,
+        myArticles,
+        setMyArticles,
+        currentUserFirstName,
+        currentUserLastName,
+        currentUserDescription,
+        setCurrentUserFirstName,
+        setCurrentUserLastName,
+        setCurrentUserDescription,
+        profileAvatar,
+        setProfileAvatar,
+    } = useContext(AppContext);
+
+    useEffect(async()=>{
+        const token = {"token": Cookies.get('token')}
+        const getMyArticles = await axios.post('http://localhost:5001/auth/getMyArticles', token)
+        setMyArticles(getMyArticles.data.message)
+        const user = await axios.post('http://localhost:5001/auth/getData', token);
+        setCurrentUserFirstName(user.data.firstname);
+        setCurrentUserLastName(user.data.lastname);
+        setProfileAvatar(user.data.avatar);
+        setCurrentUserDescription(user.data.description);
+    },[])
+
     const slicedMyArticles = useMemo(() => myArticles.slice(userArticlePage * 4, userArticlePage * 4 + 4), [userArticlePage, myArticles])
-    const currentUser = users.filter(user=> user.userId === authKey);
 
 
     return (
         <div className={styles.container}>
             <div className={styles.main_block}>
                 <div className={styles.user_info}>
-                    <img src={currentUser[0]?.avatar ? currentUser[0]?.avatar : defaultAvatar} className={styles.avatar}/>
-                    <h3>{currentUser[0]?.firstname} {currentUser[0]?.lastname}</h3>
-                    <p className={styles.p}>{currentUser[0]?.description}</p>
+                    <img src={profileAvatar || defaultAvatar} className={styles.avatar}/>
+                    <h3>{currentUserFirstName} {currentUserLastName}</h3>
+                    <p className={styles.p}>{currentUserDescription}</p>
                 </div>
                 <div className={styles.articles_list}>
-                    {slicedMyArticles   .map(article=> (
-                            <MyArticle props={article} key={article.id}/>
+                    {slicedMyArticles.map(article=> (
+                            <MyArticle props={article} key={article._id}/>
                         )
                     )}
                     <Paggination
