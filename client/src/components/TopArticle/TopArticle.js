@@ -1,7 +1,5 @@
 import {useNavigate} from 'react-router-dom';
 import styles from './TopArticle.module.css';
-import topArticle from "../../img/article_images/1.png";
-import janayWright from "../../img/avatars/JanayWright.png";
 import views from "../../img/viewsImg.png";
 import defaultAvatar from "../../img/defaultAvatar.png";
 

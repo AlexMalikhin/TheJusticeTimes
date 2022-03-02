@@ -4,7 +4,6 @@ import styles from './LogInMenu.module.css';
 
 
 export const LogInMenu = ({login, style}) => {
-
     return (
         <nav className={styles.logout}>
             <ul className={styles.logout_list}>

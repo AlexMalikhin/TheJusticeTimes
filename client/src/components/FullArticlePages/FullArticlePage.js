@@ -1,6 +1,5 @@
-import {Link, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {Button} from '../Button/Button';
-import {articles} from "../../mockStore/articles";
 import fullPageStyles from './FullArticlePage.module.css';
 import viewsImg from '../../img/viewsImg.png';
 import defaultAvatar from '../../img/defaultAvatar.png';
@@ -16,7 +15,6 @@ export const FullArticlePage = ({article}) => {
             return navigate('/MyArticles', {replace: true})
         }
     }
-
 
     return (
         <div className={fullPageStyles.main_container}>

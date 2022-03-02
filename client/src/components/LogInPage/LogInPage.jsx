@@ -11,8 +11,6 @@ import Cookies from "js-cookie";
 export const LogInPage = () => {
     const {
         setAuthKey,
-        users,
-        setLogIn,
         inputValueEmail,
         inputValuePassword,
         setInputValueEmail,
@@ -26,9 +24,6 @@ export const LogInPage = () => {
         setIsRenderEmailError,
         setIsRenderPasswordError,
         regExpForEmail,
-        setCurrentUserFirstName,
-        setCurrentUserLastName,
-        setCurrentUserDescription,
     } = useContext(AppContext);
 
     useEffect(()=>{
@@ -62,34 +57,6 @@ export const LogInPage = () => {
             setIsRenderPasswordError(true);
         }
     },[inputValueEmail, inputValuePassword] )
-
-
-
-    const userLogIn = useCallback((email, password) => {
-        users.forEach(user => {
-            if (user.email === email && user.password === password) {
-                setLogIn((logIn) => !logIn);
-                navigate('/AllArticles');
-                setAuthKey(user.userId);
-                localStorage.setItem('authKey', JSON.stringify(user.userId));
-                setCurrentUserFirstName(user.firstname);
-                setCurrentUserLastName(user.lastname);
-                setCurrentUserDescription(user.description);
-            }
-            else{
-                setIsRenderEmailError(true);
-                setEmailErrorText('Incorrect Email or password');
-                setIsRenderPasswordError(true);
-                setPasswordErrorText('Incorrect Email or password');
-            }
-        });
-        if(!!users){
-            setIsRenderEmailError(true);
-            setEmailErrorText('Incorrect Email or password');
-            setIsRenderPasswordError(true);
-            setPasswordErrorText('Incorrect Email or password');
-        }
-    }, [inputValueEmail, inputValuePassword, users])
 
     const isCorrectEmail = useCallback(()=>{
         setIsRenderEmailError(true)

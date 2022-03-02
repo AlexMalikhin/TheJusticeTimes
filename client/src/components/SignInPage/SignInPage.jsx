@@ -1,7 +1,6 @@
-import {useContext, useCallback, useEffect, useMemo} from 'react';
+import {useContext, useCallback, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import {useFetch} from "../../hooks/useFetch";
 import {Input} from '../Input/Input';
 import {Button} from '../Button/Button';
 import {AppContext} from '../AppContext/AppContext';
@@ -10,10 +9,7 @@ import buttonStyles from '../Button/Button.module.css';
 
 export const SignInPage = () => {
 
-
     const {
-        users,
-        setUsers,
         regExpForEmail,
         regExpForPassword,
         inputValueEmail,
@@ -59,7 +55,6 @@ export const SignInPage = () => {
         }
         try {
             await axios.post('http://localhost:5001/auth/registration', user)
-
             navigate('/LogIn', {replace: true});
         }catch (e) {
             setEmailErrorText(e.response.data.message);
@@ -72,39 +67,11 @@ export const SignInPage = () => {
        clearInputs();
     },[])
 
-    // const createNewUser = () =>{
-    //     if(!isValidNewUser()){
-    //         isCorrectFirstname();
-    //         isCorrectLastname();
-    //         isCorrectEmail();
-    //         isCorrectPassword();
-    //         setIsRenderEmailError(true);
-    //         setEmailErrorText('This Email Already has taken');
-    //         return
-    //     }
-    //
-    //     const newUsers = [
-    //         ...users,
-    //         {
-    //             'userId': Math.random().toString(36).substr(2, 13),
-    //             'firstname': inputValueFirstName,
-    //             'lastname': inputValueLastName,
-    //             'email': inputValueEmail,
-    //             'password': inputValuePassword,
-    //             'description': '',
-    //             'avatar' : '',
-    //         }]
-    //     setUsers(newUsers);
-    //     localStorage.setItem('users', JSON.stringify(newUsers));
-    //
-    // }
-
     const isValidNewUser = () =>{
         return inputValueFirstName.length >=2 && inputValueLastName.length >=2
             && regExpForEmail.test(inputValueEmail) && !isEmailEmpty()
             && regExpForPassword.test(inputValuePassword) && !isPasswordEmpty()
     }
-
 
     const isEmailEmpty = () => inputValueEmail === '';
     const isPasswordEmpty = () => inputValuePassword === '';

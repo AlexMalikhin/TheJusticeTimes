@@ -12,26 +12,17 @@ export const Main = () => {
     const {currentPage, setCurrentPage, allArticles, setAllArticles} = useContext(AppContext);
     const [mostPopularArticle, setMostPopularArticle] = useState()
     useEffect(async ()=>{
-        const getPopularArticle = await axios.get('http://localhost:5001/auth/getPopularArticle')
-        setMostPopularArticle(getPopularArticle.data.message)
-        const all = await axios.get('http://localhost:5001/auth/getAllArticles')
-        setAllArticles(all.data.message)
+        const getPopularArticle = await axios.get('http://localhost:5001/article/getPopularArticle');
+        setMostPopularArticle(getPopularArticle.data.message);
+        const all = await axios.get('http://localhost:5001/article/getAllArticles');
+        setAllArticles(all.data.message);
     }, [])
     const slicedArticles = useMemo(() => allArticles.slice(currentPage * 6, currentPage * 6 + 6), [currentPage, allArticles])
     const viewArticle = async(id) => {
         console.log(id)
-        await axios.post('http://localhost:5001/auth/viewArticle', {id: id})
-        const all = await axios.get('http://localhost:5001/auth/getAllArticles')
+        await axios.post('http://localhost:5001/article/viewArticle', {id: id})
+        const all = await axios.get('http://localhost:5001/article/getAllArticles')
         setAllArticles(all.data.message)
-        // const othersArticles = allArticles.filter(article => article.id !== id)
-        // const myArticle = allArticles.find(article => article.id === id)
-        // const changedMyArticle = {
-        //     ...myArticle,
-        //     views: myArticle.views + 1
-        // }
-        // const newArticles = [...othersArticles, changedMyArticle]
-        // setAllArticles(newArticles);
-        // localStorage.setItem('articles', JSON.stringify(newArticles));
     }
 
     return (

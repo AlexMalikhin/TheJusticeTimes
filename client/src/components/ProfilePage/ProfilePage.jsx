@@ -10,14 +10,9 @@ import buttonStyles from '../Button/Button.module.css';
 import inputStyles from '../Input/Input.module.css';
 
 
-
 export const ProfilePage = () => {
     const reader = new FileReader();
     const {
-        users,
-        setUsers,
-        currentUser,
-        setCurrentUser,
         currentUserFirstName,
         currentUserLastName,
         currentUserDescription,
@@ -26,18 +21,15 @@ export const ProfilePage = () => {
         setCurrentUserDescription,
         profileAvatar,
         setProfileAvatar,
-        allArticles,
-        setAllArticles,
         authKey
     } = useContext(AppContext);
 
     const changeUserDescription = (e) => {
         setCurrentUserDescription(e.target.value);
     }
+
     const saveChanges = async () => {
         try{
-
-            console.log(profileAvatar)
             const currentUserData = {
                 firstname: currentUserFirstName,
                 lastname: currentUserLastName,
@@ -45,61 +37,17 @@ export const ProfilePage = () => {
                 description: currentUserDescription,
                 token: Cookies.get('token')
             }
-
-            await axios.post('http://localhost:5001/auth/updateUser', currentUserData);
-            // setCurrentUserFirstName(user.data.firstname);
-            // setCurrentUserLastName(user.data.lastname);
-            // setProfileAvatar(user.data.avatar);
-            // setCurrentUserDescription(user.data.description);
+            await axios.post('http://localhost:5001/user/updateUser', currentUserData);
         }catch (e) {
             console.log('hui')
-            // console.log(e.response.data.message)
         }
-
-
-
-
-
-        // setCurrentUser({
-        //     ...currentUser,
-        //     firstname: currentUserFirstName,
-        //     lastname: currentUserLastName,
-        //     description: currentUserDescription,
-        // })
-        // const newUsers = users.map(user => {
-        //     if (user.userId !== authKey) {
-        //         return user
-        //     }
-        //     return {
-        //         ...user,
-        //         avatar: profileAvatar,
-        //         firstname: currentUserFirstName,
-        //         lastname: currentUserLastName,
-        //         description: currentUserDescription,
-        //     }
-        // })
-        //
-        // setUsers(newUsers)
-        // localStorage.setItem('users', JSON.stringify(newUsers))
-        // const myArticles = (allArticles.filter((article) => article.userId === authKey))
-        // const otherArticles = (allArticles.filter((article) => article.userId !== authKey))
-        // const changedMyArticles = myArticles.map((article) => (
-        //     {
-        //         ...article,
-        //         avatar: profileAvatar,
-        //         firstname: currentUserFirstName,
-        //         lastname: currentUserLastName
-        //     }))
-        // console.log([...changedMyArticles, ...otherArticles])
-        // setAllArticles([...changedMyArticles, ...otherArticles]);
-        // localStorage.setItem('articles', JSON.stringify([...changedMyArticles, ...otherArticles]));
     }
 
     useEffect(async() => {
         if (!!authKey) {
             try{
                 const token = {"token": Cookies.get('token')};
-                const user = await axios.post('http://localhost:5001/auth/getData', token);
+                const user = await axios.post('http://localhost:5001/user/getUserData', token);
                 setCurrentUserFirstName(user.data.firstname);
                 setCurrentUserLastName(user.data.lastname);
                 setProfileAvatar(user.data.avatar);
@@ -107,12 +55,6 @@ export const ProfilePage = () => {
             }catch (e) {
                 console.log(e.response.message)
             }
-            // const currentUser = users.find((user) => user.userId === authKey);
-            // setCurrentUser(currentUser);
-            // setProfileAvatar(currentUser.avatar);
-            // setCurrentUserDescription(currentUser.description);
-            // setCurrentUserLastName(currentUser.lastname);
-            // setCurrentUserFirstName(currentUser.firstname);
         }
     }, [authKey])
 
@@ -173,6 +115,3 @@ export const ProfilePage = () => {
         </div>
     )
 }
-
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyM…TA0fQ.WI7gj1AL0LPvV8KJ61mleFn9iIq1r-bFuo7w4OZHf4o
-// 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyM…U0N30.rK0Ehj9VMjhuEohhacitMAPK87xsKMZMGdiTymzgRwg'

@@ -1,5 +1,5 @@
 import {Routes, Route} from "react-router-dom";
-import {useContext, useEffect, useMemo} from 'react';
+import {useContext, useEffect} from 'react';
 import {Footer} from "./components/Footer/Footer";
 import {Main} from "./components/Main/Main";
 import {Header} from "./components/Header/Header";
@@ -14,27 +14,27 @@ import Cookies from 'js-cookie';
 import axios from "axios";
 
 function App() {
-    const {authKey, setAuthKey, setAllArticles, allArticles, setMyArticles, myArticles} = useContext(AppContext);
-    // const myArticles = useMemo(()=>allArticles.filter(article=> article.userId === authKey), [authKey, allArticles])
+    const {authKey, setAuthKey, setAllArticles, allArticles, setMyArticles, myArticles, logIn} = useContext(AppContext);
     useEffect(async()=>{
-        const token = Cookies.get('token')
+        console.log('hui app')
+        const token = await Cookies.get('token')
         if(!token){
             return
         }
         await setAuthKey(token);
-        const getAllArticles = await axios.get('http://localhost:5001/auth/getAllArticles')
+        const getAllArticles = await axios.get('http://localhost:5001/article/getAllArticles')
         setAllArticles(getAllArticles.data.message)
-        const getMyArticles = await axios.post('http://localhost:5001/auth/getMyArticles', {token: token})
+        const getMyArticles = await axios.post('http://localhost:5001/article/getMyArticles', {token: token})
         setMyArticles(getMyArticles.data.message)
-    },[authKey])
-
+    },[])
 
     return (
         <div className="App">
             <Header/>
+
             <Routes>
                 {authKey && <Route path='/AddArticle' element={<AddArticle/>}/>}
-                {myArticles.length > 0 && <Route path='/MyArticles' element={<MyArticles/>}/>}
+                <Route path='/MyArticles' element={<MyArticles/>}/>
                 {allArticles.length > 0 && <Route path='/AllArticles' element={<Main/>}/>}
                 <Route path='/LogIn' element={<LogInPage/>}/>
                 <Route path='/SignIn' element={<SignInPage/>}/>

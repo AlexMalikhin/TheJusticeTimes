@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState } from 'draft-js';
@@ -59,7 +59,7 @@ export const AddArticle = () =>{
             text: editorState.getCurrentContent().getPlainText(),
             views: 0,
         }
-        await axios.post('http://localhost:5001/auth/createArticle', newArticle)
+        await axios.post('http://localhost:5001/article/createArticle', newArticle)
         clearInputs();
         navigate('/AllArticles');
     }

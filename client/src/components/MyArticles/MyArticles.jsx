@@ -13,8 +13,6 @@ export const MyArticles = () => {
     const {
         userArticlePage,
         setUserArticlePage,
-        authKey,
-        users,
         myArticles,
         setMyArticles,
         currentUserFirstName,
@@ -29,9 +27,10 @@ export const MyArticles = () => {
 
     useEffect(async()=>{
         const token = {"token": Cookies.get('token')}
-        const getMyArticles = await axios.post('http://localhost:5001/auth/getMyArticles', token)
+        const getMyArticles = await axios.post('http://localhost:5001/article/getMyArticles', token)
+        console.log(getMyArticles.data.message)
         setMyArticles(getMyArticles.data.message)
-        const user = await axios.post('http://localhost:5001/auth/getData', token);
+        const user = await axios.post('http://localhost:5001/user/getUserData', token);
         setCurrentUserFirstName(user.data.firstname);
         setCurrentUserLastName(user.data.lastname);
         setProfileAvatar(user.data.avatar);
@@ -49,19 +48,23 @@ export const MyArticles = () => {
                     <h3>{currentUserFirstName} {currentUserLastName}</h3>
                     <p className={styles.p}>{currentUserDescription}</p>
                 </div>
-                <div className={styles.articles_list}>
-                    {slicedMyArticles.map(article=> (
-                            <MyArticle props={article} key={article._id}/>
-                        )
-                    )}
-                    <Paggination
-                        page={userArticlePage}
-                        setPage={setUserArticlePage}
-                        allArticles={myArticles || ''}
-                        style={pagginationStyles.myArticles}
-                        length={4}
-                    />
-                </div>
+                {myArticles.length ?
+                    <div className={styles.articles_list}>
+                        {slicedMyArticles.map(article=> (
+                                <MyArticle props={article} key={article._id}/>
+                            )
+                        )}
+                        <Paggination
+                            page={userArticlePage}
+                            setPage={setUserArticlePage}
+                            allArticles={myArticles || ''}
+                            style={pagginationStyles.myArticles}
+                            length={4}
+                        />
+                     </div>
+                    : <h1>Articles not found you could create a new one </h1>
+                }
+
             </div>
         </div>
     )

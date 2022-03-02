@@ -22,8 +22,9 @@
 }
 .main_block{
     max-width: 1070px;
+    min-width: 1070px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
 .articles_list{
     max-width: 664px;

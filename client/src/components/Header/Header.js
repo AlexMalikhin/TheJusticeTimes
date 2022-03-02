@@ -2,20 +2,20 @@ import {useContext, useCallback, useEffect} from "react";
 import {LogInMenu} from '../LogInMenu/LogInMenu';
 import {LogOutMenu} from '../LogOutMenu/LogOutMenu';
 import {AppContext} from "../AppContext/AppContext";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import logoBlack from "../../img/logo_black.png";
 import styles from "./Header.module.css";
 import buttonStyles from '../Button/Button.module.css';
 import Cookies from "js-cookie";
 
 export const Header = () => {
-    const {logIn, setLogIn, authKey, setAuthKey} = useContext(AppContext);
+    const {logIn, setLogIn, authKey} = useContext(AppContext);
+    const navigate = useNavigate();
     const toggleLogIn = useCallback(() => {
         setLogIn(false);
         Cookies.remove('token');
         console.log(Cookies.get());
-        // setAuthKey('');
-        // localStorage.setItem('authKey', JSON.stringify(''));
+        navigate('/LogIn')
     }, [logIn]);
 
     useEffect(() => {
@@ -33,7 +33,6 @@ export const Header = () => {
                                style={buttonStyles.header_logout}/>
                     : <LogOutMenu  stylesLogIn={buttonStyles.header_logIn}
                                stylesSignIn={buttonStyles.header_signIn}/>
-
                 }
             </div>
         </header>
