@@ -30,8 +30,8 @@
     align-items: center;
     color: #8C8C8C;
     font-family: 'IBM Plex Sans', sans-serif;
-    padding: 0px;
-    margin: 8px 0px;
+    padding: 0;
+    margin: 8px 0;
 }
 .avatar_block{
     display: flex;
@@ -39,10 +39,10 @@
 }
 .avatar_name{
     font-weight: 500;
-    margin: 0px 8px;
+    margin: 0 8px;
 }
 .m8{
-    margin: 0px 8px;
+    margin: 0 8px;
 }
 .views{
     max-width: 20px;
@@ -54,4 +54,10 @@
 }
 .ml8{
     margin-left: 8px;
+}
+.paragraph{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 9;
+    overflow: hidden;
 }

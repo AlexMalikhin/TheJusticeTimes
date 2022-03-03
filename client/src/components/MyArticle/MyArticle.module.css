@@ -20,7 +20,7 @@
 }
 .article_block{
     border-bottom: 1px #EBEBEB solid;
-    margin: 10px 0px;
+    margin: 10px 0;
 }
 .hashtags{
     padding: 7px 12px;
@@ -39,8 +39,8 @@
     align-items: center;
     color: #8C8C8C;
     font-family: 'IBM Plex Sans', sans-serif;
-    padding: 0px;
-    margin: 8px 0px 17px 0px;
+    padding: 0;
+    margin: 8px 0 17px 0;
 }
 .avatar_block{
     display: flex;
@@ -48,10 +48,10 @@
 }
 .avatar_name{
     font-weight: 500;
-    margin: 0px 8px;
+    margin: 0 8px;
 }
 .m8{
-    margin: 0px 8px;
+    margin: 0 8px;
 }
 .views{
     max-width: 20px;

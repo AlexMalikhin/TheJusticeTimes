@@ -1,7 +1,8 @@
-const Router = require("express");
-const router = new Router();
-const controller = require("../controllers/articleController");
+const Router = require('express')
+const router = new Router()
+const controller = require('../controllers/articleController')
 
+// todo: добавить мидлвейры для обработки токена (passport.js)
 router.post('/createArticle', controller.createArticle)
 router.get('/getAllArticles', controller.getAllArticles)
 router.post('/getMyArticles', controller.getMyArticles)

@@ -3,7 +3,7 @@
     justify-content: center;
 }
 .block{
-    margin: 64px 0px;
+    margin: 64px 0;
     min-width: 396px;
     display: flex;
     flex-direction: column;
@@ -23,7 +23,7 @@
 }
 .link{
     text-decoration: underline;
-    color: #000000;
+    color: rgba(0, 0, 0, 0.96);
     font-weight: 700;
     margin-left: 3px;
 }

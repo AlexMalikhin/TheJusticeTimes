@@ -1,7 +1,7 @@
 .articles{
     max-width: 1070px;
     display: flex;
-    margin: 40px 0px;
+    margin: 40px 0;
     cursor: pointer;
     filter: invert(4%);
     word-wrap: break-word;
@@ -40,8 +40,8 @@
     align-items: center;
     color: #8C8C8C;
     font-family: 'IBM Plex Sans', sans-serif;
-    padding: 0px;
-    margin: 8px 0px;
+    padding: 0;
+    margin: 8px 0;
 }
 .avatar_block{
     display: flex;
@@ -49,10 +49,10 @@
 }
 .avatar_name{
     font-weight: 500;
-    margin: 0px 8px;
+    margin: 0 8px;
 }
 .m8{
-    margin: 0px 8px;
+    margin: 0 8px;
 }
 .views{
     max-width: 20px;

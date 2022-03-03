@@ -69,10 +69,10 @@
     font-size: 1rem;
     background: black;
     color: white;
-    padding: 18px 0px;
+    padding: 18px 0;
     border: none;
     font-family: 'IBM Plex Sans', sans-serif;
-    margin: 20px 0px;
+    margin: 20px 0;
 }
 .profile_save_changes{
     font-family: 'IBM Plex Sans', sans-serif;
@@ -97,4 +97,25 @@
     max-width: 186px;
     margin-top: 24px;
     margin-bottom: 14px;
+}
+.all_articles{
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1rem;
+    position: sticky;
+    top: 119px;
+    max-height: 50px;
+    padding: 14px 30px;
+    margin-right: 73px;
+    cursor: pointer;
+    background: #ffffff;
+    color: #000000;
+    border: #000000 1px solid;
+}
+.category{
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1rem;
+    padding: 14px 30px;
+    background: #ffffff;
+    color: rgba(0, 0, 0, 0.51);
+    border: rgba(0, 0, 0, 0.27) 1px solid;
 }
