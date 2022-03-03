@@ -4,6 +4,7 @@ import { Editor } from 'react-draft-wysiwyg'
 import { EditorState } from 'draft-js'
 import axios from 'axios'
 import Cookies from 'js-cookie'
+import moment from 'moment'
 import { Button } from '../Button/Button'
 import { Input } from '../Input/Input'
 import emptyImg from '../../img/article_images/empty_img.png'
@@ -30,19 +31,7 @@ export const AddArticle = () => {
   const clearImg = () => {
     setImgNewArticle('')
   }
-  const getDay = () => {
-    // todo: исправить на библиотеку moment
-    let date = new Date()
-    return date.getDate()
-  }
-  const getMonth = () => {
-    let date = new Date()
-    return date.toLocaleString('default', { month: 'short' }).slice(0, 3)
-  }
-  const getTimePublication = () => {
-    let date = new Date()
-    return `${date.getHours()}:${date.getMinutes()}`
-  }
+
   const checkInputs = () => {
     return (
       !newArticleCategory ||
@@ -58,9 +47,7 @@ export const AddArticle = () => {
       title: newArticleTitle,
       category: newArticleCategory,
       headImg: imgNewArticle,
-      monthOfCreated: getMonth(),
-      dayOfCreated: getDay(),
-      timeOfCreated: getTimePublication(),
+      date: moment().format(`MMM D ${'·'} LT`),
       text: editorState.getCurrentContent().getPlainText(),
       views: 0,
     }

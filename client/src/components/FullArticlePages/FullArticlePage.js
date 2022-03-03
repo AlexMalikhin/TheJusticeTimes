@@ -1,13 +1,24 @@
 import { useNavigate, useParams } from 'react-router-dom'
+import { useEffect, useContext } from 'react'
+import { AppContext } from '../AppContext/AppContext'
 import { Button } from '../Button/Button'
 import fullPageStyles from './FullArticlePage.module.css'
 import viewsImg from '../../img/viewsImg.png'
 import defaultAvatar from '../../img/defaultAvatar.png'
 
-export const FullArticlePage = ({ article }) => {
+export const FullArticlePage = ({ all }) => {
+  const { articleId } = useParams()
+  const { allArticles, currentArticle, setCurrentArticle } =
+    useContext(AppContext)
+
+  useEffect(() => {
+    setCurrentArticle(all.find((item) => item._id === articleId))
+  }, [articleId, all])
+
   const navigate = useNavigate()
   const getPath = () =>
-    document.location.pathname === `/AllArticles/${article._id}`
+    document.location.pathname === `/AllArticles/${articleId}`
+
   const linkToAllArticles = () => {
     if (!!getPath()) {
       return navigate('/AllArticles', { replace: true })
@@ -27,34 +38,37 @@ export const FullArticlePage = ({ article }) => {
         <div className={fullPageStyles.fullPage}>
           <ul>
             <li className={fullPageStyles.hashtags}>
-              <a>{article.category}</a>
+              <a>{currentArticle?.category}</a>
             </li>
           </ul>
-          <h1>{article.title}</h1>
+          <h1>{currentArticle?.title}</h1>
           <img
             className={fullPageStyles.article_img}
-            src={article.headImg}
+            src={currentArticle?.headImg}
             alt={'Head image of popular article'}
           />
-          <p className={fullPageStyles.paragraph_fullPage}>{article.text}</p>
+          <p className={fullPageStyles.paragraph_fullPage}>
+            {currentArticle?.text}
+          </p>
         </div>
         <div className={fullPageStyles.space_between}>
           <div className={fullPageStyles.article_info}>
             <div className={fullPageStyles.avatar_block}>
               <img
-                src={article.avatar ? article.avatar : defaultAvatar}
+                src={
+                  currentArticle?.avatar
+                    ? currentArticle?.avatar
+                    : defaultAvatar
+                }
                 className={fullPageStyles.avatars}
                 alt={'user avatar'}
               />
               <span className={fullPageStyles.avatar_name}>
-                {article.firstname} {article.lastname}
+                {currentArticle?.firstname} {currentArticle?.lastname}
               </span>
             </div>
             <div className={fullPageStyles.m8}>
-              <span>
-                {article.monthOfCreated} {article.dayOfCreated} ·{' '}
-                {article.timeOfCreated}
-              </span>
+              <span>{currentArticle?.date}</span>
             </div>
             <div className={fullPageStyles.ml8}>
               <img
@@ -62,10 +76,12 @@ export const FullArticlePage = ({ article }) => {
                 className={fullPageStyles.views}
                 alt={'views eye image'}
               />
-              <span className={fullPageStyles.ml8}>{article.views}</span>
+              <span className={fullPageStyles.ml8}>
+                {currentArticle?.views}
+              </span>
             </div>
           </div>
-          <Button title={article.category} type={'category'} />
+          <Button title={currentArticle?.category} type={'category'} />
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import styles from './MyArticle.module.css'
 import views from '../../img/viewsImg.png'
+import defaultAvatar from '../../img/defaultAvatar.png'
 
 export const MyArticle = (props) => {
   const navigate = useNavigate()
@@ -24,7 +25,7 @@ export const MyArticle = (props) => {
         <div className={styles.article_info}>
           <div className={styles.avatar_block}>
             <img
-              src={props.props.avatar}
+              src={props.props.avatar ? props.props.avatar : defaultAvatar}
               className={styles.avatars}
               alt={'author avatar'}
             />
@@ -33,10 +34,7 @@ export const MyArticle = (props) => {
             </span>
           </div>
           <div className={styles.m8}>
-            <span>
-              {props.props.monthOfCreated} {props.props.dayOfCreated} ·{' '}
-              {props.props.timeOfCreated}
-            </span>
+            <span>{props.props.date}</span>
           </div>
           <div className={styles.ml8}>
             <img src={views} className={styles.views} alt={'view eye image'} />

@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import viewsImg from '../../../img/viewsImg.png'
 import styles from './Article.module.css'
 import defaultAvatar from '../../../img/defaultAvatar.png'
@@ -13,13 +13,12 @@ const Article = ({
   views,
   header,
   paragraph,
-  month,
-  day,
-  minutes,
+  date,
   tags,
   viewArticle,
 }) => {
   const navigate = useNavigate()
+  const { articleId } = useParams()
   const showFullArticle = useCallback((id) => {
     viewArticle(id)
     navigate(`./${id}`, { replace: true })
@@ -48,9 +47,7 @@ const Article = ({
             </span>
           </div>
           <div className={styles.m8}>
-            <span>
-              {month} {day} · {minutes}
-            </span>
+            <span>{date}</span>
           </div>
           <div className={styles.ml8}>
             <img

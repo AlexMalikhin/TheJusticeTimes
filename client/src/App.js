@@ -22,7 +22,6 @@ function App() {
     setAllArticles,
     allArticles,
     setMyArticles,
-    myArticles,
   } = useContext(AppContext)
 
   useEffect(async () => {
@@ -60,21 +59,14 @@ function App() {
         <Route path="/LogIn" element={<LogInPage />} />
         <Route path="/SignIn" element={<SignInPage />} />
         {authKey && <Route path="/Profile" element={<ProfilePage />} />}
-        // todo: переделать на динамические роуты
-        {allArticles?.map((article) => (
-          <Route
-            key={article._id}
-            path={`/AllArticles/${article._id}`}
-            element={<FullArticlePage article={article} />}
-          />
-        ))}
-        {myArticles?.map((article) => (
-          <Route
-            key={article._id}
-            path={`/MyArticles/${article._id}`}
-            element={<FullArticlePage article={article} />}
-          />
-        ))}
+        <Route
+          path={`/AllArticles/:articleId`}
+          element={<FullArticlePage all={allArticles} />}
+        />
+        <Route
+          path={`/MyArticles/:articleId`}
+          element={<FullArticlePage all={allArticles} />}
+        />
       </Routes>
       <Footer />
     </div>

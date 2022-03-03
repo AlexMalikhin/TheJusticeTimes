@@ -19,9 +19,7 @@ module.exports.createArticle = async function (req, res) {
       title: newArticle.title,
       category: newArticle.category,
       headImg: newArticle.headImg,
-      monthOfCreated: newArticle.monthOfCreated,
-      dayOfCreated: newArticle.dayOfCreated,
-      timeOfCreated: newArticle.timeOfCreated,
+      date: newArticle.date,
       text: newArticle.text,
       views: newArticle.views,
     })

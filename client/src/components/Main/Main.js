@@ -48,9 +48,7 @@ export const Main = () => {
             views={article.views}
             header={article.title}
             paragraph={article.text}
-            month={article.monthOfCreated}
-            day={article.dayOfCreated}
-            minutes={article.timeOfCreated}
+            date={article.date}
             tags={article.category}
             viewArticle={viewArticle}
           />

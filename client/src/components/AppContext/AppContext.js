@@ -36,6 +36,7 @@ export const AppContextProvider = ({ children }) => {
 
   const [myArticles, setMyArticles] = useState([])
   const [allArticles, setAllArticles] = useState([])
+  const [currentArticle, setCurrentArticle] = useState()
 
   return (
     <AppContext.Provider
@@ -90,6 +91,8 @@ export const AppContextProvider = ({ children }) => {
         setCurrentUser,
         allArticles,
         setAllArticles,
+        currentArticle,
+        setCurrentArticle,
 
         profileAvatar,
         setProfileAvatar,

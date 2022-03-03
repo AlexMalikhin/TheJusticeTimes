@@ -30,13 +30,10 @@ export const TopArticle = ({ props }) => {
               {props?.firstname} {props?.lastname}
             </span>
           </div>
-          <div className={styles.m8}>
-            <span>
-              {props?.monthOfCreated} {props?.dayOfCreated} ·{' '}
-              {props?.timeOfCreated}
-            </span>
+          <div className={styles.time}>
+            <span>{props?.date}</span>
           </div>
-          <div className={styles.m8}>
+          <div className={styles.views_block}>
             <img src={views} className={styles.views} alt={'view eye image'} />
             <span className={styles.ml8}>{props?.views}</span>
           </div>

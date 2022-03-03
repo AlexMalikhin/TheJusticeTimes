@@ -42,6 +42,8 @@
     font-family: 'IBM Plex Sans', sans-serif;
     padding: 0;
     margin: 8px 0;
+    position: absolute;
+    bottom: 10px;
 }
 .avatar_block{
     display: flex;
