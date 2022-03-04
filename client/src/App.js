@@ -25,7 +25,7 @@ function App() {
 
   useEffect(async () => {
     const token = { token: await Cookies.get('token') }
- 
+
     if (!token.token) {
       const getAllArticles = await axios.get(
         'http://localhost:5001/article/getAllArticles'
