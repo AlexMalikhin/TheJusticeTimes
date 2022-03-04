@@ -5,6 +5,7 @@
     cursor: pointer;
     filter: invert(4%);
     margin-bottom: 40px;
+    word-wrap: break-word;
 }
 .articles:hover{
     filter: invert(0%);
@@ -57,7 +58,6 @@
     max-width: 20px;
 }
 .ml8{
-
     margin-left: 8px;
 }
 .avatars{

@@ -1,11 +1,19 @@
 const Router = require('express')
 const router = new Router()
 const controller = require('../controllers/articleController')
+const authMiddleware = require('../middlewares/authMiddleWare')
 
-// todo: добавить мидлвейры для обработки токена (passport.js)
-router.post('/createArticle', controller.createArticle)
+router.post(
+  '/createArticle',
+  authMiddleware.authenticateToken,
+  controller.createArticle
+)
 router.get('/getAllArticles', controller.getAllArticles)
-router.post('/getMyArticles', controller.getMyArticles)
+router.get(
+  '/getMyArticles',
+  authMiddleware.authenticateToken,
+  controller.getMyArticles
+)
 router.get('/getPopularArticle', controller.getPopularArticle)
 router.post('/viewArticle', controller.viewArticle)
 

@@ -8,8 +8,7 @@ import defaultAvatar from '../../img/defaultAvatar.png'
 
 export const FullArticlePage = ({ all }) => {
   const { articleId } = useParams()
-  const { allArticles, currentArticle, setCurrentArticle } =
-    useContext(AppContext)
+  const { currentArticle, setCurrentArticle } = useContext(AppContext)
 
   useEffect(() => {
     setCurrentArticle(all.find((item) => item._id === articleId))

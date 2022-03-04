@@ -43,7 +43,6 @@ export const AddArticle = () => {
 
   const publishArticle = async () => {
     const newArticle = {
-      token: Cookies.get('token'),
       title: newArticleTitle,
       category: newArticleCategory,
       headImg: imgNewArticle,
@@ -51,7 +50,12 @@ export const AddArticle = () => {
       text: editorState.getCurrentContent().getPlainText(),
       views: 0,
     }
-    await axios.post('http://localhost:5001/article/createArticle', newArticle)
+    const token = { token: Cookies.get('token') }
+    await axios.post(
+      'http://localhost:5001/article/createArticle',
+      newArticle,
+      { headers: { Authorization: token.token } }
+    )
     clearInputs()
     navigate('/AllArticles')
   }
@@ -105,7 +109,7 @@ export const AddArticle = () => {
             {imgNewArticle && (
               <Button
                 title="Delete image"
-                style={'header_logIn'}
+                type={'header_logIn'}
                 click={clearImg}
               />
             )}

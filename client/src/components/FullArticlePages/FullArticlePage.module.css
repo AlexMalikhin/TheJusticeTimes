@@ -4,6 +4,7 @@
     justify-content: center;
     position: relative;
     flex: 1 1 auto;
+    word-wrap: break-word;
 }
 .hashtags{
     padding: 7px 12px;

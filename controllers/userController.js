@@ -5,26 +5,24 @@ const Article = require('../models/Article')
 
 module.exports.getUserData = async function (req, res) {
   try {
-    const { token } = req.body
+    const token = req.token
     if (!token) {
-      return res.status(403).json({ message: 'Пользователь не авторизован' })
+      return res.status(403).json({ message: 'User is not authorized' })
     }
-    const decodedData = jwt.verify(token, secret)
-    const currentUser = await User.findOne({ _id: decodedData.id })
-    if (!currentUser) {
-      return res.status(400).json({ message: 'Пользователь не авторизован' })
+    const { id } = jwt.verify(token, secret)
+    const { firstname, lastname, description, avatar } = await User.findOne({
+      _id: id,
+    })
+    if (!firstname || !lastname) {
+      return res.status(400).json({ message: 'User is not found in database' })
     }
+
     const userData = {
-      avatar: currentUser.avatar || '',
-      firstname: currentUser.firstname,
-      lastname: currentUser.lastname,
-      description: currentUser.description || '',
+      avatar: avatar || '',
+      firstname,
+      lastname,
+      description: description || '',
     }
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
-    res.header(
-      'Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, Content-Type, Accept'
-    )
     return res.json(userData)
   } catch (e) {
     console.log(e)
@@ -33,27 +31,35 @@ module.exports.getUserData = async function (req, res) {
 
 module.exports.updateUserData = async function (req, res) {
   try {
-    const { firstname, lastname, description, avatar, token } = req.body
+    const token = req.token
+    if (!token) {
+      return res.status(403).json({ message: 'User is not authorized' })
+    }
+    const { firstname, lastname, description, avatar } = req.body
+    if (!firstname || !lastname) {
+      return res
+        .status(403)
+        .json({ message: 'Please enter firstname and lastname' })
+    }
     const user = {
-      firstname: firstname,
-      lastname: lastname,
-      description: description,
-      avatar: avatar,
+      firstname,
+      lastname,
+      description,
+      avatar,
     }
     const articleModel = {
-      firstname: firstname,
-      lastname: lastname,
-      avatar: avatar,
+      firstname,
+      lastname,
+      avatar,
     }
-    const decodedData = jwt.verify(token, secret)
-    await User.findOneAndUpdate({ _id: decodedData.id }, user)
-    await Article.updateMany({ userId: decodedData.id }, articleModel)
-    res.header('Access-Control-Allow-Origin', '*')
-    res.header(
-      'Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, Content-Type, Accept'
-    )
-    return res.json({ message: 'dwd' })
+    const { id } = jwt.verify(token, secret)
+    if (!id) {
+      res.status(400).json({ message: 'Invalid token' })
+    }
+    await User.findOneAndUpdate({ _id: id }, user)
+    await Article.updateMany({ userId: id }, articleModel)
+
+    return res.json({ message: 'User data has been updated success' })
   } catch (e) {
     return res.json({ message: "User data is didn't update" })
   }

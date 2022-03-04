@@ -28,14 +28,18 @@ export const ProfilePage = () => {
 
   const saveChanges = async () => {
     try {
+      const token = { token: Cookies.get('token') }
       const currentUserData = {
         firstname: currentUserFirstName,
         lastname: currentUserLastName,
         avatar: profileAvatar,
         description: currentUserDescription,
-        token: Cookies.get('token'),
       }
-      await axios.post('http://localhost:5001/user/updateUser', currentUserData)
+      await axios.post(
+        'http://localhost:5001/user/updateUser',
+        currentUserData,
+        { headers: { Authorization: token.token } }
+      )
     } catch (e) {}
   }
 
@@ -43,17 +47,22 @@ export const ProfilePage = () => {
     if (!!authKey) {
       try {
         const token = { token: Cookies.get('token') }
-        const user = await axios.post(
-          'http://localhost:5001/user/getUserData',
-          token
-        )
+        const user = await axios.get('http://localhost:5001/user/getUserData', {
+          headers: { Authorization: token.token },
+        })
         setCurrentUserFirstName(user.data.firstname)
         setCurrentUserLastName(user.data.lastname)
         setProfileAvatar(user.data.avatar)
         setCurrentUserDescription(user.data.description)
       } catch (e) {}
     }
-  }, [authKey])
+  }, [
+    authKey,
+    setCurrentUserFirstName,
+    setCurrentUserLastName,
+    setProfileAvatar,
+    setCurrentUserDescription,
+  ])
 
   const saveImage = (e) => {
     const file = e.target.files[0]

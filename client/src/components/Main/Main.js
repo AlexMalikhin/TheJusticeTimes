@@ -28,8 +28,6 @@ export const Main = () => {
 
   const viewArticle = async (id) => {
     await axios.post('http://localhost:5001/article/viewArticle', { id: id })
-    const all = await axios.get('http://localhost:5001/article/getAllArticles')
-    setAllArticles(all.data.message)
   }
 
   return (
@@ -37,7 +35,7 @@ export const Main = () => {
       <TopArticle props={mostPopularArticle} />
       <div className={styles.main_content}>
         <h1>Popular articles</h1>
-        {slicedArticles.map((article) => (
+        {slicedArticles?.map((article) => (
           <Article
             id={article._id}
             key={article._id}

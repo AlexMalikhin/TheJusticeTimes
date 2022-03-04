@@ -27,15 +27,14 @@ export const MyArticles = () => {
     const token = { token: await Cookies.get('token') }
 
     if (token.token) {
-      const getMyArticles = await axios.post(
+      const getMyArticles = await axios.get(
         'http://localhost:5001/article/getMyArticles',
-        token
+        { headers: { Authorization: token.token } }
       )
       setMyArticles(getMyArticles.data.message)
-      const user = await axios.post(
-        'http://localhost:5001/user/getUserData',
-        token
-      )
+      const user = await axios.get('http://localhost:5001/user/getUserData', {
+        headers: { Authorization: token.token },
+      })
       setCurrentUserFirstName(user.data.firstname)
       setCurrentUserLastName(user.data.lastname)
       setProfileAvatar(user.data.avatar)

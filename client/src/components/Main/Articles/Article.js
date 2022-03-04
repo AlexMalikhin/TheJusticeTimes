@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import viewsImg from '../../../img/viewsImg.png'
 import styles from './Article.module.css'
 import defaultAvatar from '../../../img/defaultAvatar.png'
@@ -18,7 +18,6 @@ const Article = ({
   viewArticle,
 }) => {
   const navigate = useNavigate()
-  const { articleId } = useParams()
   const showFullArticle = useCallback((id) => {
     viewArticle(id)
     navigate(`./${id}`, { replace: true })

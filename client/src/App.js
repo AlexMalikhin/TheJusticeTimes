@@ -25,22 +25,23 @@ function App() {
   } = useContext(AppContext)
 
   useEffect(async () => {
-    const token = await Cookies.get('token')
+    const token = { token: await Cookies.get('token') }
 
     if (!token) {
       const getAllArticles = await axios.get(
         'http://localhost:5001/article/getAllArticles'
       )
+      console.log(getAllArticles)
       setAllArticles(getAllArticles.data.message)
     } else {
-      await setAuthKey(token)
+      await setAuthKey(token.token)
       const getAllArticles = await axios.get(
         'http://localhost:5001/article/getAllArticles'
       )
       setAllArticles(getAllArticles.data.message)
-      const getMyArticles = await axios.post(
+      const getMyArticles = await axios.get(
         'http://localhost:5001/article/getMyArticles',
-        { token: token }
+        { headers: { Authorization: token.token } }
       )
       setMyArticles(getMyArticles.data.message)
     }
