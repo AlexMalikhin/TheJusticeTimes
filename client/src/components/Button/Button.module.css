@@ -8,6 +8,16 @@
     margin-left: 38px;
     border: #000000 1px solid;
 }
+.header_logout:active{
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1rem;
+    padding: 14px 30px;
+    cursor: pointer;
+    background: #ffffff;
+    color: #000000;
+    margin-left: 38px;
+    border: #030000 1px solid;
+}
 .header_logIn{
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 1rem;
@@ -17,12 +27,21 @@
     color: #000000;
     border: #000000 1px solid;
 }
+.header_logIn:active{
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1rem;
+    padding: 14px 33px;
+    cursor: pointer;
+    background: #000000;
+    color: #ffffff;
+    border: #000000 1px solid;
+}
 .header_logIn:disabled{
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 1rem;
     padding: 14px 30px;
-    cursor: pointer;
     background: #ffffff;
+    cursor: inherit;
     color: rgba(0, 0, 0, 0.5);
     border: rgba(0, 0, 0, 0.5) 1px solid;
 }
@@ -33,6 +52,16 @@
     cursor: pointer;
     background: black;
     color: white;
+    margin-left: 24px;
+    border: #000000 1px solid;
+}
+.header_signIn:active{
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1rem;
+    padding: 14px 30px;
+    cursor: pointer;
+    background: #ffffff;
+    color: #000000;
     margin-left: 24px;
     border: #000000 1px solid;
 }
@@ -73,6 +102,7 @@
     border: none;
     font-family: 'IBM Plex Sans', sans-serif;
     margin: 20px 0;
+    cursor: pointer;
 }
 .profile_save_changes{
     font-family: 'IBM Plex Sans', sans-serif;
@@ -81,6 +111,18 @@
     cursor: pointer;
     background: black;
     color: white;
+    border: #000000 1px solid;
+    max-width: 186px;
+    margin-top: 24px;
+    margin-bottom: 14px;
+}
+.profile_save_changes:active{
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1rem;
+    padding: 14px 30px;
+    cursor: pointer;
+    background: #ffffff;
+    color: #000000;
     border: #000000 1px solid;
     max-width: 186px;
     margin-top: 24px;

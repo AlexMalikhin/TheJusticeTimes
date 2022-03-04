@@ -62,10 +62,7 @@ module.exports.login = async function (req, res) {
     const { email, password } = req.body
     if (!regExpForPassword.test(password) || !regExpForEmail.test(email)) {
       return res.status(400).json({
-        message:
-          "Please enter correct email 'example@example.com' and" +
-          'Password must have at least 6 characters and contain at least two of the' +
-          'following: UPPERCASE letters, lowercase letters, numbers, and symbols($,@,!...)',
+        message: 'Invalid Email or password',
       })
     }
     const user = await User.findOne({ email })

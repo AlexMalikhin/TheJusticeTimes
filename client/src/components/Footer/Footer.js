@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import { LogInMenu } from '../LogInMenu/LogInMenu'
 import { LogOutMenu } from '../LogOutMenu/LogOutMenu'
 import { AppContext } from '../AppContext/AppContext'
@@ -12,11 +13,13 @@ export const Footer = () => {
   return (
     <footer className={styles.footer_container}>
       <div className={styles.footer_nav}>
-        <img
-          className={styles.logo}
-          src={logoWhite}
-          alt={'logotype of footer'}
-        />
+        <Link to={'AllArticles'}>
+          <img
+            className={styles.logo}
+            src={logoWhite}
+            alt={'logotype of footer'}
+          />
+        </Link>
         {logIn ? (
           <LogInMenu login={toggleLogIn} style={'footer_logout'} />
         ) : (

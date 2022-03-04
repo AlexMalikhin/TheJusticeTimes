@@ -40,6 +40,7 @@ export const ProfilePage = () => {
         currentUserData,
         { headers: { Authorization: token.token } }
       )
+      alert('New data changed successfully')
     } catch (e) {}
   }
 

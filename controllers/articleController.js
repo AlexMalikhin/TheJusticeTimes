@@ -1,5 +1,3 @@
-const jwt = require('jsonwebtoken')
-const { secret } = require('../config/config')
 const User = require('../models/User')
 const Article = require('../models/Article')
 
@@ -15,10 +13,8 @@ module.exports.createArticle = async function (req, res) {
       res.status(400).json('Please enter correct data for a new post')
     }
 
-    const decoded = jwt.verify(token, secret)
-
     const { firstname, lastname, avatar } = await User.findOne({
-      _id: decoded.id,
+      _id: token,
     })
     if (!firstname || !lastname) {
       res
@@ -30,7 +26,7 @@ module.exports.createArticle = async function (req, res) {
       firstname: firstname,
       lastname: lastname,
       avatar: avatar,
-      userId: decoded.id,
+      userId: token,
       title: title,
       category: category,
       headImg: headImg,
@@ -65,8 +61,8 @@ module.exports.getMyArticles = async function (req, res) {
     if (!authToken) {
       return res.json({ message: 'token not found' })
     }
-    const decoded = jwt.verify(authToken, secret)
-    const currentUser = await User.findOne({ _id: decoded.id })
+    // const decoded = jwt.verify(authToken, secret)
+    const currentUser = await User.findOne({ _id: authToken })
     if (!currentUser) {
       return res.json({ message: 'user not found' })
     }
@@ -77,7 +73,7 @@ module.exports.getMyArticles = async function (req, res) {
     )
     return res.status(200).json({ message: myArticles })
   } catch (e) {
-    return res.status(400).json({ message: "don't get" })
+    return res.status(400).json({ message: req.token })
   }
 }
 

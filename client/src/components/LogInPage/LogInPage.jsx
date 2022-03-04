@@ -1,11 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useContext, useCallback, useEffect } from 'react'
+import axios from 'axios'
+import Cookies from 'js-cookie'
 import { Input } from '../Input/Input'
 import { Button } from '../Button/Button'
 import { AppContext } from '../AppContext/AppContext'
 import logInPageStyles from './LogInPage.module.css'
-import axios from 'axios'
-import Cookies from 'js-cookie'
 
 export const LogInPage = () => {
   const {
@@ -24,6 +24,7 @@ export const LogInPage = () => {
     setIsRenderEmailError,
     setIsRenderPasswordError,
     regExpForEmail,
+    regExpForPassword,
   } = useContext(AppContext)
 
   useEffect(() => {
@@ -80,11 +81,14 @@ export const LogInPage = () => {
   }, [inputValueEmail])
 
   const isEnterPassword = useCallback(() => {
-    if (!inputValuePassword) {
+    if (!regExpForPassword.test(inputValuePassword)) {
       setIsRenderPasswordError(true)
-      setPasswordErrorText('Please enter password')
+      setPasswordErrorText(
+        'Password must have at least 6 characters and contain at least two of the' +
+          'following: UPPERCASE letters, lowercase letters, numbers, and symbols($,@,!...)'
+      )
     }
-    setIsRenderPasswordError(false)
+    // setIsRenderPasswordError(false)
   }, [inputValuePassword])
 
   return (
