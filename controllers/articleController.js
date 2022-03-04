@@ -106,12 +106,12 @@ module.exports.getPopularArticle = async function (req, res) {
 module.exports.viewArticle = async function (req, res) {
   try {
     const { id } = req.body
-    if (id) {
-      return res.status(400).json({message: "Please send article id"})
+    if (id.id) {
+      return res.status(400).json({ message: 'Please send article id' })
     }
     const findArticle = await Article.findOne({ _id: id })
-    if(!findArticle) {
-      return res.status(400).json({message: "Cannot find clicked article"})
+    if (!findArticle) {
+      return res.status(400).json({ message: 'Cannot find clicked article' })
     }
     const newArticle = {
       views: findArticle.views + 1,
