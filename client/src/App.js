@@ -14,7 +14,6 @@ import Cookies from 'js-cookie'
 import axios from 'axios'
 
 function App() {
-  // todo: исправить ошибки вебшторма
   const {
     logIn,
     authKey,

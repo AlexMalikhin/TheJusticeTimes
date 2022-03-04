@@ -1,9 +1,7 @@
 const User = require('../models/User')
-const Article = require('../models/Article')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { secret } = require('../config/config')
-const e = require('express')
 const regExpForPassword = new RegExp(
   '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$'
 )

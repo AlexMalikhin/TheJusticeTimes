@@ -20,9 +20,11 @@ module.exports.createArticle = async function (req, res) {
     const { firstname, lastname, avatar } = await User.findOne({
       _id: decoded.id,
     })
-    // if (!firstname || !lastname) {
-    //   res.status(400).json('Server cannot find user in database')
-    // }
+    if (!firstname || !lastname) {
+      res
+        .status(400)
+        .json('Server cannot find user in database maybe token is not correct')
+    }
 
     const article = new Article({
       firstname: firstname,
@@ -49,10 +51,10 @@ module.exports.createArticle = async function (req, res) {
 module.exports.getAllArticles = async function (req, res) {
   try {
     const all = await Article.find()
-    return res.json({ message: all })
+    return res.status(200).json({ message: all })
   } catch (e) {
     return res
-      .status(200)
+      .status(400)
       .json({ message: 'Articles not found in database please create one' })
   }
 }
@@ -73,9 +75,9 @@ module.exports.getMyArticles = async function (req, res) {
     const myArticles = await allArticles.filter(
       (article) => article.userId === currentUser.id
     )
-    return res.json({ message: myArticles })
+    return res.status(200).json({ message: myArticles })
   } catch (e) {
-    return res.json({ message: "don't get" })
+    return res.status(400).json({ message: "don't get" })
   }
 }
 
@@ -83,27 +85,40 @@ module.exports.getPopularArticle = async function (req, res) {
   try {
     const allArticles = await Article.find()
     if (!allArticles) {
-      // throw { code: 400, message: 'Articles not found in DataBase' }
       return res.status(400).json({ message: 'Articles not found in DataBase' })
     }
     const popularArticle = allArticles.reduce((acc, cur) =>
       acc.views > cur.views ? acc : cur
     )
+    if (!popularArticle) {
+      return res
+        .status(200)
+        .json({ message: 'Something went wrong, cannot get popular article' })
+    }
     return res.json({ message: popularArticle })
   } catch (e) {
-    res.status(e.code).json({ message: e.message })
+    res
+      .status(400)
+      .json({ message: 'Something went wrong, cannot get popular article' })
   }
 }
+
 module.exports.viewArticle = async function (req, res) {
   try {
     const { id } = req.body
+    if (id) {
+      return res.status(400).json({message: "Please send article id"})
+    }
     const findArticle = await Article.findOne({ _id: id })
+    if(!findArticle) {
+      return res.status(400).json({message: "Cannot find clicked article"})
+    }
     const newArticle = {
       views: findArticle.views + 1,
     }
     await Article.findOneAndUpdate({ _id: id }, newArticle)
-    return res.json({ message: 'view is increased' })
+    return res.status(200).json({ message: 'Current article has been viewed' })
   } catch (e) {
-    return res.json({ message: 'dwdwd' })
+    return res.status(400).json({ message: "Article didn't viewed" })
   }
 }
