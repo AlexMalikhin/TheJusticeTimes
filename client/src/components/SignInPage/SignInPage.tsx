@@ -6,6 +6,13 @@ import { Button } from '../Button/Button'
 import { AppContext } from '../AppContext/AppContext'
 import signInPageStyles from './SignInPage.module.css'
 
+interface SignInInterface {
+  firstname: string
+  lastname: string
+  email: string
+  password: string
+}
+
 export const SignInPage = () => {
   const {
     regExpForEmail,
@@ -37,7 +44,12 @@ export const SignInPage = () => {
   } = useContext(AppContext)
   const navigate = useNavigate()
 
-  const handleSign = async (firstname, lastname, email, password) => {
+  const handleSign = async (
+    firstname: string,
+    lastname: string,
+    email: string,
+    password: string
+  ) => {
     const user = {
       firstname: firstname,
       lastname: lastname,
@@ -54,7 +66,8 @@ export const SignInPage = () => {
     try {
       await axios.post('http://localhost:5001/auth/registration', user)
       navigate('/LogIn', { replace: true })
-    } catch (e) {
+    } catch (e: any) {
+      //todo: any
       setEmailErrorText(e.response.data.message)
       setIsRenderEmailError(true)
     }
@@ -209,8 +222,4 @@ export const SignInPage = () => {
       </div>
     </div>
   )
-  // 'firstname': inputValueFirstName,
-  //             'lastname': inputValueLastName,
-  //             'email': inputValueEmail,
-  //             'password': inputValuePassword,
 }

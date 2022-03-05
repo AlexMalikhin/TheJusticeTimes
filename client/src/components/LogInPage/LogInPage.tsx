@@ -58,7 +58,8 @@ export const LogInPage = () => {
         navigate('/AllArticles', { replace: true })
         Cookies.set('token', data.token)
         setAuthKey(Cookies.get('token'))
-      } catch (e) {
+      } catch (e: any) {
+        //todo: any
         setEmailErrorText(e.response.data.message)
         setPasswordErrorText(e.response.data.message)
         setIsRenderEmailError(true)

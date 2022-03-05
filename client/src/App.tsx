@@ -12,16 +12,10 @@ import { AddArticle } from './components/AddArticle/AddArticle'
 import { MyArticles } from './components/MyArticles/MyArticles'
 import Cookies from 'js-cookie'
 import axios from 'axios'
+import {context} from "./@types/context";
 
 const App: React.FC = () => {
-  const {
-    logIn,
-    authKey,
-    setAuthKey,
-    setAllArticles,
-    allArticles,
-    setMyArticles,
-  } = useContext(AppContext)
+  const {logIn, currentPage } = useContext<context>(AppContext)
 
   useEffect(() => {
     //todo: any
@@ -54,14 +48,14 @@ const App: React.FC = () => {
       <Header />
 
       <Routes>
-        {/*{authKey && <Route path="/AddArticle" element={<AddArticle />} />}*/}
-        {/*{logIn && <Route path="/MyArticles" element={<MyArticles />} />}*/}
+        {authKey && <Route path="/AddArticle" element={<AddArticle />} />}
+        {logIn && <Route path="/MyArticles" element={<MyArticles />} />}
         {allArticles.length > 0 && (
           <Route path="/AllArticles" element={<Main />} />
         )}
         <Route path="/LogIn" element={<LogInPage />} />
-        {/*<Route path="/SignIn" element={<SignInPage />} />*/}
-        {/*{authKey && <Route path="/Profile" element={<ProfilePage />} />}*/}
+        <Route path="/SignIn" element={<SignInPage />} />
+        {authKey && <Route path="/Profile" element={<ProfilePage />} />}
         {/*<Route*/}
         {/*  path={`/AllArticles/:articleId`}*/}
         {/*  element={<FullArticlePage all={allArticles} />}*/}

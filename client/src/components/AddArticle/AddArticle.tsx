@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Editor } from 'react-draft-wysiwyg'
 import { EditorState } from 'draft-js'
@@ -7,12 +7,12 @@ import Cookies from 'js-cookie'
 import moment from 'moment'
 import { Button } from '../Button/Button'
 import { Input } from '../Input/Input'
-// @ts-ignore
-import emptyImg from '../../img/article_images/empty_img.png'
 import addArticleStyles from './AddArticle.module.css'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
+// @ts-ignore
+import emptyImg from '../../img/article_images/empty_img.png'
 
-export const AddArticle = () => {
+export const AddArticle: React.FC = () => {
   const navigate = useNavigate()
   const reader = new FileReader()
 
@@ -23,8 +23,8 @@ export const AddArticle = () => {
   const [newArticleTitle, setNewArticleTitle] = useState('')
   const [newArticleCategory, setNewArticleCategory] = useState('')
 
-  const saveImage = (e) => {
-    const file = e.target.files[0]
+  const saveImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.currentTarget.files![0]
     reader.onloadend = () => {
       const base64String = reader.result
       setImgNewArticle(base64String)

@@ -1,14 +1,13 @@
-// @ts-ignore
-import { createContext, useState, React } from 'react'
+import React, { createContext, useState } from 'react'
+import { context } from '../../@types/context'
 
-export const AppContext = createContext<any>({
-  currentPage: 0,
-  setCurrentPage: () => {},
+export const AppContext = createContext<context>({
+  logIn: false, currentPage: 0
 })
 
-export const AppContextProvider = ({ children }: React.FC) => {
-  const regExpForEmail = new RegExp('^\\S+@\\S+\\.\\S+$')
-  const regExpForPassword = new RegExp(
+export const AppContextProvider: React.FC<React.ReactNode> = ({ children }) => {
+  const regExpForEmail: any = new RegExp('^\\S+@\\S+\\.\\S+$')
+  const regExpForPassword: any = new RegExp(
     '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$'
   )
 
@@ -46,69 +45,12 @@ export const AppContextProvider = ({ children }: React.FC) => {
   const [allArticles, setAllArticles] = useState([])
   const [currentArticle, setCurrentArticle] = useState()
 
-  return (
-    <AppContext.Provider
-      value={{
-        regExpForEmail,
-        regExpForPassword,
+  const data: context = {
+    // regExpForEmail,
+    // regExpForPassword,
+    logIn,
+    currentPage,
+  }
 
-        userArticlePage,
-        setUserArticlePage,
-        currentPage,
-        setCurrentPage,
-        logIn,
-        setLogIn,
-        authKey,
-        setAuthKey,
-
-        inputValueFirstName,
-        inputValueLastName,
-        inputValueEmail,
-        inputValuePassword,
-        setInputValueFirstName,
-        setInputValueLastName,
-        setInputValueEmail,
-        setInputValuePassword,
-
-        isRenderFirstnameError,
-        isRenderLastnameError,
-        isRenderEmailError,
-        isRenderPasswordError,
-        setIsRenderFirstnameError,
-        setIsRenderLastnameError,
-        setIsRenderEmailError,
-        setIsRenderPasswordError,
-
-        firstnameErrorText,
-        lastnameErrorText,
-        emailErrorText,
-        passwordErrorText,
-        setFirstnameErrorText,
-        setLastnameErrorText,
-        setEmailErrorText,
-        setPasswordErrorText,
-
-        currentUserFirstName,
-        currentUserLastName,
-        currentUserDescription,
-        setCurrentUserFirstName,
-        setCurrentUserLastName,
-        setCurrentUserDescription,
-
-        currentUser,
-        setCurrentUser,
-        allArticles,
-        setAllArticles,
-        currentArticle,
-        setCurrentArticle,
-
-        profileAvatar,
-        setProfileAvatar,
-        myArticles,
-        setMyArticles,
-      }}
-    >
-      {children}
-    </AppContext.Provider>
-  )
+  return <AppContext.Provider value={data}>{children}</AppContext.Provider>
 }
