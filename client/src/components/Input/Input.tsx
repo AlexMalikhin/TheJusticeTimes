@@ -1,6 +1,20 @@
 import inputStyles from './Input.module.css'
+import React from 'react'
 
-export const Input = ({
+interface InputProps {
+  readonly name?: string
+  readonly placeholder: string
+  readonly label?: string
+  readonly type?: string
+  inputValue: string | number
+  changeValue: any
+  isRenderError?: boolean
+  blurHandle?: () => void
+  errorText?: string
+  focusEvent?: () => void
+}
+
+export const Input: React.FC<InputProps> = ({
   name,
   placeholder,
   label,
@@ -12,7 +26,7 @@ export const Input = ({
   errorText,
   focusEvent,
 }) => {
-  const setValue = (e) => {
+  const setValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     changeValue(e.target.value)
   }
 

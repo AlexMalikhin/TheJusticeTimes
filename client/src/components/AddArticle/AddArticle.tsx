@@ -7,6 +7,7 @@ import Cookies from 'js-cookie'
 import moment from 'moment'
 import { Button } from '../Button/Button'
 import { Input } from '../Input/Input'
+// @ts-ignore
 import emptyImg from '../../img/article_images/empty_img.png'
 import addArticleStyles from './AddArticle.module.css'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
@@ -16,7 +17,9 @@ export const AddArticle = () => {
   const reader = new FileReader()
 
   const [editorState, setEditorState] = useState(EditorState.createEmpty())
-  const [imgNewArticle, setImgNewArticle] = useState('')
+  const [imgNewArticle, setImgNewArticle] = useState<
+    string | ArrayBuffer | null
+  >('')
   const [newArticleTitle, setNewArticleTitle] = useState('')
   const [newArticleCategory, setNewArticleCategory] = useState('')
 
@@ -50,7 +53,8 @@ export const AddArticle = () => {
       text: editorState.getCurrentContent().getPlainText(),
       views: 0,
     }
-    const token = { token: Cookies.get('token') }
+    const token: any = { token: Cookies.get('token') }
+    //todo: any
     await axios.post(
       'http://localhost:5001/article/createArticle',
       newArticle,

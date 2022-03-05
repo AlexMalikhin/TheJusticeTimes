@@ -1,38 +1,46 @@
-import { createContext, useState } from 'react'
+// @ts-ignore
+import { createContext, useState, React } from 'react'
 
-export const AppContext = createContext({})
+export const AppContext = createContext<any>({
+  currentPage: 0,
+  setCurrentPage: () => {},
+})
 
-export const AppContextProvider = ({ children }) => {
+export const AppContextProvider = ({ children }: React.FC) => {
   const regExpForEmail = new RegExp('^\\S+@\\S+\\.\\S+$')
   const regExpForPassword = new RegExp(
     '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$'
   )
 
-  const [currentPage, setCurrentPage] = useState(0)
-  const [userArticlePage, setUserArticlePage] = useState(0)
-  const [logIn, setLogIn] = useState(false)
+  const [currentPage, setCurrentPage] = useState<number>(0)
+  const [userArticlePage, setUserArticlePage] = useState<number>(0)
+  const [logIn, setLogIn] = useState<boolean>(false)
   const [authKey, setAuthKey] = useState()
 
-  const [inputValueFirstName, setInputValueFirstName] = useState('')
-  const [inputValueLastName, setInputValueLastName] = useState('')
-  const [inputValueEmail, setInputValueEmail] = useState('')
-  const [inputValuePassword, setInputValuePassword] = useState('')
+  const [inputValueFirstName, setInputValueFirstName] = useState<string>('')
+  const [inputValueLastName, setInputValueLastName] = useState<string>('')
+  const [inputValueEmail, setInputValueEmail] = useState<string>('')
+  const [inputValuePassword, setInputValuePassword] = useState<string>('')
 
-  const [isRenderFirstnameError, setIsRenderFirstnameError] = useState(false)
-  const [isRenderLastnameError, setIsRenderLastnameError] = useState(false)
-  const [isRenderEmailError, setIsRenderEmailError] = useState(false)
-  const [isRenderPasswordError, setIsRenderPasswordError] = useState(false)
+  const [isRenderFirstnameError, setIsRenderFirstnameError] =
+    useState<boolean>(false)
+  const [isRenderLastnameError, setIsRenderLastnameError] =
+    useState<boolean>(false)
+  const [isRenderEmailError, setIsRenderEmailError] = useState<boolean>(false)
+  const [isRenderPasswordError, setIsRenderPasswordError] =
+    useState<boolean>(false)
 
-  const [firstnameErrorText, setFirstnameErrorText] = useState('')
-  const [lastnameErrorText, setLastnameErrorText] = useState('')
-  const [emailErrorText, setEmailErrorText] = useState('')
-  const [passwordErrorText, setPasswordErrorText] = useState('')
+  const [firstnameErrorText, setFirstnameErrorText] = useState<string>('')
+  const [lastnameErrorText, setLastnameErrorText] = useState<string>('')
+  const [emailErrorText, setEmailErrorText] = useState<string>('')
+  const [passwordErrorText, setPasswordErrorText] = useState<string>('')
 
   const [currentUser, setCurrentUser] = useState({})
-  const [profileAvatar, setProfileAvatar] = useState('')
-  const [currentUserFirstName, setCurrentUserFirstName] = useState('')
-  const [currentUserLastName, setCurrentUserLastName] = useState('')
-  const [currentUserDescription, setCurrentUserDescription] = useState('')
+  const [profileAvatar, setProfileAvatar] = useState<string>('')
+  const [currentUserFirstName, setCurrentUserFirstName] = useState<string>('')
+  const [currentUserLastName, setCurrentUserLastName] = useState<string>('')
+  const [currentUserDescription, setCurrentUserDescription] =
+    useState<string>('')
 
   const [myArticles, setMyArticles] = useState([])
   const [allArticles, setAllArticles] = useState([])

@@ -38,7 +38,7 @@ export const LogInPage = () => {
 
   const navigate = useNavigate()
   const logIn = useCallback(
-    async (email, password) => {
+    async (email: string, password: string) => {
       const user = {
         email: email,
         password: password,
@@ -88,7 +88,7 @@ export const LogInPage = () => {
           'following: UPPERCASE letters, lowercase letters, numbers, and symbols($,@,!...)'
       )
     }
-    // setIsRenderPasswordError(false)
+    setIsRenderPasswordError(false)
   }, [inputValuePassword])
 
   return (
