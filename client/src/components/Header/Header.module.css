@@ -1,0 +1,29 @@
+.header_container{
+    background: white;
+    top: 0;
+    width: 100%;
+    padding: 24px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: #EBEBEB 1px solid;
+    position: sticky;
+    z-index: 10;
+}
+.app_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 1070px;
+    position: sticky;
+    background: white;
+    z-index: 10;
+}
+.logo{
+    max-width: 268px;
+    max-height: 32px;
+    object-fit: cover;
+}
+.active{
+    border-bottom: 1px solid black;
+}

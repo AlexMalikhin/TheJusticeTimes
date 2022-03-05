@@ -1,0 +1,61 @@
+body {
+  height: 100%;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+}
+html {
+  overflow-x: hidden;
+  margin-right: calc(-1 * (100vw - 100%));
+}
+textarea{
+  resize: none;
+}
+label{
+  font-size: 0.88rem;
+  font-family: 'IBM Plex Sans', sans-serif;
+  margin-bottom: 12px;
+}
+.App{
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 230px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+ul{
+  padding: 0;
+  margin: 0;
+}
+*{
+  box-sizing: border-box;
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
+h1{
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+}
+h2{
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  margin: 16px 0;
+}
+p{
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: #8C8C8C;
+  font-size: 1rem;
+  line-height: 24px;
+  margin-top: 0;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

@@ -1,0 +1,29 @@
+.container{
+    display: flex;
+    justify-content: center;
+}
+.block{
+    margin: 64px 0;
+    min-width: 396px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.header{
+    text-align: center;
+    font-size: 2.25rem;
+    margin-bottom: 48px;
+}
+.create_account_link{
+    text-align: center;
+    font-weight: 400;
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: #242424;
+    font-size: 1rem;
+}
+.link{
+    text-decoration: underline;
+    color: rgba(0, 0, 0, 0.96);
+    font-weight: 700;
+    margin-left: 3px;
+}

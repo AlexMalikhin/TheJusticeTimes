@@ -1,0 +1,37 @@
+.container{
+    margin: 80px 0 110px 0;
+    display: flex;
+    justify-content: center;
+}
+.user_info{
+    width: 366px;
+    height: 366px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    background-color: #FBFBFB;
+    margin-right: 40px;
+}
+.avatar{
+    max-width: 126px;
+    object-fit: cover;
+    min-height: 126px;
+    min-width: 126px;
+    border-radius: 140px;
+}
+.main_block{
+    max-width: 1070px;
+    min-width: 1070px;
+    display: flex;
+    justify-content: space-between;
+}
+.articles_list{
+    max-width: 664px;
+}
+.p{
+    word-wrap: break-word;
+    text-align: center;
+    font-size: 0.85rem;
+    max-width: 259px;
+}
