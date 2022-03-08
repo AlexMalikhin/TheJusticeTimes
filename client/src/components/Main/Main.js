@@ -1,29 +1,30 @@
-import { useContext, useMemo, useEffect, useState } from 'react'
+import React, { useContext, useMemo, useEffect, useState } from 'react'
 import axios from 'axios'
 import Article from './Articles/Article'
 import { Pagination } from '../Pagination/Pagination'
+import { useSelector } from "react-redux";
 import { TopArticle } from '../TopArticle/TopArticle'
 import { AppContext } from '../AppContext/AppContext'
 import styles from './Main.module.css'
 
 export const Main = () => {
-  const { currentPage, setCurrentPage, allArticles, setAllArticles } =
+  const { currentPage, setCurrentPage, setAllArticles } =
     useContext(AppContext)
-
+  const artic = useSelector(artic=> artic.articleReducer.allArticles)
   const [mostPopularArticle, setMostPopularArticle] = useState()
 
-  useEffect(async () => {
-    const getPopularArticle = await axios.get(
-      'http://localhost:5001/article/getPopularArticle'
-    )
-    setMostPopularArticle(getPopularArticle.data.message)
-    const all = await axios.get('http://localhost:5001/article/getAllArticles')
-    setAllArticles(all.data.message)
-  }, [])
+      //useEffect(async () => {
+ //   const getPopularArticle = await axios.get(
+    //  'http://localhost:5001/article/getPopularArticle'
+ //   )
+  //  setMostPopularArticle(getPopularArticle.data.message)
+ //   const all = await axios.get('http://localhost:5001/article/getAllArticles')
+  //  setAllArticles(all.data.message)
+ // }, [])
 
   const slicedArticles = useMemo(
-    () => allArticles.slice(currentPage * 6, currentPage * 6 + 6),
-    [currentPage, allArticles]
+    () => artic.slice(currentPage * 6, currentPage * 6 + 6),
+    [currentPage, artic]
   )
 
   const viewArticle = async (id) => {
@@ -34,6 +35,7 @@ export const Main = () => {
     <div className={styles.main_container}>
       <TopArticle props={mostPopularArticle} />
       <div className={styles.main_content}>
+        <button onClick={()=>console.log(artic)}>fwfwf</button>
         <h1>Popular articles</h1>
         {slicedArticles?.map((article) => (
           <Article
@@ -54,7 +56,7 @@ export const Main = () => {
         <Pagination
           setPage={setCurrentPage}
           page={currentPage}
-          allArticles={allArticles}
+          allArticles={artic}
           type={'allArticles'}
           length={6}
         />
