@@ -1,45 +1,20 @@
-import { useContext, useMemo, useEffect } from 'react'
-import axios from 'axios'
-import Cookies from 'js-cookie'
-import { AppContext } from '../AppContext/AppContext'
+import { useMemo, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Pagination } from '../Pagination/Pagination'
 import { MyArticle } from '../MyArticle/MyArticle'
+import { getCurrentUser } from '../../store/asyncActions/getUserData'
+import { getMyArticles } from '../../store/asyncActions/getMyArticles'
 import styles from './MyArticles.module.css'
 import defaultAvatar from '../../img/defaultAvatar.png'
 
 export const MyArticles = () => {
-  const {
-    userArticlePage,
-    setUserArticlePage,
-    myArticles,
-    setMyArticles,
-    currentUserFirstName,
-    currentUserLastName,
-    currentUserDescription,
-    setCurrentUserFirstName,
-    setCurrentUserLastName,
-    setCurrentUserDescription,
-    profileAvatar,
-    setProfileAvatar,
-  } = useContext(AppContext)
-
+  const [userArticlePage, setUserArticlePage] = useState(0)
+  const dispatch = useDispatch()
+  const myArticles = useSelector((state) => state.articleReducer.myArticles)
+  const currentUser = useSelector((state) => state.authReducer.user)
   useEffect(async () => {
-    const token = { token: await Cookies.get('token') }
-
-    if (token.token) {
-      const getMyArticles = await axios.get(
-        'http://localhost:5001/article/getMyArticles',
-        { headers: { Authorization: token.token } }
-      )
-      setMyArticles(getMyArticles.data.message)
-      const user = await axios.get('http://localhost:5001/user/getUserData', {
-        headers: { Authorization: token.token },
-      })
-      setCurrentUserFirstName(user.data.firstname)
-      setCurrentUserLastName(user.data.lastname)
-      setProfileAvatar(user.data.avatar)
-      setCurrentUserDescription(user.data.description)
-    }
+    dispatch(getMyArticles())
+    dispatch(getCurrentUser())
   }, [])
 
   const slicedMyArticles = useMemo(
@@ -52,14 +27,14 @@ export const MyArticles = () => {
       <div className={styles.main_block}>
         <div className={styles.user_info}>
           <img
-            src={profileAvatar || defaultAvatar}
+            src={currentUser?.avatar || defaultAvatar}
             className={styles.avatar}
             alt={'profile avatar'}
           />
           <h3>
-            {currentUserFirstName} {currentUserLastName}
+            {currentUser?.firstname} {currentUser?.lastname}
           </h3>
-          <p className={styles.p}>{currentUserDescription}</p>
+          <p className={styles.p}>{currentUser?.description}</p>
         </div>
         {myArticles.length ? (
           <div className={styles.articles_list}>

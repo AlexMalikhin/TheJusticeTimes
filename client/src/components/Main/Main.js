@@ -1,30 +1,31 @@
 import React, { useContext, useMemo, useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
 import Article from './Articles/Article'
 import { Pagination } from '../Pagination/Pagination'
-import { useSelector } from "react-redux";
 import { TopArticle } from '../TopArticle/TopArticle'
 import { AppContext } from '../AppContext/AppContext'
+import { fetchPopularArticle } from '../../store/asyncActions/getMostPopularArticle'
 import styles from './Main.module.css'
 
 export const Main = () => {
-  const { currentPage, setCurrentPage, setAllArticles } =
+  const { currentPage, setCurrentPage, setLogIn, logIn } =
     useContext(AppContext)
-  const artic = useSelector(artic=> artic.articleReducer.allArticles)
-  const [mostPopularArticle, setMostPopularArticle] = useState()
+  const dispatch = useDispatch()
+  const allArticles = useSelector((state) => state.articleReducer.allArticles)
+  const mostPopularArticle = useSelector(
+    (state) => state.articleReducer.mostPopularArticle
+  )
 
-      //useEffect(async () => {
- //   const getPopularArticle = await axios.get(
-    //  'http://localhost:5001/article/getPopularArticle'
- //   )
-  //  setMostPopularArticle(getPopularArticle.data.message)
- //   const all = await axios.get('http://localhost:5001/article/getAllArticles')
-  //  setAllArticles(all.data.message)
- // }, [])
+  useEffect(() => {
+    dispatch(fetchPopularArticle())
+    // const all = await axios.get('http://localhost:5001/article/getAllArticles')
+    // setAllArticles(all.data.message)
+  }, [])
 
   const slicedArticles = useMemo(
-    () => artic.slice(currentPage * 6, currentPage * 6 + 6),
-    [currentPage, artic]
+    () => allArticles.slice(currentPage * 6, currentPage * 6 + 6),
+    [currentPage, allArticles]
   )
 
   const viewArticle = async (id) => {
@@ -35,7 +36,6 @@ export const Main = () => {
     <div className={styles.main_container}>
       <TopArticle props={mostPopularArticle} />
       <div className={styles.main_content}>
-        <button onClick={()=>console.log(artic)}>fwfwf</button>
         <h1>Popular articles</h1>
         {slicedArticles?.map((article) => (
           <Article
@@ -56,7 +56,7 @@ export const Main = () => {
         <Pagination
           setPage={setCurrentPage}
           page={currentPage}
-          allArticles={artic}
+          allArticles={allArticles}
           type={'allArticles'}
           length={6}
         />

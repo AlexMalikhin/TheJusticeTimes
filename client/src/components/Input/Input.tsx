@@ -3,7 +3,7 @@ import React from 'react'
 
 interface InputProps {
   readonly name?: string
-  readonly placeholder: string
+  readonly placeholder?: string
   readonly label?: string
   readonly type?: string
   inputValue: string | number

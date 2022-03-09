@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { secret } = require('../config/config')
 const regExpForPassword = new RegExp(
-  '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$'
+    '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$'
 )
 const regExpForEmail = new RegExp('^\\S+@\\S+\\.\\S+$')
 
@@ -24,19 +24,19 @@ module.exports.registration = async function (req, res) {
       return res.status(400).json({ message: 'Email already has taken' })
     } else if (!regExpForEmail.test(email) || !email) {
       return res
-        .status(400)
-        .json({ message: "Please enter correct email 'example@example.com' " })
+          .status(400)
+          .json({ message: "Please enter correct email 'example@example.com' " })
     } else if (!regExpForPassword.test(password)) {
       return res.status(400).json({
         message:
-          'Password must have at least 6 characters and contain at least two of the' +
-          'following: UPPERCASE letters, lowercase letters, numbers,' +
-          'and symbols($,@,!...)',
+            'Password must have at least 6 characters and contain at least two of the' +
+            'following: UPPERCASE letters, lowercase letters, numbers,' +
+            'and symbols($,@,!...)',
       })
     } else if (firstname.length < 2 || lastname.length < 2) {
       return res.status(400).json({
         message:
-          'username or lastname cannot be empty and must be more than 1 character',
+            'username or lastname cannot be empty and must be more than 1 character',
       })
     }
     const hashPassword = bcrypt.hashSync(password, 7)
