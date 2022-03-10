@@ -12,16 +12,19 @@ import { FullArticlePage } from './components/FullArticlePages/FullArticlePage'
 import { AddArticle } from './components/AddArticle/AddArticle'
 import { MyArticles } from './components/MyArticles/MyArticles'
 import { fetchAllArticles } from './store/asyncActions/getAllArticles'
+import Cookies from 'js-cookie'
 
 const App: React.FC = () => {
   const { logIn } = useContext(AppContext)
   const { allArticles } = useSelector((state) => state.articleReducer)
   const isAuth = useSelector((state: any) => state.userReducer.isAuthenticated)
+  // const { currentUser } = useSelector((state) => state.userReducer)
   const dispatch = useDispatch()
 
   useEffect(() => {
+    console.log(Cookies.get('token'))
     dispatch(fetchAllArticles())
-  }, [logIn])
+  }, [])
 
   return (
     <div className="App">

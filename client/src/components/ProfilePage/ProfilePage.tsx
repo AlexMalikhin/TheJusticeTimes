@@ -4,6 +4,7 @@ import { Button } from '../Button/Button'
 import { Input } from '../Input/Input'
 import { getCurrentUser } from '../../store/asyncActions/getUserData'
 import { updateUserData } from '../../store/asyncActions/updateUserData'
+import { fetchAllArticles } from '../../store/asyncActions/getAllArticles'
 // @ts-ignore
 import defaultAvatar from '../../img/defaultAvatar.png'
 import profilePageStyles from './ProfilePage.module.css'
@@ -61,7 +62,7 @@ export const ProfilePage = () => {
   return (
     <>
       {isLoading ? (
-        <h1>Иди нахуй</h1>
+        <div className={profilePageStyles.lds_dual_ring}></div>
       ) : (
         <div className={profilePageStyles.block}>
           <h1 className={profilePageStyles.header}>Profile</h1>
