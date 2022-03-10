@@ -8,6 +8,7 @@ export const TopArticle = ({ props }) => {
   const showFullArticle = () => {
     navigate(`/AllArticles/${props._id}`)
   }
+
   return (
     <div onClick={showFullArticle} className={styles.top_article}>
       <img

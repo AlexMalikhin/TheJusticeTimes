@@ -6,6 +6,7 @@ import { Pagination } from '../Pagination/Pagination'
 import { TopArticle } from '../TopArticle/TopArticle'
 import { AppContext } from '../AppContext/AppContext'
 import { fetchPopularArticle } from '../../store/asyncActions/getMostPopularArticle'
+import { viewArticleUpdate } from '../../store/asyncActions/viewArticle'
 import styles from './Main.module.css'
 
 export const Main = () => {
@@ -19,8 +20,6 @@ export const Main = () => {
 
   useEffect(() => {
     dispatch(fetchPopularArticle())
-    // const all = await axios.get('http://localhost:5001/article/getAllArticles')
-    // setAllArticles(all.data.message)
   }, [])
 
   const slicedArticles = useMemo(
@@ -29,7 +28,7 @@ export const Main = () => {
   )
 
   const viewArticle = async (id) => {
-    await axios.post('http://localhost:5001/article/viewArticle', { id: id })
+    dispatch(viewArticleUpdate(id))
   }
 
   return (

@@ -11,7 +11,7 @@ export const MyArticles = () => {
   const [userArticlePage, setUserArticlePage] = useState(0)
   const dispatch = useDispatch()
   const myArticles = useSelector((state) => state.articleReducer.myArticles)
-  const currentUser = useSelector((state) => state.authReducer.user)
+  const { currentUser } = useSelector((state) => state.userReducer)
   useEffect(async () => {
     dispatch(getMyArticles())
     dispatch(getCurrentUser())

@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Editor } from 'react-draft-wysiwyg'
+import { useDispatch } from 'react-redux'
 import { EditorState } from 'draft-js'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import moment from 'moment'
+import { fetchAllArticles } from '../../store/asyncActions/getAllArticles'
 import { Button } from '../Button/Button'
 import { Input } from '../Input/Input'
 import addArticleStyles from './AddArticle.module.css'
@@ -15,6 +17,7 @@ import emptyImg from '../../img/article_images/empty_img.png'
 export const AddArticle: React.FC = () => {
   const navigate = useNavigate()
   const reader = new FileReader()
+  const dispatch = useDispatch()
 
   const [editorState, setEditorState] = useState(EditorState.createEmpty())
   const [imgNewArticle, setImgNewArticle] = useState<
@@ -62,6 +65,7 @@ export const AddArticle: React.FC = () => {
     )
     clearInputs()
     navigate('/AllArticles')
+    dispatch(fetchAllArticles())
   }
 
   const clearInputs = () => {

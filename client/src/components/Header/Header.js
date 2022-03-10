@@ -1,29 +1,29 @@
 import { useContext, useCallback, useEffect } from 'react'
-import Cookies from 'js-cookie'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { LogInMenu } from '../LogInMenu/LogInMenu'
 import { LogOutMenu } from '../LogOutMenu/LogOutMenu'
 import { AppContext } from '../AppContext/AppContext'
 import logoBlack from '../../img/logo_black.png'
 import styles from './Header.module.css'
+import { userLogOut } from '../../store/asyncActions/userLogOut'
 
 export const Header = () => {
-  const { logIn, setLogIn, authKey } = useContext(AppContext)
+  const { logIn, setLogIn } = useContext(AppContext)
   const navigate = useNavigate()
-  const token = useSelector((state) => state.authReducer.token)
-  const toggleLogIn = useCallback(() => {
-    // setLogIn(false)
+  const dispatch = useDispatch()
+  const isAuth = useSelector((state) => state.userReducer.isAuthenticated)
 
-    Cookies.remove('token')
+  const toggleLogIn = useCallback(() => {
+    dispatch(userLogOut())
     navigate('/AllArticles')
   }, [logIn])
 
   useEffect(() => {
-    if (token !== 0) {
+    if (isAuth) {
       setLogIn(true)
     }
-  }, [token])
+  }, [isAuth])
 
   return (
     <header className={styles.header_container}>
@@ -35,7 +35,7 @@ export const Header = () => {
             alt={'logotype of header'}
           />
         </Link>
-        {logIn && token ? (
+        {logIn && isAuth ? (
           <LogInMenu login={toggleLogIn} style={'header_logout'} />
         ) : (
           <LogOutMenu

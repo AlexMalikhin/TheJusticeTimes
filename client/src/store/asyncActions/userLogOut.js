@@ -1,9 +1,9 @@
 import Cookies from 'js-cookie'
-import { userLogouting } from '../reducers/authReducer'
+import { userLogOutAction } from '../reducers/userReducer'
 
 export const userLogOut = () => {
   return function (dispatch) {
     Cookies.remove('token')
-    dispatch(userLogouting())
+    dispatch(userLogOutAction())
   }
 }
