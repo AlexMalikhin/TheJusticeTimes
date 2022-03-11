@@ -17,12 +17,11 @@ import Cookies from 'js-cookie'
 const App: React.FC = () => {
   const { logIn } = useContext(AppContext)
   const { allArticles } = useSelector((state) => state.articleReducer)
-  const isAuth = useSelector((state: any) => state.userReducer.isAuthenticated)
-  // const { currentUser } = useSelector((state) => state.userReducer)
+  const isAuth = useSelector((state) => state.authReducer.isAuthenticated)
+  // const { currentUser } = useSelector((state) => state.authReducer)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log(Cookies.get('token'))
     dispatch(fetchAllArticles())
   }, [])
 
@@ -40,11 +39,11 @@ const App: React.FC = () => {
         {isAuth && <Route path="/Profile" element={<ProfilePage />} />}
         <Route
           path={`/AllArticles/:articleId`}
-          element={<FullArticlePage all={allArticles} />}
+          element={<FullArticlePage allArticles={allArticles} />}
         />
         <Route
           path={`/MyArticles/:articleId`}
-          element={<FullArticlePage all={allArticles} />}
+          element={<FullArticlePage allArticles={allArticles} />}
         />
       </Routes>
       <Footer />

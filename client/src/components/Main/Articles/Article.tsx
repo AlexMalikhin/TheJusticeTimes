@@ -1,10 +1,26 @@
-import { useCallback } from 'react'
+import React, { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
+// @ts-ignore
 import viewsImg from '../../../img/viewsImg.png'
 import styles from './Article.module.css'
+// @ts-ignore
 import defaultAvatar from '../../../img/defaultAvatar.png'
 
-const Article = ({
+export interface ArticleProps {
+  id: string
+  img: any
+  firstname: string
+  lastname: string
+  avatar: string
+  views: number
+  header: string
+  paragraph: string
+  date: string
+  category: string
+  viewArticle?: (id: string) => any
+}
+
+const Article: React.FC<ArticleProps> = ({
   id,
   img,
   firstname,
@@ -14,12 +30,14 @@ const Article = ({
   header,
   paragraph,
   date,
-  tags,
+  category,
   viewArticle,
 }) => {
   const navigate = useNavigate()
   const showFullArticle = useCallback((id) => {
-    viewArticle(id)
+    if (viewArticle) {
+      viewArticle(id)
+    }
     navigate(`./${id}`, { replace: true })
   }, [])
 
@@ -29,7 +47,7 @@ const Article = ({
       <div className={styles.article_block}>
         <ul>
           <li className={styles.hashtags}>
-            <a>{tags}</a>
+            <a>{category}</a>
           </li>
         </ul>
         <h2>{header}</h2>

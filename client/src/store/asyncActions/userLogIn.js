@@ -1,6 +1,6 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
-import { userLoginAction } from '../reducers/userReducer'
+import { userLoginAction } from '../reducers/userReducer/authReducer'
 
 export const userLogIn = (email, password) => {
   return function (dispatch) {

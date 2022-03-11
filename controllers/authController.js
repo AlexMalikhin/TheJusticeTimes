@@ -13,7 +13,7 @@ const generateAccessToken = (id, firstname, lastname) => {
     firstname,
     lastname,
   }
-  return jwt.sign(payload, secret, { expiresIn: '1m' })
+  return jwt.sign(payload, secret, { expiresIn: '72h' })
 }
 
 module.exports.registration = async function (req, res) {

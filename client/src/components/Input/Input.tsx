@@ -7,7 +7,7 @@ interface InputProps {
   readonly label?: string
   readonly type?: string
   inputValue: string | number
-  changeValue: any
+  changeValue: (value: string) => void
   isRenderError?: boolean
   blurHandle?: () => void
   errorText?: string

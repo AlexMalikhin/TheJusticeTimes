@@ -1,7 +1,16 @@
 import { useNavigate } from 'react-router-dom'
 import { Button } from '../Button/Button'
+import React from 'react'
 
-export const LogOutMenu = ({ stylesLogIn, stylesSignIn }) => {
+interface LogOutMenuProps {
+  stylesLogIn: string
+  stylesSignIn: string
+}
+
+export const LogOutMenu: React.FC<LogOutMenuProps> = ({
+  stylesLogIn,
+  stylesSignIn,
+}) => {
   const navigate = useNavigate()
 
   const followLogInPage = () => {
@@ -17,13 +26,13 @@ export const LogOutMenu = ({ stylesLogIn, stylesSignIn }) => {
         title="Log in"
         type={stylesLogIn}
         click={followLogInPage}
-        disabled={false}
+        disable={false}
       />
       <Button
         title="Sign in"
         type={stylesSignIn}
         click={followSignInPage}
-        disabled={false}
+        disable={false}
       />
     </div>
   )

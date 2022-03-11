@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
-import { getUserDataAction } from '../reducers/userReducer'
-import { loadingUserAction } from '../reducers/userReducer'
+import { getUserDataAction } from '../reducers/userReducer/authReducer'
+import { loadingUserAction } from '../reducers/userReducer/authReducer'
 
 export const getCurrentUser = () => {
   return function (dispatch) {

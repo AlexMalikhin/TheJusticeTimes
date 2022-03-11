@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { viewArticleAction } from '../reducers/articleReducer'
+import { viewArticleAction } from '../reducers/articleReducer/articleReducer'
 
 export const viewArticleUpdate = (id) => {
   return function (dispatch) {

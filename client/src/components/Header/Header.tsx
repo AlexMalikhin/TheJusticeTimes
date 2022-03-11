@@ -1,20 +1,21 @@
-import { useContext, useCallback, useEffect } from 'react'
+import React, { useContext, useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { LogInMenu } from '../LogInMenu/LogInMenu'
 import { LogOutMenu } from '../LogOutMenu/LogOutMenu'
 import { AppContext } from '../AppContext/AppContext'
+// @ts-ignore
 import logoBlack from '../../img/logo_black.png'
 import styles from './Header.module.css'
 import { userLogOut } from '../../store/asyncActions/userLogOut'
 
-export const Header = () => {
+export const Header: React.FC = () => {
   const { logIn, setLogIn } = useContext(AppContext)
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const isAuth = useSelector((state) => state.userReducer.isAuthenticated)
+  const isAuth = useSelector((state) => state.authReducer.isAuthenticated)
 
-  const toggleLogIn = useCallback(() => {
+  const toggleLogIn = useCallback((): void => {
     dispatch(userLogOut())
     navigate('/AllArticles')
   }, [logIn])

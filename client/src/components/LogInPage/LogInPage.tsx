@@ -1,19 +1,14 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { useContext, useCallback, useEffect } from 'react'
+import React, { useContext, useCallback, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import axios from 'axios'
-import Cookies from 'js-cookie'
 import { Input } from '../Input/Input'
 import { Button } from '../Button/Button'
 import { userLogIn } from '../../store/asyncActions/userLogIn'
 import { AppContext } from '../AppContext/AppContext'
 import logInPageStyles from './LogInPage.module.css'
-import { getCurrentUser } from '../../store/asyncActions/getUserData'
 
-export const LogInPage = () => {
+export const LogInPage: React.FC = () => {
   const {
-    setAllArticles,
-    setAuthKey,
     inputValueEmail,
     inputValuePassword,
     setInputValueEmail,
@@ -39,31 +34,12 @@ export const LogInPage = () => {
     setInputValuePassword('')
   }, [])
   const dispatch = useDispatch()
-  // const curUser = useSelector((state) => state)
   const navigate = useNavigate()
   const logIn = useCallback(
     async (email: string, password: string) => {
-      // const user = {
-      //   email: email,
-      //   password: password,
-      // }
-      // if (!user.email || !user.password) {
-      //   return
-      // }
       try {
-        // const { data } = await axios.post(
-        //   'http://localhost:5001/auth/login',
-        //   user
-        // )
         dispatch(userLogIn(email, password))
-        // dispatch(getCurrentUser())
-        // const getAllArticles = await axios.get(
-        //   'http://localhost:5001/article/getAllArticles'
-        // )
-        // setAllArticles(getAllArticles.data.message)
         navigate('/AllArticles', { replace: true })
-        // Cookies.set('token', data.token)
-        // setAuthKey(Cookies.get('token'))
       } catch (e: any) {
         //todo: any
         setEmailErrorText(e.response.data.message)

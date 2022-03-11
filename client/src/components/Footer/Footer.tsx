@@ -1,14 +1,15 @@
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { LogInMenu } from '../LogInMenu/LogInMenu'
 import { LogOutMenu } from '../LogOutMenu/LogOutMenu'
 import { AppContext } from '../AppContext/AppContext'
+// @ts-ignore
 import logoWhite from '../../img/logo_white.png'
 import styles from './Footer.module.css'
 
-export const Footer = () => {
+export const Footer: React.FC = () => {
   const { logIn, setLogIn } = useContext(AppContext)
-  const toggleLogIn = () => setLogIn((logIn) => !logIn)
+  const toggleLogIn = () => setLogIn((logIn: boolean) => !logIn)
 
   return (
     <footer className={styles.footer_container}>
@@ -24,7 +25,6 @@ export const Footer = () => {
           <LogInMenu login={toggleLogIn} style={'footer_logout'} />
         ) : (
           <LogOutMenu
-            login={toggleLogIn}
             stylesSignIn={'footer_signIn'}
             stylesLogIn={'footer_logIn'}
           />

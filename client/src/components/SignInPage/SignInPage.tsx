@@ -1,4 +1,4 @@
-import { useContext, useCallback, useEffect } from 'react'
+import React, { useContext, useCallback, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { Input } from '../Input/Input'
@@ -13,7 +13,7 @@ interface SignInInterface {
   password: string
 }
 
-export const SignInPage = () => {
+export const SignInPage: React.FC = () => {
   const {
     regExpForEmail,
     regExpForPassword,

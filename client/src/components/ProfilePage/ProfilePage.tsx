@@ -9,11 +9,11 @@ import { fetchAllArticles } from '../../store/asyncActions/getAllArticles'
 import defaultAvatar from '../../img/defaultAvatar.png'
 import profilePageStyles from './ProfilePage.module.css'
 
-export const ProfilePage = () => {
+export const ProfilePage: React.FC = () => {
   const reader = new FileReader()
   const dispatch = useDispatch()
-  const { currentUser } = useSelector((state: any) => state.userReducer)
-  const { isLoading } = useSelector((state: any) => state.userReducer)
+  const { currentUser } = useSelector((state: any) => state.authReducer)
+  const { isLoading } = useSelector((state: any) => state.authReducer)
   const [profileAvatar, setProfileAvatar] = useState<
     string | null | ArrayBuffer
   >('')

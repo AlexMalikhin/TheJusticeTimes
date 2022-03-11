@@ -1,8 +1,15 @@
 import { NavLink } from 'react-router-dom'
+import React from 'react'
 import { Button } from '../Button/Button'
 import styles from './LogInMenu.module.css'
+import buttonStyles from '../Button/Button.module.css'
 
-export const LogInMenu = ({ login, style }) => {
+interface LogInMenuProps {
+  login: () => void
+  style: keyof typeof buttonStyles
+}
+
+export const LogInMenu: React.FC<LogInMenuProps> = ({ login, style }) => {
   return (
     <nav className={styles.logout}>
       <ul className={styles.logout_list}>
@@ -47,7 +54,7 @@ export const LogInMenu = ({ login, style }) => {
           </NavLink>
         </li>
       </ul>
-      <Button click={login} type={style} title="LogOut" disabled={false} />
+      <Button click={login} type={style} title="LogOut" disable={false} />
     </nav>
   )
 }

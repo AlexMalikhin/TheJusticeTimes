@@ -1,22 +1,36 @@
-import { useCallback } from 'react'
+import React, { useCallback } from 'react'
 import { Button } from '../Button/Button'
 import paginationStyles from './Pagination.module.css'
 
-export const Pagination = ({ setPage, page, allArticles, type, length }) => {
+interface PaginationProps {
+  setPage: any
+  page: any
+  articlesLength: number
+  type: keyof typeof paginationStyles
+  countPerPage: number
+}
+
+export const Pagination: React.FC<PaginationProps> = ({
+  setPage,
+  page,
+  articlesLength,
+  type,
+  countPerPage,
+}) => {
   const prevPage = useCallback(() => {
-    setPage((page) => (page === 0 ? 0 : page - 1))
+    setPage((page: number) => (page === 0 ? 0 : page - 1))
   }, [page])
 
   const nextPage = useCallback(() => {
-    setPage((page) => page + 1)
+    setPage((page: number) => page + 1)
   }, [page])
 
   const getResult = useCallback(() => {
     if (page === 0) {
-      return page + length >= allArticles.length
+      return page + countPerPage >= articlesLength
     }
-    return (page + 1) * length - 1 >= allArticles.length
-  }, [allArticles, page])
+    return (page + 1) * countPerPage - 1 >= articlesLength
+  }, [articlesLength, page])
 
   return (
     <div className={paginationStyles[`${type}`]}>

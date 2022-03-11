@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 import axios from 'axios'
-import { getMyArticlesAction } from '../reducers/articleReducer'
+import { getMyArticlesAction } from '../reducers/articleReducer/articleReducer'
 
 export const getMyArticles = () => {
   return function (dispatch) {

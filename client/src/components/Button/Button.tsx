@@ -4,7 +4,7 @@ import React from 'react'
 interface ButtonProps {
   title: string
   disable?: boolean
-  click: any
+  click?: any
   type: keyof typeof buttonStyles
 }
 

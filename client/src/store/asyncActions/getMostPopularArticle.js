@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getMostPopularArticleAction } from '../reducers/articleReducer'
+import { getMostPopularArticleAction } from '../reducers/articleReducer/articleReducer'
 
 export const fetchPopularArticle = () => {
   return function (dispatch) {

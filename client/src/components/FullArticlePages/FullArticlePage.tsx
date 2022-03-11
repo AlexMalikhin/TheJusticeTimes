@@ -1,25 +1,31 @@
 import { useNavigate, useParams } from 'react-router-dom'
-import { useEffect, useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { AppContext } from '../AppContext/AppContext'
 import { Button } from '../Button/Button'
 import fullPageStyles from './FullArticlePage.module.css'
+// @ts-ignore
 import viewsImg from '../../img/viewsImg.png'
+// @ts-ignore
 import defaultAvatar from '../../img/defaultAvatar.png'
 
-export const FullArticlePage = ({ all }) => {
+export const FullArticlePage: React.FC = ({ allArticles }) => {
   const { articleId } = useParams()
   const { currentArticle, setCurrentArticle } = useContext(AppContext)
 
   useEffect(() => {
-    setCurrentArticle(all.find((item) => item._id === articleId))
-  }, [articleId, all])
+    setCurrentArticle(
+      allArticles.find(
+        (item: { _id: string | undefined }) => item._id === articleId
+      )
+    )
+  }, [articleId, allArticles])
 
   const navigate = useNavigate()
   const getPath = () =>
     document.location.pathname === `/AllArticles/${articleId}`
 
   const linkToAllArticles = () => {
-    if (!!getPath()) {
+    if (getPath()) {
       return navigate('/AllArticles', { replace: true })
     } else {
       return navigate('/MyArticles', { replace: true })
@@ -30,7 +36,7 @@ export const FullArticlePage = ({ all }) => {
     <div className={fullPageStyles.main_container}>
       <Button
         click={linkToAllArticles}
-        title={!!getPath() ? 'AllArticles' : 'MyArticles'}
+        title={getPath() ? 'AllArticles' : 'MyArticles'}
         type={'all_articles'}
       />
       <div className={fullPageStyles.fullPage_container}>

@@ -1,18 +1,19 @@
-import { useMemo, useEffect, useState } from 'react'
+import React, { useMemo, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Pagination } from '../Pagination/Pagination'
-import { MyArticle } from '../MyArticle/MyArticle'
 import { getCurrentUser } from '../../store/asyncActions/getUserData'
 import { getMyArticles } from '../../store/asyncActions/getMyArticles'
+import { Pagination } from '../Pagination/Pagination'
+import { MyArticle } from '../MyArticle/MyArticle'
 import styles from './MyArticles.module.css'
+// @ts-ignore
 import defaultAvatar from '../../img/defaultAvatar.png'
 
-export const MyArticles = () => {
+export const MyArticles: React.FC = () => {
   const [userArticlePage, setUserArticlePage] = useState(0)
   const dispatch = useDispatch()
   const myArticles = useSelector((state) => state.articleReducer.myArticles)
-  const { currentUser } = useSelector((state) => state.userReducer)
-  useEffect(async () => {
+  const { currentUser } = useSelector((state) => state.authReducer)
+  useEffect(() => {
     dispatch(getMyArticles())
     dispatch(getCurrentUser())
   }, [])
@@ -38,15 +39,40 @@ export const MyArticles = () => {
         </div>
         {myArticles.length ? (
           <div className={styles.articles_list}>
-            {slicedMyArticles.map((article) => (
-              <MyArticle props={article} key={article._id} />
-            ))}
+            {slicedMyArticles.map(
+              (article: {
+                _id: string
+                headImg: any
+                firstname: string
+                lastname: string
+                avatar: string
+                views: number
+                title: string
+                text: string
+                date: string
+                category: string
+              }) => (
+                <MyArticle
+                  id={article._id}
+                  key={article._id}
+                  img={article.headImg}
+                  firstname={article.firstname}
+                  lastname={article.lastname}
+                  avatar={article.avatar}
+                  views={article.views}
+                  header={article.title}
+                  paragraph={article.text}
+                  date={article.date}
+                  category={article.category}
+                />
+              )
+            )}
             <Pagination
               page={userArticlePage}
               setPage={setUserArticlePage}
-              allArticles={myArticles || ''}
+              articlesLength={myArticles.length || ''}
               type={'myArticles'}
-              length={4}
+              countPerPage={4}
             />
           </div>
         ) : (
