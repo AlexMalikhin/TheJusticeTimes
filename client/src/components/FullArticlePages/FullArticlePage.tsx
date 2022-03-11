@@ -1,14 +1,32 @@
-import { useNavigate, useParams } from 'react-router-dom'
-import React, { useEffect, useContext } from 'react'
-import { AppContext } from '../AppContext/AppContext'
-import { Button } from '../Button/Button'
-import fullPageStyles from './FullArticlePage.module.css'
+import { useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect, useContext } from 'react';
+import { AppContext } from '../AppContext/AppContext';
+import { Button } from '../Button/Button';
+import fullPageStyles from './FullArticlePage.module.css';
 // @ts-ignore
-import viewsImg from '../../img/viewsImg.png'
+import viewsImg from '../../img/viewsImg.png';
 // @ts-ignore
-import defaultAvatar from '../../img/defaultAvatar.png'
+import defaultAvatar from '../../img/defaultAvatar.png';
 
-export const FullArticlePage: React.FC = ({ allArticles }) => {
+interface ResponseArticleInterface{
+  _id: string
+  headImg: any
+  firstname: string
+  lastname: string
+  avatar: string
+  views: number
+  title: string
+  text: string
+  date: string
+  category: string
+  find?: any
+}
+
+interface AllArticlesInterface{
+  allArticles: ResponseArticleInterface
+}
+
+export const FullArticlePage: React.FC<AllArticlesInterface> = ({ allArticles }) => {
   const { articleId } = useParams()
   const { currentArticle, setCurrentArticle } = useContext(AppContext)
 
