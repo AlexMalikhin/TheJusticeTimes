@@ -5,17 +5,17 @@ import styles from './MyArticle.module.css'
 import viewsImg from '../../img/viewsImg.png'
 // @ts-ignore
 import defaultAvatar from '../../img/defaultAvatar.png'
-import { ArticleProps } from '../Main/Articles/Article'
+import { ArticleInterface } from '../../types/types'
 
-export const MyArticle: React.FC<ArticleProps> = ({
+export const MyArticle: React.FC<ArticleInterface> = ({
   id,
-  img,
+  headImg,
   firstname,
   lastname,
   avatar,
   views,
-  header,
-  paragraph,
+  title,
+  text,
   date,
   category,
 }) => {
@@ -26,13 +26,13 @@ export const MyArticle: React.FC<ArticleProps> = ({
 
   return (
     <div onClick={showFullArticle} className={styles.articles}>
-      <img src={img} className={styles.img_article} alt={'article image'} />
+      <img src={headImg} className={styles.img_article} alt={'article image'} />
       <div className={styles.article_block}>
         <ul>
           <li className={styles.hashtags}>{category}</li>
         </ul>
-        <h2>{header}</h2>
-        <p className={styles.short}>{paragraph}</p>
+        <h2>{title}</h2>
+        <p className={styles.short}>{text}</p>
         <div className={styles.article_info}>
           <div className={styles.avatar_block}>
             <img

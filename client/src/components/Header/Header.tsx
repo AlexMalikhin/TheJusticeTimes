@@ -7,13 +7,16 @@ import { AppContext } from '../AppContext/AppContext'
 // @ts-ignore
 import logoBlack from '../../img/logo_black.png'
 import styles from './Header.module.css'
-import { userLogOut } from '../../store/asyncActions/userLogOut'
+import { userLogOut } from '../../store/asyncActions/authActions/userLogOut'
+import { RootState } from '../../store'
 
 export const Header: React.FC = () => {
   const { logIn, setLogIn } = useContext(AppContext)
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const isAuth = useSelector((state) => state.authReducer.isAuthenticated)
+  const isAuth = useSelector(
+    (state: RootState) => state.authReducer.isAuthenticated
+  )
 
   const toggleLogIn = useCallback((): void => {
     dispatch(userLogOut())

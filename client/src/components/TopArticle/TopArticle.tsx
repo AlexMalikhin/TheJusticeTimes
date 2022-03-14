@@ -1,64 +1,61 @@
-import { useNavigate } from 'react-router-dom'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { ArticlesProps } from '../../types/types'
+import { SkeletonElement } from '../../skeletons/SkeletonElement'
+import { ArticleInterface } from '../../types/types'
 import styles from './TopArticle.module.css'
 // @ts-ignore
 import viewsImg from '../../img/viewsImg.png'
 // @ts-ignore
 import defaultAvatar from '../../img/defaultAvatar.png'
-import { ArticleProps } from '../Main/Articles/Article'
 
-export const TopArticle: React.FC<ArticleProps> = ({
-  id,
-  img,
-  firstname,
-  lastname,
-  avatar,
-  views,
-  header,
-  paragraph,
-  date,
-  category,
-}) => {
+export const TopArticle: React.FC<ArticlesProps> = ({ topArticle }) => {
   const navigate = useNavigate()
   const showFullArticle = () => {
-    navigate(`/AllArticles/${id}`)
+    navigate(`/AllArticles/${topArticle?._id}`)
   }
 
   return (
-    <div onClick={showFullArticle} className={styles.top_article}>
-      <img
-        src={img}
-        className={styles.img_article}
-        alt={'most popular article image'}
-      />
-      <div className={styles.top_article_block}>
-        <a className={styles.hashtags}>{category}</a>
-        <h2>{header}</h2>
-        <p className={styles.paragraph}>{paragraph}</p>
-        <div className={styles.bottom_block}>
-          <div className={styles.avatar_block}>
-            <img
-              src={avatar ? avatar : defaultAvatar}
-              className={styles.avatars}
-              alt={'author avatar image'}
-            />
-            <span className={styles.avatar_name}>
-              {firstname} {lastname}
-            </span>
-          </div>
-          <div className={styles.time}>
-            <span>{date}</span>
-          </div>
-          <div className={styles.views_block}>
-            <img
-              src={viewsImg}
-              className={styles.views}
-              alt={'view eye image'}
-            />
-            <span className={styles.ml8}>{views}</span>
+    <>
+      {topArticle ? (
+        <div onClick={showFullArticle} className={styles.top_article}>
+          <img
+            src={topArticle?.headImg}
+            className={styles.img_article}
+            alt={'most popular article image'}
+          />
+          <div className={styles.top_article_block}>
+            <a className={styles.hashtags}>{topArticle?.category}</a>
+            <h2>{topArticle?.title}</h2>
+            <p className={styles.paragraph}>{topArticle?.text}</p>
+            <div className={styles.bottom_block}>
+              <div className={styles.avatar_block}>
+                <img
+                  src={topArticle?.avatar ? topArticle.avatar : defaultAvatar}
+                  className={styles.avatars}
+                  alt={'author avatar image'}
+                />
+                <span className={styles.avatar_name}>
+                  {topArticle?.firstname} {topArticle?.lastname}
+                </span>
+              </div>
+              <div className={styles.time}>
+                <span>{topArticle?.date}</span>
+              </div>
+              <div className={styles.views_block}>
+                <img
+                  src={viewsImg}
+                  className={styles.views}
+                  alt={'view eye image'}
+                />
+                <span className={styles.ml8}>{topArticle?.views}</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      ) : (
+        <SkeletonElement />
+      )}
+    </>
   )
 }

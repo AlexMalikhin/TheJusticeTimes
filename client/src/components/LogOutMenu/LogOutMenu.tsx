@@ -1,13 +1,7 @@
-import { useNavigate } from 'react-router-dom';
-import React from 'react';
-import { Button } from '../Button/Button';
-import buttonStyles from '../Button/Button.module.css';
-
-//
-interface LogOutMenuProps {
-  stylesLogIn: "header_logout" | "header_logIn" | "header_signIn" | "footer_logout" | "footer_signIn" | "footer_logIn" | "form_button" | "profile_save_changes" | "all_articles" | "category"
-  stylesSignIn: "header_logout" | "header_logIn" | "header_signIn" | "footer_logout" | "footer_signIn" | "footer_logIn" | "form_button" | "profile_save_changes" | "all_articles" | "category"
-}
+import { useNavigate } from 'react-router-dom'
+import React from 'react'
+import { Button } from '../Button/Button'
+import { LogOutMenuProps } from './types'
 
 export const LogOutMenu: React.FC<LogOutMenuProps> = ({
   stylesLogIn,

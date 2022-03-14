@@ -46,8 +46,8 @@ module.exports.createArticle = async function (req, res) {
 
 module.exports.getAllArticles = async function (req, res) {
   try {
-    const all = await Article.find()
-    return res.status(200).json({ message: all })
+    const allArticles = await Article.find()
+    return res.status(200).json({ allArticles })
   } catch (e) {
     return res
       .status(400)
@@ -71,7 +71,7 @@ module.exports.getMyArticles = async function (req, res) {
     const myArticles = await allArticles.filter(
       (article) => article.userId === currentUser.id
     )
-    return res.status(200).json({ message: myArticles })
+    return res.status(200).json({ myArticles })
   } catch (e) {
     return res.status(400).json({ message: req.token })
   }
@@ -91,7 +91,7 @@ module.exports.getPopularArticle = async function (req, res) {
         .status(200)
         .json({ message: 'Something went wrong, cannot get popular article' })
     }
-    return res.json({ message: popularArticle })
+    return res.json({ popularArticle })
   } catch (e) {
     res
       .status(400)

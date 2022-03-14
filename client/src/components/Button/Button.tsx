@@ -1,12 +1,6 @@
 import buttonStyles from './Button.module.css'
 import React from 'react'
-
-interface ButtonProps {
-  title: string
-  disable?: boolean
-  click?: any
-  type: keyof typeof buttonStyles
-}
+import { ButtonProps } from './types'
 
 export const Button: React.FC<ButtonProps> = ({
   title,

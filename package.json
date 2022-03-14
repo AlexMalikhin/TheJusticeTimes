@@ -22,7 +22,9 @@
     "moment": "^2.29.1",
     "mongoose": "^6.2.3",
     "passport-js": "^1.0.0",
-    "react-loader-spinner": "^6.0.0-0"
+    "react-content-loader": "^6.2.0",
+    "react-loader-spinner": "^6.0.0-0",
+    "react-loading-skeleton": "^3.0.3"
   },
   "devDependencies": {
     "concurrently": "^7.0.0",

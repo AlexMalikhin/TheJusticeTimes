@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import React, { useContext, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Footer } from './components/Footer/Footer'
@@ -11,17 +11,22 @@ import { ProfilePage } from './components/ProfilePage/ProfilePage'
 import { FullArticlePage } from './components/FullArticlePages/FullArticlePage'
 import { AddArticle } from './components/AddArticle/AddArticle'
 import { MyArticles } from './components/MyArticles/MyArticles'
-import { fetchAllArticles } from './store/asyncActions/getAllArticles'
-import Cookies from 'js-cookie'
+import { fetchAllArticles } from './store/asyncActions/articlesActions/getAllArticles'
+import { RootState } from './store'
+import { getPopularArticle } from './store/asyncActions/articlesActions/getMostPopularArticle'
 
 const App: React.FC = () => {
   const { logIn } = useContext(AppContext)
-  const { allArticles } = useSelector((state) => state.articleReducer)
-  const isAuth = useSelector((state) => state.authReducer.isAuthenticated)
-  // const { currentUser } = useSelector((state) => state.authReducer)
+  const { allArticles } = useSelector(
+    (state: RootState) => state.articleReducer
+  )
+  const isAuth = useSelector(
+    (state: RootState) => state.authReducer.isAuthenticated
+  )
   const dispatch = useDispatch()
 
   useEffect(() => {
+    dispatch(getPopularArticle())
     dispatch(fetchAllArticles())
   }, [])
 
@@ -31,9 +36,8 @@ const App: React.FC = () => {
       <Routes>
         {isAuth && <Route path="/AddArticle" element={<AddArticle />} />}
         {logIn && <Route path="/MyArticles" element={<MyArticles />} />}
-        {allArticles.length > 0 && (
-          <Route path="/AllArticles" element={<Main />} />
-        )}
+
+        <Route path="/AllArticles" element={<Main />} />
         <Route path="/LogIn" element={<LogInPage />} />
         <Route path="/SignIn" element={<SignInPage />} />
         {isAuth && <Route path="/Profile" element={<ProfilePage />} />}

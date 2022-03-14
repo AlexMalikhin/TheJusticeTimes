@@ -3,7 +3,7 @@ import React, { useContext, useCallback, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Input } from '../Input/Input'
 import { Button } from '../Button/Button'
-import { userLogIn } from '../../store/asyncActions/userLogIn'
+import { userLogIn } from '../../store/asyncActions/authActions/userLogIn'
 import { AppContext } from '../AppContext/AppContext'
 import logInPageStyles from './LogInPage.module.css'
 

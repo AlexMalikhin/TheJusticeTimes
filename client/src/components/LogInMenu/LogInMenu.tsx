@@ -2,11 +2,11 @@ import { NavLink } from 'react-router-dom'
 import React from 'react'
 import { Button } from '../Button/Button'
 import styles from './LogInMenu.module.css'
-import buttonStyles from '../Button/Button.module.css'
+import { ButtonStylesType } from '../../types/types'
 
 interface LogInMenuProps {
   login: () => void
-  style: keyof typeof buttonStyles
+  style: ButtonStylesType
 }
 
 export const LogInMenu: React.FC<LogInMenuProps> = ({ login, style }) => {

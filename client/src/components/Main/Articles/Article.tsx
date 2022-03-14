@@ -1,38 +1,13 @@
 import React, { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-// @ts-ignore
-import viewsImg from '../../../img/viewsImg.png'
+import { ArticlesProps } from '../../../types/types'
 import styles from './Article.module.css'
 // @ts-ignore
 import defaultAvatar from '../../../img/defaultAvatar.png'
+// @ts-ignore
+import viewsImg from '../../../img/viewsImg.png'
 
-export interface ArticleProps {
-  id: string
-  img: any
-  firstname: string
-  lastname: string
-  avatar: string
-  views: number
-  header: string
-  paragraph: string
-  date: string
-  category: string
-  viewArticle?: (id: string) => any
-}
-
-const Article: React.FC<ArticleProps> = ({
-  id,
-  img,
-  firstname,
-  lastname,
-  avatar,
-  views,
-  header,
-  paragraph,
-  date,
-  category,
-  viewArticle,
-}) => {
+const Article: React.FC<ArticlesProps> = ({ article, viewArticle }) => {
   const navigate = useNavigate()
   const showFullArticle = useCallback((id) => {
     if (viewArticle) {
@@ -42,29 +17,36 @@ const Article: React.FC<ArticleProps> = ({
   }, [])
 
   return (
-    <div onClick={() => showFullArticle(id)} className={styles.articles}>
-      <img src={img} className={styles.img_article} alt={'article image'} />
+    <div
+      onClick={() => showFullArticle(article?._id)}
+      className={styles.articles}
+    >
+      <img
+        src={article?.headImg}
+        className={styles.img_article}
+        alt={'article image'}
+      />
       <div className={styles.article_block}>
         <ul>
           <li className={styles.hashtags}>
-            <a>{category}</a>
+            <a>{article?.category}</a>
           </li>
         </ul>
-        <h2>{header}</h2>
-        <p className={styles.paragraph_short}>{paragraph}</p>
+        <h2>{article?.title}</h2>
+        <p className={styles.paragraph_short}>{article?.text}</p>
         <div className={styles.article_info}>
           <div className={styles.avatar_block}>
             <img
-              src={avatar ? avatar : defaultAvatar}
+              src={article?.avatar ? article.avatar : defaultAvatar}
               className={styles.avatars}
               alt={'author avatar image'}
             />
             <span className={styles.avatar_name}>
-              {firstname} {lastname}
+              {article?.firstname} {article?.lastname}
             </span>
           </div>
           <div className={styles.m8}>
-            <span>{date}</span>
+            <span>{article?.date}</span>
           </div>
           <div className={styles.ml8}>
             <img
@@ -72,7 +54,7 @@ const Article: React.FC<ArticleProps> = ({
               className={styles.views}
               alt={'view eye image'}
             />
-            <span className={styles.ml8}>{views}</span>
+            <span className={styles.ml8}>{article?.views}</span>
           </div>
         </div>
       </div>

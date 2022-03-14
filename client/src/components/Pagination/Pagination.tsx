@@ -1,14 +1,7 @@
 import React, { useCallback } from 'react'
 import { Button } from '../Button/Button'
 import paginationStyles from './Pagination.module.css'
-
-interface PaginationProps {
-  setPage: any
-  page: any
-  articlesLength: number
-  type: keyof typeof paginationStyles
-  countPerPage: number
-}
+import { PaginationProps } from './types'
 
 export const Pagination: React.FC<PaginationProps> = ({
   setPage,
@@ -26,10 +19,12 @@ export const Pagination: React.FC<PaginationProps> = ({
   }, [page])
 
   const getResult = useCallback(() => {
-    if (page === 0) {
-      return page + countPerPage >= articlesLength
+    if (articlesLength) {
+      if (page === 0) {
+        return page + countPerPage >= articlesLength
+      }
+      return (page + 1) * countPerPage - 1 >= articlesLength
     }
-    return (page + 1) * countPerPage - 1 >= articlesLength
   }, [articlesLength, page])
 
   return (
