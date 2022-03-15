@@ -5,7 +5,7 @@ import { LogOutMenu } from '../LogOutMenu/LogOutMenu'
 import { AppContext } from '../AppContext/AppContext'
 // @ts-ignore
 import logoWhite from '../../img/logo_white.png'
-import styles from './Footer.module.css'
+import styles from './Footer.module.scss'
 
 export const Footer: React.FC = () => {
   const { logIn, setLogIn } = useContext(AppContext)

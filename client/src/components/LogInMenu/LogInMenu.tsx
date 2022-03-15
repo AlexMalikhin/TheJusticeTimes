@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import React from 'react'
 import { Button } from '../Button/Button'
-import styles from './LogInMenu.module.css'
+import styles from './LogInMenu.module.scss'
 import { ButtonStylesType } from '../../types/types'
 
 interface LogInMenuProps {

@@ -33,23 +33,23 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <Header />
-      <Routes>
-        {isAuth && <Route path="/AddArticle" element={<AddArticle />} />}
-        {logIn && <Route path="/MyArticles" element={<MyArticles />} />}
+      {/*<Routes>*/}
+      {/*  {isAuth && <Route path="/AddArticle" element={<AddArticle />} />}*/}
+      {/*  {logIn && <Route path="/MyArticles" element={<MyArticles />} />}*/}
 
-        <Route path="/AllArticles" element={<Main />} />
-        <Route path="/LogIn" element={<LogInPage />} />
-        <Route path="/SignIn" element={<SignInPage />} />
-        {isAuth && <Route path="/Profile" element={<ProfilePage />} />}
-        <Route
-          path={`/AllArticles/:articleId`}
-          element={<FullArticlePage allArticles={allArticles} />}
-        />
-        <Route
-          path={`/MyArticles/:articleId`}
-          element={<FullArticlePage allArticles={allArticles} />}
-        />
-      </Routes>
+      {/*  <Route path="/AllArticles" element={<Main />} />*/}
+      {/*  <Route path="/LogIn" element={<LogInPage />} />*/}
+      {/*  <Route path="/SignIn" element={<SignInPage />} />*/}
+      {/*  {isAuth && <Route path="/Profile" element={<ProfilePage />} />}*/}
+      {/*  <Route*/}
+      {/*    path={`/AllArticles/:articleId`}*/}
+      {/*    element={<FullArticlePage allArticles={allArticles} />}*/}
+      {/*  />*/}
+      {/*  <Route*/}
+      {/*    path={`/MyArticles/:articleId`}*/}
+      {/*    element={<FullArticlePage allArticles={allArticles} />}*/}
+      {/*  />*/}
+      {/*</Routes>*/}
       <Footer />
     </div>
   )

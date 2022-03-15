@@ -1,41 +1,37 @@
 import React from 'react'
-import styles from '../components/TopArticle/TopArticle.module.css'
+import { Shimmer } from './Shimmer.js/Shimmer'
 // @ts-ignore
 import defaultAvatar from '../img/defaultAvatar.png'
 // @ts-ignore
 import viewsImg from '../img/viewsImg.png'
-import skeletonStyles from './Skeleton.module.css'
+import skeletonStyles from './Skeleton.module.scss'
 
 export const SkeletonElement = ({ type }: any) => {
   return (
     <div className={skeletonStyles.skeletonTopBlock}>
       <div className={skeletonStyles.img_article} />
-      <div className={styles.top_article_block}>
-        <a className={styles.hashtags}>fwfwfqfwqf</a>
-        <h2>fqwfqwfwfwfq</h2>
-        <p className={styles.paragraph}>fqwfqwfqwfwf</p>
-        <div className={styles.bottom_block}>
-          <div className={styles.avatar_block}>
-            <img
-              src={defaultAvatar}
-              className={styles.avatars}
-              alt={'author avatar image'}
-            />
-            <span className={styles.avatar_name}>fqwfqwf fqwfqwfqwfwq</span>
+      <div className={skeletonStyles.article_info}>
+        <div className={skeletonStyles.hashtags} />
+        <h2 className={skeletonStyles.header}>a</h2>
+        <div className={skeletonStyles.paragraph} />
+        <div className={skeletonStyles.paragraph} />
+        <div className={skeletonStyles.paragraph} />
+        <div className={skeletonStyles.paragraph} />
+        <div className={skeletonStyles.paragraph} />
+        <div className={skeletonStyles.paragraph} />
+        <div className={skeletonStyles.paragraph} />
+        <div className={skeletonStyles.paragraph} />
+        <div className={skeletonStyles.paragraph} />
+        <div className={skeletonStyles.bottom_block}>
+          <div className={skeletonStyles.avatar_block}>
+            <div className={skeletonStyles.avatars} />
+            <div className={skeletonStyles.avatar_name} />
           </div>
-          <div className={styles.time}>
-            <span>29 0726</span>
-          </div>
-          <div className={styles.views_block}>
-            <img
-              src={viewsImg}
-              className={styles.views}
-              alt={'view eye image'}
-            />
-            <span className={styles.ml8}>28</span>
-          </div>
+          <div className={skeletonStyles.date} />
+          <div className={skeletonStyles.views} />
         </div>
       </div>
+      <Shimmer />
     </div>
   )
 }

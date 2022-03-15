@@ -1,4 +1,4 @@
-import buttonStyles from './Button.module.css'
+import buttonStyles from './Button.module.scss'
 import React from 'react'
 import { ButtonProps } from './types'
 

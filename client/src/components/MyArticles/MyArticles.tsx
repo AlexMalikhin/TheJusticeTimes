@@ -4,7 +4,7 @@ import { getCurrentUser } from '../../store/asyncActions/authActions/getUserData
 import { getMyArticles } from '../../store/asyncActions/articlesActions/getMyArticles'
 import { Pagination } from '../Pagination/Pagination'
 import { MyArticle } from '../MyArticle/MyArticle'
-import styles from './MyArticles.module.css'
+import styles from './MyArticles.module.scss'
 // @ts-ignore
 import defaultAvatar from '../../img/defaultAvatar.png'
 import { ArticleInterface } from '../../types/types'

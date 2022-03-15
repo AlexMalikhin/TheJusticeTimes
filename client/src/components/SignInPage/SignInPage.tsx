@@ -4,7 +4,7 @@ import axios from 'axios'
 import { Input } from '../Input/Input'
 import { Button } from '../Button/Button'
 import { AppContext } from '../AppContext/AppContext'
-import signInPageStyles from './SignInPage.module.css'
+import signInPageStyles from './SignInPage.module.scss'
 
 interface SignInInterface {
   firstname: string

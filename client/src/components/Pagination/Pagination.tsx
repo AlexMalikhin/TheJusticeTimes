@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { Button } from '../Button/Button'
-import paginationStyles from './Pagination.module.css'
+import paginationStyles from './Pagination.module.scss'
 import { PaginationProps } from './types'
 
 export const Pagination: React.FC<PaginationProps> = ({

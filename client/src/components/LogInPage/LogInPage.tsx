@@ -5,7 +5,7 @@ import { Input } from '../Input/Input'
 import { Button } from '../Button/Button'
 import { userLogIn } from '../../store/asyncActions/authActions/userLogIn'
 import { AppContext } from '../AppContext/AppContext'
-import logInPageStyles from './LogInPage.module.css'
+import logInPageStyles from './LogInPage.module.scss'
 
 export const LogInPage: React.FC = () => {
   const {

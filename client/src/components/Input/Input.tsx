@@ -1,4 +1,4 @@
-import inputStyles from './Input.module.css'
+import inputStyles from './Input.module.scss'
 import React from 'react'
 
 interface InputProps {

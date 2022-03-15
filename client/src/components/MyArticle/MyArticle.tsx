@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import styles from './MyArticle.module.css'
+import styles from './MyArticle.module.scss'
 // @ts-ignore
 import viewsImg from '../../img/viewsImg.png'
 // @ts-ignore

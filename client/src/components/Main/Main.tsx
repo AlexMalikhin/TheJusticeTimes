@@ -9,7 +9,7 @@ import { viewArticleUpdate } from '../../store/asyncActions/articlesActions/view
 import { fetchAllArticles } from '../../store/asyncActions/articlesActions/getAllArticles'
 import { ArticleInterface } from '../../types/types'
 import { RootState } from '../../store'
-import styles from './Main.module.css'
+import styles from './Main.module.scss'
 
 export const Main: React.FC = () => {
   const { currentPage, setCurrentPage, setLogIn, logIn } =
@@ -40,7 +40,7 @@ export const Main: React.FC = () => {
 
   return (
     <div className={styles.main_container}>
-      <TopArticle topArticle={mostPopularArticle} />
+      {/*<TopArticle topArticle={mostPopularArticle} />*/}
       <div className={styles.main_content}>
         <h1>Popular articles</h1>
         {slicedArticles?.map((article) => (

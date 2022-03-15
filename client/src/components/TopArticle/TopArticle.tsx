@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { ArticlesProps } from '../../types/types'
 import { SkeletonElement } from '../../skeletons/SkeletonElement'
 import { ArticleInterface } from '../../types/types'
-import styles from './TopArticle.module.css'
+import styles from './TopArticle.module.scss'
 // @ts-ignore
 import viewsImg from '../../img/viewsImg.png'
 // @ts-ignore

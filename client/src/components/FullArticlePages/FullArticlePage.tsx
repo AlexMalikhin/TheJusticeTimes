@@ -3,7 +3,7 @@ import React, { useEffect, useContext } from 'react'
 import { AppContext } from '../AppContext/AppContext'
 import { Button } from '../Button/Button'
 import { AllArticlesInterface } from './types'
-import fullPageStyles from './FullArticlePage.module.css'
+import fullPageStyles from './FullArticlePage.module.scss'
 // @ts-ignore
 import viewsImg from '../../img/viewsImg.png'
 // @ts-ignore

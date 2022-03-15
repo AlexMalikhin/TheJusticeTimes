@@ -7,7 +7,7 @@ import { updateUserData } from '../../store/asyncActions/authActions/updateUserD
 import { fetchAllArticles } from '../../store/asyncActions/articlesActions/getAllArticles'
 // @ts-ignore
 import defaultAvatar from '../../img/defaultAvatar.png'
-import profilePageStyles from './ProfilePage.module.css'
+import profilePageStyles from './ProfilePage.module.scss'
 
 export const ProfilePage: React.FC = () => {
   const reader = new FileReader()

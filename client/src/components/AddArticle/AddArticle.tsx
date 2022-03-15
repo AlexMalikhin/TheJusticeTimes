@@ -9,7 +9,7 @@ import moment from 'moment'
 import { fetchAllArticles } from '../../store/asyncActions/articlesActions/getAllArticles'
 import { Button } from '../Button/Button'
 import { Input } from '../Input/Input'
-import addArticleStyles from './AddArticle.module.css'
+import addArticleStyles from './AddArticle.module.scss'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 // @ts-ignore
 import emptyImg from '../../img/article_images/empty_img.png'

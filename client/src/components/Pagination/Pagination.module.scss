@@ -1,0 +1,21 @@
+.allArticles{
+    display: flex;
+    justify-content: space-between;
+    margin: 36px 0;
+    min-width: 1070px;
+    @media (min-width: 1024px) and (max-width: 1439px){
+        min-width: 960px;
+    }
+    @media (min-width: 768px) and (max-width: 1023px){
+        min-width: 740px;
+    }
+    @media (min-width: 425px) and (max-width: 767px){
+        min-width: 580px;
+    }
+}
+.myArticles {
+    display: flex;
+    justify-content: space-between;
+    margin: 36px 0;
+    min-width: 670px;
+}

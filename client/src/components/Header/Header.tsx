@@ -6,7 +6,7 @@ import { LogOutMenu } from '../LogOutMenu/LogOutMenu'
 import { AppContext } from '../AppContext/AppContext'
 // @ts-ignore
 import logoBlack from '../../img/logo_black.png'
-import styles from './Header.module.css'
+import styles from './Header.module.scss'
 import { userLogOut } from '../../store/asyncActions/authActions/userLogOut'
 import { RootState } from '../../store'
 

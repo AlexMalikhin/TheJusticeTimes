@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArticlesProps } from '../../../types/types'
-import styles from './Article.module.css'
+import styles from './Article.module.scss'
 // @ts-ignore
 import defaultAvatar from '../../../img/defaultAvatar.png'
 // @ts-ignore
@@ -21,11 +21,13 @@ const Article: React.FC<ArticlesProps> = ({ article, viewArticle }) => {
       onClick={() => showFullArticle(article?._id)}
       className={styles.articles}
     >
-      <img
-        src={article?.headImg}
-        className={styles.img_article}
-        alt={'article image'}
-      />
+      <div className={styles.img_block}>
+        <img
+          src={article?.headImg}
+          className={styles.img_article}
+          alt={'article image'}
+        />
+      </div>
       <div className={styles.article_block}>
         <ul>
           <li className={styles.hashtags}>
