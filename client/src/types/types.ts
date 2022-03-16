@@ -34,5 +34,6 @@ export type ButtonStylesType =
   | 'profile_save_changes'
   | 'all_articles'
   | 'category'
+  | 'burger_menu_logout'
 
 export type AuthType = string | number | boolean

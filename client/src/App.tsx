@@ -12,11 +12,12 @@ import { FullArticlePage } from './components/FullArticlePages/FullArticlePage'
 import { AddArticle } from './components/AddArticle/AddArticle'
 import { MyArticles } from './components/MyArticles/MyArticles'
 import { fetchAllArticles } from './store/asyncActions/articlesActions/getAllArticles'
-import { RootState } from './store'
+import { Burger } from './components/Burger.tsx/Burger'
 import { getPopularArticle } from './store/asyncActions/articlesActions/getMostPopularArticle'
+import { RootState } from './store'
 
 const App: React.FC = () => {
-  const { logIn } = useContext(AppContext)
+  const { logIn, isMobileDevice, isBurgerMenu } = useContext(AppContext)
   const { allArticles } = useSelector(
     (state: RootState) => state.articleReducer
   )
@@ -33,23 +34,24 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <Header />
-      {/*<Routes>*/}
-      {/*  {isAuth && <Route path="/AddArticle" element={<AddArticle />} />}*/}
-      {/*  {logIn && <Route path="/MyArticles" element={<MyArticles />} />}*/}
+      {isBurgerMenu && <Burger />}
+      <Routes>
+        {isAuth && <Route path="/AddArticle" element={<AddArticle />} />}
+        {logIn && <Route path="/MyArticles" element={<MyArticles />} />}
 
-      {/*  <Route path="/AllArticles" element={<Main />} />*/}
-      {/*  <Route path="/LogIn" element={<LogInPage />} />*/}
-      {/*  <Route path="/SignIn" element={<SignInPage />} />*/}
-      {/*  {isAuth && <Route path="/Profile" element={<ProfilePage />} />}*/}
-      {/*  <Route*/}
-      {/*    path={`/AllArticles/:articleId`}*/}
-      {/*    element={<FullArticlePage allArticles={allArticles} />}*/}
-      {/*  />*/}
-      {/*  <Route*/}
-      {/*    path={`/MyArticles/:articleId`}*/}
-      {/*    element={<FullArticlePage allArticles={allArticles} />}*/}
-      {/*  />*/}
-      {/*</Routes>*/}
+        <Route path="/AllArticles" element={<Main />} />
+        <Route path="/LogIn" element={<LogInPage />} />
+        <Route path="/SignIn" element={<SignInPage />} />
+        {isAuth && <Route path="/Profile" element={<ProfilePage />} />}
+        <Route
+          path={`/AllArticles/:articleId`}
+          element={<FullArticlePage allArticles={allArticles} />}
+        />
+        <Route
+          path={`/MyArticles/:articleId`}
+          element={<FullArticlePage allArticles={allArticles} />}
+        />
+      </Routes>
       <Footer />
     </div>
   )

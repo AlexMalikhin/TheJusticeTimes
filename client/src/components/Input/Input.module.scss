@@ -6,11 +6,16 @@
     width: 100%;
 }
 .input{
+    border: 1px solid black;
+    margin-top: 2px;
     padding: 11px 10px;
     font-size: 1rem;
     font-weight: bold;
     margin-right: 10px;
     width: 100%;
+    //@media (min-width: 0) and (max-width: 600px){
+    //    font-size: 0.7rem;
+    //}
 }
 .input::placeholder{
     color: rgba(0, 0, 0, 0.22);

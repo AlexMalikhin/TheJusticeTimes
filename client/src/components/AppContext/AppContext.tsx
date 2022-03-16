@@ -12,6 +12,8 @@ export const AppContextProvider: React.FC<React.ReactNode> = ({ children }) => {
   const [userArticlePage, setUserArticlePage] = useState<number>(0)
   const [logIn, setLogIn] = useState<boolean>(false)
   const [authKey, setAuthKey] = useState()
+  const [isMobileDevice, setIsMobileDevice] = useState(false)
+  const [isBurgerMenu, setIsBurgerMenu] = useState(false)
 
   const [inputValueFirstName, setInputValueFirstName] = useState<string>('')
   const [inputValueLastName, setInputValueLastName] = useState<string>('')
@@ -54,8 +56,12 @@ export const AppContextProvider: React.FC<React.ReactNode> = ({ children }) => {
         setCurrentPage,
         logIn,
         setLogIn,
+        isMobileDevice,
+        setIsMobileDevice,
         authKey,
         setAuthKey,
+        isBurgerMenu,
+        setIsBurgerMenu,
 
         inputValueFirstName,
         inputValueLastName,

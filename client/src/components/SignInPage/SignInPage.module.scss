@@ -4,10 +4,13 @@
 }
 .block{
     margin: 64px 0;
-    min-width: 396px;
+    max-width: 396px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    @media (min-width: 0) and (max-width: 600px){
+        margin: 0 40px;
+    }
 }
 .header{
     text-align: center;

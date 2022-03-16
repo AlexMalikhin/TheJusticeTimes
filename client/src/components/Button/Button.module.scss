@@ -7,6 +7,9 @@
     color: white;
     margin-left: 38px;
     border: #000000 1px solid;
+    @media (min-width: 0px) and (max-width: 1000px){
+        margin-left: 10px;
+    }
 }
 .header_logout:active{
     font-family: 'IBM Plex Sans', sans-serif;
@@ -17,6 +20,9 @@
     color: #000000;
     margin-left: 38px;
     border: #030000 1px solid;
+    @media (min-width: 0px) and (max-width: 1000px){
+        margin-left: 10px;
+    }
 }
 .header_logIn{
     font-family: 'IBM Plex Sans', sans-serif;
@@ -74,6 +80,9 @@
     color: white;
     border: #ffffff 1px solid;
     margin-left: 38px;
+    @media (min-width: 0px) and (max-width: 1000px){
+        margin-left: 10px;
+    }
 }
 .footer_signIn{
     font-family: 'IBM Plex Sans', sans-serif;
@@ -160,4 +169,13 @@
     background: #ffffff;
     color: rgba(0, 0, 0, 0.51);
     border: rgba(0, 0, 0, 0.27) 1px solid;
+}
+.burger_menu_logout{
+    font-family: 'IBM Plex Sans', sans-serif;
+    margin-top: 5vh;
+    font-size: 2rem;
+    color: #ffffff;
+    padding: 30px 70px;
+    background: #030000;
+    border: 1px #b2a9a9 solid;
 }

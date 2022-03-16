@@ -62,40 +62,42 @@ export const ProfilePage: React.FC = () => {
   return (
     <>
       {isLoading ? (
-        <div className={profilePageStyles.lds_dual_ring}></div>
+        <div className={profilePageStyles.lds_dual_ring} />
       ) : (
         <div className={profilePageStyles.block}>
           <h1 className={profilePageStyles.header}>Profile</h1>
           <div className={profilePageStyles.content_block}>
-            <div className={profilePageStyles.photo_block}>
-              <img
-                src={profileAvatar || defaultAvatar}
-                className={profilePageStyles.avatar}
-                alt={'user avatar'}
-              />
-              <div className={profilePageStyles.upload_input}>
-                <label
-                  htmlFor="upload"
-                  className={profilePageStyles.input_label}
-                >
-                  {profileAvatar ? 'Change Photo' : 'Upload photo'}
-                </label>
-                <input
-                  id="upload"
-                  className={profilePageStyles.input_file_hidden}
-                  type="file"
-                  accept=".png, .jpg, .jpeg"
-                  onChange={saveImage}
+            <div className={profilePageStyles.photo_block_container}>
+              <div className={profilePageStyles.photo_block}>
+                <img
+                  src={profileAvatar || defaultAvatar}
+                  className={profilePageStyles.avatar}
+                  alt={'user avatar'}
                 />
+                <div className={profilePageStyles.upload_input}>
+                  <label
+                    htmlFor="upload"
+                    className={profilePageStyles.input_label}
+                  >
+                    {profileAvatar ? 'Change Photo' : 'Upload photo'}
+                  </label>
+                  <input
+                    id="upload"
+                    className={profilePageStyles.input_file_hidden}
+                    type="file"
+                    accept=".png, .jpg, .jpeg"
+                    onChange={saveImage}
+                  />
+                </div>
+                {profileAvatar && (
+                  <button
+                    className={profilePageStyles.delete_link}
+                    onClick={clearImg}
+                  >
+                    Delete photo
+                  </button>
+                )}
               </div>
-              {profileAvatar && (
-                <button
-                  className={profilePageStyles.delete_link}
-                  onClick={clearImg}
-                >
-                  Delete photo
-                </button>
-              )}
             </div>
             <div className={profilePageStyles.user_info}>
               <div className={profilePageStyles.user_data_block}>

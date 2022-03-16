@@ -10,6 +10,7 @@ import { fetchAllArticles } from '../../store/asyncActions/articlesActions/getAl
 import { ArticleInterface } from '../../types/types'
 import { RootState } from '../../store'
 import styles from './Main.module.scss'
+import { BurgerLogIn } from '../BurgerLogIn/BurgerLogIn'
 
 export const Main: React.FC = () => {
   const { currentPage, setCurrentPage, setLogIn, logIn } =
@@ -39,21 +40,23 @@ export const Main: React.FC = () => {
   }
 
   return (
-    <div className={styles.main_container}>
-      {/*<TopArticle topArticle={mostPopularArticle} />*/}
-      <div className={styles.main_content}>
-        <h1>Popular articles</h1>
-        {slicedArticles?.map((article) => (
-          <Article article={article} viewArticle={viewArticle} />
-        ))}
-        <Pagination
-          setPage={setCurrentPage}
-          page={currentPage}
-          articlesLength={allArticles?.length}
-          type={'allArticles'}
-          countPerPage={6}
-        />
+    <>
+      <div className={styles.main_container}>
+        {/*<TopArticle topArticle={mostPopularArticle} />*/}
+        <div className={styles.main_content}>
+          <h1>Popular articles</h1>
+          {slicedArticles?.map((article) => (
+            <Article article={article} viewArticle={viewArticle} />
+          ))}
+          <Pagination
+            setPage={setCurrentPage}
+            page={currentPage}
+            articlesLength={allArticles?.length}
+            type={'allArticles'}
+            countPerPage={6}
+          />
+        </div>
       </div>
-    </div>
+    </>
   )
 }

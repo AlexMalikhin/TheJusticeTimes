@@ -1,17 +1,45 @@
-import React, { useContext, useCallback, useEffect } from 'react'
+import React, { useContext, useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { LogInMenu } from '../LogInMenu/LogInMenu'
 import { LogOutMenu } from '../LogOutMenu/LogOutMenu'
 import { AppContext } from '../AppContext/AppContext'
-// @ts-ignore
-import logoBlack from '../../img/logo_black.png'
-import styles from './Header.module.scss'
 import { userLogOut } from '../../store/asyncActions/authActions/userLogOut'
 import { RootState } from '../../store'
+// @ts-ignore
+import logoBlack from '../../img/logo_black.png'
+// @ts-ignore
+import burger from '../../img/burger_menu_icon.png'
+import styles from './Header.module.scss'
 
 export const Header: React.FC = () => {
-  const { logIn, setLogIn } = useContext(AppContext)
+  const {
+    logIn,
+    setLogIn,
+    isMobileDevice,
+    setIsMobileDevice,
+    setIsBurgerMenu,
+    isBurgerMenu,
+  } = useContext(AppContext)
+  const [width, setWidth] = useState(window.innerWidth)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth)
+    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [width])
+
+  useEffect(() => {
+    if (width > 850) {
+      setIsMobileDevice(false)
+      setIsBurgerMenu(false)
+    } else if (width < 850) {
+      setIsMobileDevice(true)
+    }
+  }, [width])
+
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const isAuth = useSelector(
@@ -39,7 +67,16 @@ export const Header: React.FC = () => {
             alt={'logotype of header'}
           />
         </Link>
-        {logIn && isAuth ? (
+        {isMobileDevice ? (
+          <img
+            src={burger}
+            alt={'burger'}
+            className={styles.burger_icon}
+            onClick={() =>
+              setIsBurgerMenu((isBurgerMen: boolean) => !isBurgerMen)
+            }
+          />
+        ) : logIn && isAuth ? (
           <LogInMenu login={toggleLogIn} style={'header_logout'} />
         ) : (
           <LogOutMenu

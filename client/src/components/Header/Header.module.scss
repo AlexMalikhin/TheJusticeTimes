@@ -9,6 +9,9 @@
     border-bottom: #EBEBEB 1px solid;
     position: sticky;
     z-index: 10;
+    @media (min-width: 0px) and (max-width: 850px){
+        height: 10vh;
+    }
     .app_header {
         display: flex;
         justify-content: space-between;
@@ -18,13 +21,25 @@
         position: sticky;
         background: white;
         z-index: 10;
-        @media (min-width: 624px) and (max-width: 1439px){
+        @media (min-width: 0px) and (max-width: 1439px){
             padding: 0 20px;
+        }
+        .burger_icon{
+            width: 40px;
+            cursor: pointer;
+            @media (min-width: 0) and (max-width: 400px){
+                width: 30px;
+                height: 30px;
+            }
         }
         .logo {
             max-width: 268px;
             max-height: 32px;
             object-fit: cover;
+            @media (min-width: 0) and (max-width: 400px){
+                max-width: 220px;
+                max-height: 24px;
+            }
         }
     }
 }
