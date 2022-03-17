@@ -4,18 +4,30 @@
     position: relative;
     margin-bottom: 32px;
     width: 100%;
+    @media (min-width: 586px) and (max-width: 1080px){
+        margin-bottom: 16px;
+    }
+    @media (min-width: 0px) and (max-width: 585px){
+        margin-bottom: 1px;
+    }
 }
 .input{
-    border: 1px solid black;
-    margin-top: 2px;
+    border: 1px solid #525151;
     padding: 11px 10px;
     font-size: 1rem;
     font-weight: bold;
     margin-right: 10px;
     width: 100%;
-    //@media (min-width: 0) and (max-width: 600px){
-    //    font-size: 0.7rem;
-    //}
+    @media (min-width: 851px) and (max-width: 1080px){
+        font-size: 0.9rem;
+    }
+    @media (min-width: 586px) and (max-width: 850px){
+        font-size: 0.75rem;
+    }
+    @media (min-width: 0px) and (max-width: 585px){
+        font-size: 0.5rem;
+        padding: 4px 2px;
+    }
 }
 .input::placeholder{
     color: rgba(0, 0, 0, 0.22);
@@ -24,6 +36,10 @@
     font-size: 0.88rem;
     font-family: 'IBM Plex Sans', sans-serif;
     margin-bottom: 12px;
+    @media (min-width: 0px) and (max-width: 585px){
+        margin-bottom: 2px;
+        font-size: 0.58rem;
+    }
 }
 .error{
     font-family: 'IBM Plex Sans', sans-serif;

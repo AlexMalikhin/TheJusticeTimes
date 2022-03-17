@@ -10,8 +10,7 @@ import styles from './Footer.module.scss'
 import burger from '../../img/burger_menu_icon.png'
 
 export const Footer: React.FC = () => {
-  const { logIn, setLogIn, isMobileDevice, setIsBurgerMenu } =
-    useContext(AppContext)
+  const { logIn, setLogIn, isMobileDevice } = useContext(AppContext)
   const toggleLogIn = () => setLogIn((logIn: boolean) => !logIn)
 
   return (
@@ -25,14 +24,7 @@ export const Footer: React.FC = () => {
           />
         </Link>
         {isMobileDevice ? (
-          <img
-            src={burger}
-            alt={'burger'}
-            className={styles.burger_icon}
-            onClick={() =>
-              setIsBurgerMenu((isBurgerMen: boolean) => !isBurgerMen)
-            }
-          />
+          <div />
         ) : logIn ? (
           <LogInMenu login={toggleLogIn} style={'footer_logout'} />
         ) : (

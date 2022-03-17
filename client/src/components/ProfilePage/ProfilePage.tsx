@@ -114,7 +114,12 @@ export const ProfilePage: React.FC = () => {
                   changeValue={setCurrentUserLastName}
                 />
               </div>
-              <label htmlFor="description">Description</label>
+              <label
+                className={profilePageStyles.description_label}
+                htmlFor="description"
+              >
+                Description
+              </label>
               <textarea
                 name="description"
                 className={profilePageStyles.description}
