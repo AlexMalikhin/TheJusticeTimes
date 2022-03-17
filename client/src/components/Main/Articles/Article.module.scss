@@ -1,18 +1,13 @@
 .articles{
-    max-width: 1070px;
+    max-width: 83vw;
     display: flex;
-    margin: 40px 0;
+    margin: 2vw 0;
     cursor: pointer;
     filter: invert(4%);
     word-wrap: break-word;
-    @media (min-width: 1024px) and (max-width: 1439px){
-        max-width: 960px;
-    }
-    @media (min-width: 768px) and (max-width: 1023px){
-        max-width: 740px;
-    }
-    @media (min-width: 425px) and (max-width: 767px){
-        max-width: 580px;
+    @media (min-width: 0px) and (max-width: 850px) {
+        flex-direction: column;
+        margin: 7vw 0 0 0;
     }
 }
 .articles:hover{
@@ -23,49 +18,52 @@
     top: -2px;
 }
 .img_article{
-    width: 100%;
-    height: 100%;
+    height: 16vw;
     object-fit: cover;
+    width: 25vw;
+    @media (min-width: 0px) and (max-width: 850px) {
+        width: 83vw;
+        height: 50vw;
+    }
 }
 .img_block{
     display: flex;
-    flex: 1;
-    max-width: 367px;
-    max-height: 260px;
-    min-height: 260px;
-    @media (min-width: 1024px) and (max-width: 1439px){
-        max-height: 230px;
-        min-height: 230px;
+    width: 25vw;
+    @media (min-width: 0px) and (max-width: 850px) {
+        width: 83vw;
+        height: 50vw;
+        margin-top: 3vw;
     }
+    //@media (min-width: 1024px) and (max-width: 1439px){
+    //    max-height: 230px;
+    //    min-height: 230px;
+    //}
 }
 .article_block{
-    max-width: 680px;
-    margin-left: 24px;
+    max-width: 70vw;
+    margin-left: 2.5vw;
     border-bottom: 1px #EBEBEB solid;
-    @media (min-width: 1024px) and (max-width: 1439px){
-        max-width: 960px;
-        display: flex;
-        flex: 2;
-        flex-direction: column;
-    }
-    @media (min-width: 768px) and (max-width: 1023px){
-        max-width: 740px;
-    }
-    @media (min-width: 425px) and (max-width: 767px){
-        max-width: 580px;
+    @media (min-width: 0px) and (max-width: 850px) {
+        margin-top: 2vw;
+        margin-left: 0;
+        min-width: 83vw;
+        max-height: 45vw;
     }
 }
 .hashtags{
-    padding: 7px 12px;
+    padding: 0.4vw 0.6vw;
     background: #F7F7F7;
     color: #8C8C8C;
     border-radius: 45px;
     font-family: 'Inter', sans-serif;
-    font-size: 0.75rem;
+    font-size: 0.9vw;
     list-style: none;
     display: inline-block;
-
     margin-right: 10px;
+    @media (min-width: 0) and (max-width: 850px) {
+        font-size: 2vw;
+        padding: 1vw 3vw;
+    }
 }
 .article_info{
     display: flex;
@@ -75,37 +73,69 @@
     padding: 0;
     margin: 8px 0;
     position: absolute;
-    bottom: 10px;
+    bottom: -0.1vw;
+    @media (min-width: 0px) and (max-width: 850px)  {
+        position: relative;
+        margin-bottom: 20px;
+    }
 }
 .avatar_block{
     display: flex;
     align-items: center;
 }
 .avatar_name{
+    font-size: 1.2vw;
     font-weight: 500;
     margin: 0 8px;
+    @media (min-width: 0px) and (max-width: 875px) {
+        font-size: 3vw;
+    }
 }
 .m8{
     margin: 0 8px;
 }
 .views{
-    max-width: 20px;
+    width: 1.7vw;
+    @media (min-width: 0px) and (max-width: 875px) {
+        width: 3vw;
+    }
 }
 .ml8{
     margin-left: 8px;
+    @media (min-width: 0px) and (max-width: 875px) {
+        font-size: 2.5vw;
+    }
+}
+.date{
+    margin: 0 8px;
+    font-size: 1.2vw;
+    @media (min-width: 0px) and (max-width: 875px) {
+        font-size: 2.5vw;
+    }
 }
 .avatars{
     border-radius: 50%;
-    max-width: 40px;
+    width: 3.2vw;
     object-fit: cover;
+    @media (min-width: 0px) and (max-width: 875px) {
+        width: 7vw;
+    }
 }
 .paragraph_short{
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     overflow: hidden;
-    max-width: 680px;
-    @media (min-width: 768px) and (max-width: 1023px){
-        max-width: 540px;
+    max-width: 70vw;
+    font-size: 1.1vw;
+    @media (min-width: 0px) and (max-width: 850px) {
+        min-width: 83vw;
+        font-size: 3vw;
+        -webkit-line-clamp: 4;
     }
+}
+.views_block{
+    display: flex;
+    align-items: center;
+    margin-left: 0.4vw;
 }

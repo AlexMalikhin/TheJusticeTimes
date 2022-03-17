@@ -41,18 +41,30 @@ a{
 }
 h1{
   font-family: 'Playfair Display', serif;
-  font-size: 3rem;
+  font-size: 3vw;
+  @media (min-width: 0px) and (max-width: 850px) {
+      font-size: 5vw;
+    margin-bottom: 0;
+  }
 }
 h2{
   font-family: 'Playfair Display', serif;
-  font-size: 2rem;
-  margin: 16px 0;
+  font-size: 1.7vw;
+  margin: 0.3vw 0;
+  @media (min-width: 0px) and (max-width: 850px) {
+    font-size: 4vw;
+    margin: 2.4vw 0 1.2vw 0;
+  }
 }
 p{
   font-family: 'IBM Plex Sans', sans-serif;
   color: #8C8C8C;
   font-size: 1rem;
-  line-height: 24px;
+  line-height: 1.2vw;
+  @media (min-width: 0px) and (max-width: 850px){
+    line-height: 3.7vw;
+    margin-bottom: 5vw;
+  }
   margin-top: 0;
 }
 code {

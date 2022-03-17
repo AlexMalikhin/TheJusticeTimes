@@ -8,14 +8,8 @@
   color: #504545;
   display: flex;
   justify-content: center;
-  font-size: 4rem;
+  font-size: 5vw;
   align-items: center;
-  @media (min-width: 376px) and (max-width: 575px) {
-    font-size: 3rem;
-  }
-  @media (min-width: 0px) and (max-width: 375px) {
-    font-size: 2rem;
-  }
 }
 .active{
   text-align: center;

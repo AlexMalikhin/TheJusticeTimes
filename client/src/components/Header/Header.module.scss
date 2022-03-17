@@ -2,43 +2,34 @@
     background: white;
     top: 0;
     width: 100%;
-    padding: 24px 0;
+    padding: 1.4vw 0;
     display: flex;
     justify-content: center;
     align-items: center;
     border-bottom: #EBEBEB 1px solid;
     position: sticky;
     z-index: 10;
-    @media (min-width: 0px) and (max-width: 850px){
-        height: 10vh;
+    @media (min-width: 0px) and (max-width: 850px) {
+        padding: 4vw 0;
     }
     .app_header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        max-width: 1070px;
+        max-width: 85vw;
         flex: 1;
         position: sticky;
         background: white;
         z-index: 10;
-        @media (min-width: 0px) and (max-width: 1439px){
-            padding: 0 20px;
-        }
         .burger_icon{
-            width: 40px;
+            width: 4vw;
             cursor: pointer;
-            @media (min-width: 0) and (max-width: 400px){
-                width: 30px;
-                height: 30px;
-            }
         }
         .logo {
-            max-width: 268px;
-            max-height: 32px;
+            width: 20vw;
             object-fit: cover;
-            @media (min-width: 0) and (max-width: 400px){
-                max-width: 220px;
-                max-height: 24px;
+            @media (min-width: 0px) and (max-width: 875px) {
+                width: 30vw;
             }
         }
     }
