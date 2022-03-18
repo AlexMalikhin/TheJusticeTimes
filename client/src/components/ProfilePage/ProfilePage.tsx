@@ -107,6 +107,7 @@ export const ProfilePage: React.FC = () => {
                   inputValue={currentUserFirstName}
                   changeValue={setCurrentUserFirstName}
                   classNam={'input'}
+                  blockStyle={'input_block_profile'}
                 />
                 <Input
                   name="Last name"
@@ -114,6 +115,7 @@ export const ProfilePage: React.FC = () => {
                   inputValue={currentUserLastName}
                   changeValue={setCurrentUserLastName}
                   classNam={'input'}
+                  blockStyle={'input_block_profile'}
                 />
               </div>
               <label

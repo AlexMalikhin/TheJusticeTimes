@@ -50,6 +50,7 @@ export const Header: React.FC = () => {
 
   const toggleLogIn = useCallback((): void => {
     dispatch(userLogOut())
+
     navigate('/AllArticles')
   }, [logIn])
 

@@ -171,6 +171,7 @@ export const SignInPage: React.FC = () => {
           blurHandle={isCorrectFirstname}
           focusEvent={() => setIsRenderFirstnameError(false)}
           classNam={'input_auth'}
+          blockStyle={'input_block'}
         />
         <Input
           name="lastname"
@@ -184,6 +185,7 @@ export const SignInPage: React.FC = () => {
           blurHandle={isCorrectLastname}
           focusEvent={() => setIsRenderLastnameError(false)}
           classNam={'input_auth'}
+          blockStyle={'input_block'}
         />
         <Input
           name="email"
@@ -197,6 +199,7 @@ export const SignInPage: React.FC = () => {
           blurHandle={isCorrectEmail}
           focusEvent={() => setIsRenderEmailError(false)}
           classNam={'input_auth'}
+          blockStyle={'input_block'}
         />
         <Input
           name="password"
@@ -210,6 +213,7 @@ export const SignInPage: React.FC = () => {
           blurHandle={isCorrectPassword}
           focusEvent={() => setIsRenderPasswordError(false)}
           classNam={'input_auth'}
+          blockStyle={'input_block'}
         />
         <Button
           type={'form_button'}

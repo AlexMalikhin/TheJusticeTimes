@@ -4,14 +4,21 @@
     position: relative;
     margin-bottom: 32px;
     width: 100%;
-    //@media (min-width: 586px) and (max-width: 1080px){
-    //    margin-bottom: 16px;
-    //}
     @media (min-width: 0px) and (max-width: 850px){
         width: 90vw;
         padding: 0 5vw;
     }
-
+}
+.input_block_profile{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 32px;
+    width: 100%;
+    @media (min-width: 0px) and (max-width: 850px){
+        width: 90vw;
+        margin-bottom: 3vw;
+    }
 }
 .input{
     border: 1px solid #525151;
@@ -20,15 +27,10 @@
     font-weight: bold;
     margin-right: 10px;
     width: 100%;
-    @media (min-width: 851px) and (max-width: 1080px){
-        font-size: 0.9rem;
-    }
-    @media (min-width: 586px) and (max-width: 850px){
-        font-size: 0.75rem;
-    }
-    @media (min-width: 0px) and (max-width: 585px){
-        font-size: 0.5rem;
-        padding: 4px 2px;
+    @media (min-width: 0) and (max-width: 850px){
+        font-size: 4vw;
+        padding: 1vw 1vw;
+        margin-right: 0;
     }
 }
 .input::placeholder{
@@ -58,7 +60,7 @@
     font-family: 'IBM Plex Sans', sans-serif;
     margin-bottom: 12px;
     @media (min-width: 0px) and (max-width: 850px){
-        font-size: 5vw;
+        font-size: 3.5vw;
         margin-bottom: 0.4vw;
     }
 }

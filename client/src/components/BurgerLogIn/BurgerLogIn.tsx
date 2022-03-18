@@ -5,11 +5,14 @@ import React, { useContext } from 'react'
 import { AppContext } from '../AppContext/AppContext'
 import { userLogOut } from '../../store/asyncActions/authActions/userLogOut'
 import { useDispatch } from 'react-redux'
+import App from '../../App'
 
 export const BurgerLogIn = () => {
+  const { setIsBurgerMenu } = useContext(AppContext)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const logOut = () => {
+    setIsBurgerMenu(false)
     dispatch(userLogOut())
     navigate('/AllArticles')
   }

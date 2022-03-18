@@ -46,19 +46,19 @@ export const Main: React.FC = () => {
         {/*<TopArticle topArticle={mostPopularArticle} />*/}
         <div className={styles.main_content}>
           <h1>Popular articles</h1>
-          <Article article={article} />
-          <Article article={article} />
-          <Article article={article} />
-          {/*{slicedArticles?.map((article) => (*/}
-          {/*  <Article article={article} viewArticle={viewArticle} />*/}
-          {/*))}*/}
-          {/*<Pagination*/}
-          {/*  setPage={setCurrentPage}*/}
-          {/*  page={currentPage}*/}
-          {/*  articlesLength={allArticles?.length}*/}
-          {/*  type={'allArticles'}*/}
-          {/*  countPerPage={6}*/}
-          {/*/>*/}
+          {/*<Article article={article} />*/}
+          {/*<Article article={article} />*/}
+          {/*<Article article={article} />*/}
+          {slicedArticles?.map((article) => (
+            <Article article={article} viewArticle={viewArticle} />
+          ))}
+          <Pagination
+            setPage={setCurrentPage}
+            page={currentPage}
+            articlesLength={allArticles?.length}
+            type={'allArticles'}
+            countPerPage={6}
+          />
         </div>
       </div>
     </>

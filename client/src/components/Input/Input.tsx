@@ -1,6 +1,6 @@
 import inputStyles from './Input.module.scss'
 import React from 'react'
-import { InputStyleType } from '../../types/types'
+import { InputBlockStyleType, InputStyleType } from '../../types/types'
 
 interface InputProps {
   name?: string
@@ -14,6 +14,7 @@ interface InputProps {
   blurHandle?: () => void
   errorText?: string
   focusEvent?: () => void
+  blockStyle: InputBlockStyleType
 }
 
 export const Input: React.FC<InputProps> = ({
@@ -28,13 +29,14 @@ export const Input: React.FC<InputProps> = ({
   blurHandle,
   errorText,
   focusEvent,
+  blockStyle,
 }) => {
   const setValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     changeValue(e.target.value)
   }
 
   return (
-    <div className={inputStyles.input_block}>
+    <div className={inputStyles[`${blockStyle}`]}>
       <label htmlFor={name} className={inputStyles.label}>
         {label}
       </label>

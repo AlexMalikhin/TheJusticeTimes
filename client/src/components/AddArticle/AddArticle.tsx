@@ -84,12 +84,14 @@ export const AddArticle: React.FC = () => {
           inputValue={newArticleTitle}
           changeValue={setNewArticleTitle}
           classNam={'input'}
+          blockStyle={'input_block_profile'}
         />
         <Input
           placeholder="Enter the category name..."
           inputValue={newArticleCategory}
           changeValue={setNewArticleCategory}
           classNam={'input'}
+          blockStyle={'input_block_profile'}
         />
         <div className={addArticleStyles.add_image_block}>
           <div className={addArticleStyles.image_block}>
