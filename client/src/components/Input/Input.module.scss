@@ -4,12 +4,14 @@
     position: relative;
     margin-bottom: 32px;
     width: 100%;
-    @media (min-width: 586px) and (max-width: 1080px){
-        margin-bottom: 16px;
+    //@media (min-width: 586px) and (max-width: 1080px){
+    //    margin-bottom: 16px;
+    //}
+    @media (min-width: 0px) and (max-width: 850px){
+        width: 90vw;
+        padding: 0 5vw;
     }
-    @media (min-width: 0px) and (max-width: 585px){
-        margin-bottom: 1px;
-    }
+
 }
 .input{
     border: 1px solid #525151;
@@ -32,13 +34,32 @@
 .input::placeholder{
     color: rgba(0, 0, 0, 0.22);
 }
+.input_auth{
+    border: 1px solid #525151;
+    padding: 11px 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-right: 10px;
+    width: 100%;
+    @media (min-width: 0px) and (max-width: 850px){
+        font-size: 4vw;
+        width: 80vw;
+        padding: 2vw 2vw;
+    }
+}
+.input_auth::placeholder{
+    color: rgba(0, 0, 0, 0.22);
+}
+
+
+
 .label{
     font-size: 0.88rem;
     font-family: 'IBM Plex Sans', sans-serif;
     margin-bottom: 12px;
-    @media (min-width: 0px) and (max-width: 585px){
-        margin-bottom: 2px;
-        font-size: 0.58rem;
+    @media (min-width: 0px) and (max-width: 850px){
+        font-size: 5vw;
+        margin-bottom: 0.4vw;
     }
 }
 .error{

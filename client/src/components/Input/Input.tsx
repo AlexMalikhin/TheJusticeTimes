@@ -1,11 +1,13 @@
 import inputStyles from './Input.module.scss'
 import React from 'react'
+import { InputStyleType } from '../../types/types'
 
 interface InputProps {
-  readonly name?: string
-  readonly placeholder?: string
-  readonly label?: string
-  readonly type?: string
+  name?: string
+  placeholder?: string
+  label?: string
+  type?: string
+  classNam: InputStyleType
   inputValue: string | number
   changeValue: (value: string) => void
   isRenderError?: boolean
@@ -15,6 +17,7 @@ interface InputProps {
 }
 
 export const Input: React.FC<InputProps> = ({
+  classNam,
   name,
   placeholder,
   label,
@@ -41,7 +44,7 @@ export const Input: React.FC<InputProps> = ({
         name={name}
         placeholder={placeholder}
         onBlur={blurHandle}
-        className={inputStyles.input}
+        className={inputStyles[`${classNam}`]}
         type={type}
         onFocus={focusEvent}
       />

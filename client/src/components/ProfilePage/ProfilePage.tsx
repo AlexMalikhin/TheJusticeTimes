@@ -106,12 +106,14 @@ export const ProfilePage: React.FC = () => {
                   label="First name"
                   inputValue={currentUserFirstName}
                   changeValue={setCurrentUserFirstName}
+                  classNam={'input'}
                 />
                 <Input
                   name="Last name"
                   label="Last name"
                   inputValue={currentUserLastName}
                   changeValue={setCurrentUserLastName}
+                  classNam={'input'}
                 />
               </div>
               <label

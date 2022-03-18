@@ -43,7 +43,7 @@ h1{
   font-family: 'Playfair Display', serif;
   font-size: 3vw;
   @media (min-width: 0px) and (max-width: 850px) {
-      font-size: 5vw;
+      font-size: 10vw;
     margin-bottom: 0;
   }
 }
@@ -52,7 +52,7 @@ h2{
   font-size: 1.7vw;
   margin: 0.3vw 0;
   @media (min-width: 0px) and (max-width: 850px) {
-    font-size: 4vw;
+    font-size: 8vw;
     margin: 2.4vw 0 1.2vw 0;
   }
 }
@@ -61,8 +61,12 @@ p{
   color: #8C8C8C;
   font-size: 1rem;
   line-height: 1.2vw;
-  @media (min-width: 0px) and (max-width: 850px){
-    line-height: 3.7vw;
+  @media (min-width: 0px) and (max-width: 450px){
+    line-height: 7vw;
+    margin-bottom: 5vw;
+  }
+  @media (min-width: 451px) and (max-width: 850px){
+    line-height: 5vw;
     margin-bottom: 5vw;
   }
   margin-top: 0;

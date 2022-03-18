@@ -34,7 +34,7 @@ const Article: React.FC<ArticlesProps> = ({ article, viewArticle }) => {
         {/*    <a>{article?.category}</a>*/}
         {/*  </li>*/}
         {/*</ul>*/}
-        <div className={styles.hashtags}>{article?.category}</div>
+        <div className={styles.hashtags}>#{article?.category}</div>
         <h2>{article?.title}</h2>
         <p className={styles.paragraph_short}>{article?.text}</p>
         <div className={styles.article_info}>
@@ -48,16 +48,18 @@ const Article: React.FC<ArticlesProps> = ({ article, viewArticle }) => {
               {article?.firstname} {article?.lastname}
             </span>
           </div>
-          <div className={styles.date}>
-            <span>{article?.date}</span>
-          </div>
-          <div className={styles.views_block}>
-            <img
-              src={viewsImg}
-              className={styles.views}
-              alt={'view eye image'}
-            />
-            <span className={styles.ml8}>{article?.views}</span>
+          <div className={styles.mobile_stat}>
+            <div className={styles.date}>
+              <span>{article?.date}</span>
+            </div>
+            <div className={styles.views_block}>
+              <img
+                src={viewsImg}
+                className={styles.views}
+                alt={'view eye image'}
+              />
+              <span className={styles.ml8}>{article?.views}</span>
+            </div>
           </div>
         </div>
       </div>

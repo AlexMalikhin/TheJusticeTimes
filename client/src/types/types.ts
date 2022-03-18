@@ -36,4 +36,6 @@ export type ButtonStylesType =
   | 'category'
   | 'burger_menu_logout'
 
+export type InputStyleType = 'input' | 'input_auth'
+
 export type AuthType = string | number | boolean

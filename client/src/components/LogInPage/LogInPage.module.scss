@@ -8,11 +8,15 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 .header{
     text-align: center;
     font-size: 2.25rem;
     margin-bottom: 48px;
+    @media (min-height: 0px) and (max-width: 850px) {
+        font-size: 8vw;
+    }
 }
 .create_account_link{
     text-align: center;
@@ -20,6 +24,11 @@
     font-family: 'IBM Plex Sans', sans-serif;
     color: #242424;
     font-size: 1rem;
+    @media (min-width: 0) and (max-width: 850px) {
+        font-size: 8vw;
+        width: 90vw;
+        line-height: 10vw;
+    }
 }
 .link{
     text-decoration: underline;

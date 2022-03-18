@@ -11,6 +11,8 @@ import logoBlack from '../../img/logo_black.png'
 // @ts-ignore
 import burger from '../../img/burger_menu_icon.png'
 import styles from './Header.module.scss'
+// @ts-ignore
+import close from '../../img/pngwing.com.png'
 
 export const Header: React.FC = () => {
   const {
@@ -69,7 +71,7 @@ export const Header: React.FC = () => {
         </Link>
         {isMobileDevice ? (
           <img
-            src={burger}
+            src={isBurgerMenu ? close : burger}
             alt={'burger'}
             className={styles.burger_icon}
             onClick={() =>

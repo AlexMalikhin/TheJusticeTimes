@@ -89,6 +89,7 @@ export const LogInPage: React.FC = () => {
           errorText={emailErrorText}
           blurHandle={isCorrectEmail}
           focusEvent={() => setIsRenderEmailError(false)}
+          classNam={'input_auth'}
         />
         <Input
           name="password"
@@ -101,6 +102,7 @@ export const LogInPage: React.FC = () => {
           errorText={passwordErrorText}
           blurHandle={isEnterPassword}
           focusEvent={() => setIsRenderPasswordError(false)}
+          classNam={'input_auth'}
         />
         <Button
           type={'form_button'}
